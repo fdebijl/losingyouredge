@@ -1,19 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhnlbao0vrili"]
+[gd_scene load_steps=4 format=3 uid="uid://dhnlbao0vrili"]
 
 [ext_resource type="Script" path="res://enemies/bubble/BubbleAi.cs" id="1_2o8ik"]
+[ext_resource type="PackedScene" uid="uid://b4dvpu7frlllo" path="res://enemies/bubble/explosions/ExplosionBomb.tscn" id="2_5n3cs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6t7me"]
 radius = 52.469
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("_agent", "path")]
-position = Vector2(585, 356)
-collision_layer = 0
+[node name="BubbleBody" type="CharacterBody2D" node_paths=PackedStringArray("_agent")]
+collision_layer = 2
+collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_2o8ik")
 BaseSpeed = 500.0
-kepsylon = 5.0
 _agent = NodePath("NavigationAgent2D")
-path = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+explosion = ExtResource("2_5n3cs")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 

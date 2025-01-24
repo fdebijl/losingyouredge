@@ -16,9 +16,9 @@ public partial class BubbleSpawner : Node2D
   public float SpawnRadius = 5.0f;
 
   [Export]
-  public int MaxSpawns = 10;
+  public int MaxNumberOfAliveBubbles = 10;
 
-  // TODO: Wire up
+  // TODO: Wire up if needed
   [Export]
   public float IdleSecondsAfterSpawn = 1.0f;
 
@@ -39,11 +39,14 @@ public partial class BubbleSpawner : Node2D
 
     this._spawnTimer -= (float)delta;
 
-    if (this._spawnTimer <= 0) {
+    var bubbleCount = GetTree().GetNodesInGroup($"Bubble-{Name}").Count;
+
+    if (this._spawnTimer <= 0 && bubbleCount < this.MaxNumberOfAliveBubbles) {
       var bubble = this.BubbleScene.Instantiate() as BubbleAi;
       var offset = RandomUtil.RandomPointInCircle(RandomUtil.Rng.RandfRange(0f, SpawnRadius));
       bubble.GlobalPosition = this.GlobalPosition + offset;
       bubble.path = PatrolPath;
+      bubble.AddToGroup($"Bubble-{Name}");
       GetParent().AddChild(bubble);
       _spawnTimer = SecondsBetweenSpawn;
     }

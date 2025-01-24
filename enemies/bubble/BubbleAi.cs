@@ -12,10 +12,10 @@ public partial class BubbleAi : CharacterBody2D
   public float kepsylon = 5.0f;
 
   [Export(PropertyHint.Range, "0, 100")]
-  public float seekKepsylon = 20.0f;
+  public float seekKepsylon = 200.0f;
 
   [Export(PropertyHint.Range, "0, 100")]
-  public float explodeKepsylon = 5.0f;
+  public float explodeKepsylon = 20.0f;
 
   [Export]
   public NavigationAgent2D _agent;
@@ -67,7 +67,8 @@ public partial class BubbleAi : CharacterBody2D
     // within exploding radius. fucken explode.
     if (player != null && this.GlobalPosition.DistanceTo(player.GlobalPosition) < explodeKepsylon) {
       var parent = GetParent();
-      var obj = explosion.Instantiate();
+      var obj = explosion.Instantiate() as Node2D;
+      obj.GlobalPosition = this.GlobalPosition;
       parent.AddChild(obj);
 
       // TODO: death animation += on finish call this
@@ -103,6 +104,7 @@ public partial class BubbleAi : CharacterBody2D
     return target;
   }
 
+  // get direction to navigate to target
   public Vector2 Navigate(Vector2 target) {
     if (!_navMesh.HasValue) return Vector2.Zero;
     _agent.TargetPosition = target;

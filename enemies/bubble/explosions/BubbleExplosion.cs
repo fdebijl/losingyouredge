@@ -1,19 +1,14 @@
 using Godot;
 using System;
 
-public partial class BubbleExplosion : Node
+public partial class BubbleExplosion : Node2D
 {
-	[Export]
-	private PackedScene explosion;
-
 	[Export]
 	private float despawnTimer = 1f;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		var obj = explosion.Instantiate();
-		AddChild(obj);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
