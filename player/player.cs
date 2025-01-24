@@ -9,6 +9,7 @@ public partial class player : CharacterBody2D
 	private Vector2 chargeDirection;
 
 	[Export] private ChargeDisplay ChargeDisplay;
+  [Export] private float ChargeScale;
 	public void GetInput()
 	{
 		Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
@@ -33,7 +34,7 @@ public partial class player : CharacterBody2D
 
 	private Vector2 MoveSpeed(float charge)
 	{
-		float chargeScale = (float)(charge * 0.01);
+		float chargeScale = (float)(charge * ChargeScale);
 		return chargeScale  * (Position - chargeDirection);
 	}
 	public override void _Input(InputEvent @event)

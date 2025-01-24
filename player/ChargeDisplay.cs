@@ -11,9 +11,7 @@ public partial class ChargeDisplay : Node2D
 	[Export] private TextureProgressBar moveChargeBar;
 	public void updateCharge(float charge)
 	{
-		GD.Print("Updating charge: " + charge);
 		moveChargeBar.Value = charge;
-		GD.Print("Charge: " + moveChargeBar.Value);
 	}
 
 	// Called when the node enters the scene tree for the first time.
