@@ -9,13 +9,13 @@ public partial class BubbleAi : CharacterBody2D
   public float Speed = 2.0f;
 
   [Export(PropertyHint.Range, "0, 100")]
-  public float kepsylon = 2.0f;
+  public float kepsylon = 5.0f;
 
   [Export(PropertyHint.Range, "0, 100")]
-  public float seekKepsylon = 50.0f;
+  public float seekKepsylon = 20.0f;
 
   [Export(PropertyHint.Range, "0, 100")]
-  public float explodeKepsylon = 50.0f;
+  public float explodeKepsylon = 5.0f;
 
   [Export]
   public NavigationAgent2D _agent;
@@ -24,36 +24,65 @@ public partial class BubbleAi : CharacterBody2D
   public Line2D path;
 
   [Export]
-  private float maxOffset = 10.0f;
+  private float maxOffset = 180.0f;
 
   [Export]
-  public float offset;
+  private PackedScene explosion;
+
+  private Vector2 offset;
 
   private Rid ? _navMesh;
+
+  private Node2D player;
 
   private int _stepDirection = 1;
   private int _step = 0;
 
   public override void _Ready() {
     Speed = BaseSpeed;
-    offset = RandomUtil.RandomPointInCircle();
+    offset = RandomUtil.RandomPointInCircle(RandomUtil.Rng.RandfRange(0f, maxOffset));
     var navMesh = GetWorld2D().NavigationMap;
 
     if (NavigationServer2D.MapIsActive(navMesh)) {
-      _navMesh = navMesh;
+        _navMesh = navMesh;
     } else {
-      NavigationServer2D.MapChanged += (Rid rid) => {
-      _navMesh = rid;
+        NavigationServer2D.MapChanged += (Rid rid) => {
+        _navMesh = rid;
       };
     }
   }
 
   public override void _PhysicsProcess(double delta) {
+    player = this.GetTree().GetNodesInGroup("Player").Cast<Node2D>().FirstOrDefault();
     var target = GetTarget();
     var direction = Navigate(target);
     this.Velocity = direction * Speed;
 
-    MoveAndCollide(this.Velocity * (float)delta);
+    // hit some wall while trying to move, try going to next step in path
+    var collided = MoveAndCollide(this.Velocity * (float)delta);
+    if (collided != null) {
+      Step();
+    }
+
+    // within exploding radius. fucken explode.
+    if (player != null && this.GlobalPosition.DistanceTo(player.GlobalPosition) < explodeKepsylon) {
+      var parent = GetParent();
+      var obj = explosion.Instantiate();
+      parent.AddChild(obj);
+
+      // TODO: death animation += on finish call this
+      parent.RemoveChild(this);
+    }
+  }
+
+  private void Step() {
+    if (_step == path.GetPointCount() - 1) {
+      _stepDirection = -1;
+    } else if (_step == 0) {
+      _stepDirection = 1;
+    }
+
+    _step += _stepDirection;
   }
 
   public Vector2 GetTarget() {
@@ -61,21 +90,14 @@ public partial class BubbleAi : CharacterBody2D
       return Vector2.Zero;
     }
 
-    var player = this.GetTree().GetNodesInGroup("Player").Cast<Node2D>().FirstOrDefault();
     if (player != null && this.GlobalPosition.DistanceTo(player.GlobalPosition) < seekKepsylon) {
       return player.GlobalPosition;
     }
 
-    var target = path.Points[_step];
+    var target = path.Points[_step] + offset;
 
     if (this.GlobalPosition.DistanceTo(target) < this.kepsylon) {
-      if (_step == path.GetPointCount() - 1) {
-        _stepDirection = -1;
-      } else if (_step == 0) {
-        _stepDirection = 1;
-      }
-
-      _step += _stepDirection;
+      Step();
     }
 
     return target;
@@ -96,19 +118,3 @@ public partial class BubbleAi : CharacterBody2D
     return Vector2.Zero;
   }
 }
-
-// E 0:00:01:0783   void System.Linq.ThrowHelper.ThrowNoElementsException(): System.InvalidOperationException: Sequence contains no elements
-//   <C++ Error>    System.InvalidOperationException
-//   <C++ Source>   :0 @ void System.Linq.ThrowHelper.ThrowNoElementsException()
-//   <Stack Trace>  :0 @ void System.Linq.ThrowHelper.ThrowNoElementsException()
-//                  :0 @ TSource System.Linq.Enumerable.First<TSource>(System.Collections.Generic.IEnumerable`1[TSource])
-//                  BubbleAi.cs:54 @ Godot.Vector2 BubbleAi.GetTarget()
-//                  BubbleAi.cs:42 @ void BubbleAi._PhysicsProcess(double)
-//                  Node.cs:2389 @ bool Godot.Node.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&)
-//                  CanvasItem.cs:1505 @ bool Godot.CanvasItem.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&)
-//                  Node2D.cs:546 @ bool Godot.Node2D.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&)
-//                  CollisionObject2D.cs:678 @ bool Godot.CollisionObject2D.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&)
-//                  PhysicsBody2D.cs:113 @ bool Godot.PhysicsBody2D.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&)
-//                  CharacterBody2D.cs:786 @ bool Godot.CharacterBody2D.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&)
-//                  BubbleAi_ScriptMethods.generated.cs:68 @ bool BubbleAi.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&)
-//                  CSharpInstanceBridge.cs:24 @ Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*)

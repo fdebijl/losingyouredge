@@ -5,21 +5,23 @@ public partial class BubbleSpawner : Node2D
   [Export]
   public PackedScene BubbleScene;
 
+  [Export]
+  public Line2D PatrolPath;
+
   [ExportGroup("Spawner Settings")]
-  [Export(PropertyHint.Range, "0,100,1")]
-  public float SpawnRate = 1.0f;
+  [Export(PropertyHint.Range, "0,100,0.1")]
+  public float SecondsBetweenSpawn = 1.0f;
 
   [Export]
   public float SpawnRadius = 5.0f;
 
   [Export]
-  public Line2D path;
+  public int MaxSpawns = 10;
 
   // TODO: Wire up
   [Export]
-  public float IdleAfterSpawn = 1.0f;
+  public float IdleSecondsAfterSpawn = 1.0f;
 
-  // TODO: Wire up
   [Export]
   public bool IsActive = true;
 
@@ -27,7 +29,7 @@ public partial class BubbleSpawner : Node2D
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
-    _spawnTimer = SpawnRate;
+    _spawnTimer = SecondsBetweenSpawn;
   }
 
   public override void _PhysicsProcess(double delta) {
@@ -39,11 +41,11 @@ public partial class BubbleSpawner : Node2D
 
     if (this._spawnTimer <= 0) {
       var bubble = this.BubbleScene.Instantiate() as BubbleAi;
-      var offset = RandomUtil.RandomPointInCircle(SpawnRadius);
+      var offset = RandomUtil.RandomPointInCircle(RandomUtil.Rng.RandfRange(0f, SpawnRadius));
       bubble.GlobalPosition = this.GlobalPosition + offset;
-      bubble.path = path;
+      bubble.path = PatrolPath;
       GetParent().AddChild(bubble);
-      _spawnTimer = SpawnRate;
+      _spawnTimer = SecondsBetweenSpawn;
     }
   }
 }
