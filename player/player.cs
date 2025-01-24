@@ -6,6 +6,7 @@ public partial class player : CharacterBody2D
 	private Vector2 MousePosition;
 	private int charge = 0;
 	private bool charging = false;
+	private Vector2 chargeDirection;
 
 	public void GetInput()
 	{
@@ -22,7 +23,7 @@ public partial class player : CharacterBody2D
 		if (charging) {
 			charge += 1;
 		} else if (charge > 0) {
-			Velocity = charge * Vector2.Right;	
+			Velocity = charge * (Position - chargeDirection);
 			charge -= 1;
 		}
 		MoveAndCollide(Velocity * (float)delta);
@@ -37,14 +38,9 @@ public partial class player : CharacterBody2D
 			}
 			else if (eventMouseButton.ButtonIndex == MouseButton.Left && !eventMouseButton.Pressed)
 			{
+				chargeDirection = eventMouseButton.Position;
 				charging = false;
 			}
 		}
-			
-		//else if (@event is InputEventMouseMotion eventMouseMotion)
-			//GD.Print("Mouse Motion at: ", eventMouseMotion.Position);
-
-		// Print the size of the viewport.
-		//GD.Print("Viewport Resolution is: ", GetViewport().GetVisibleRect().Size);
 	}
 }
