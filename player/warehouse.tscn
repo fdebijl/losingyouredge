@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bin3r8r5qu1fi"]
+
+[ext_resource type="Script" path="res://player/player.cs" id="1_xcnmi"]
+[ext_resource type="Texture2D" uid="uid://bx4m468gnhl3c" path="res://player/platformerPack_character.png" id="2_eqe3r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gt3w8"]
+radius = 251.0
+height = 918.0
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_xcnmi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-189, -204)
+scale = Vector2(4.25521, 4.25521)
+texture = ExtResource("2_eqe3r")
+centered = false
+hframes = 4
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_gt3w8")
