@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgie1h3dp8p2a"]
+
+[ext_resource type="Script" path="res://enemies/bubble/BubbleAi.cs" id="1_mqt6f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6vls"]
+size = Vector2(2534, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5h0l"]
+size = Vector2(26, 1316)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1267, 12)
+shape = SubResource("RectangleShape2D_l6vls")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(13, 682)
+shape = SubResource("RectangleShape2D_b5h0l")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1267, 1352)
+shape = SubResource("RectangleShape2D_l6vls")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2521, 682)
+shape = SubResource("RectangleShape2D_b5h0l")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+script = ExtResource("1_mqt6f")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_mqt6f")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]

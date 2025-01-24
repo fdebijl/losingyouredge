@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="losingyouredge"
-config/features=PackedStringArray("4.3", "Mobile")
+run/main_scene="res://ai_debug.tscn"
+config/features=PackedStringArray("4.3", "C#", "Mobile")
 config/icon="res://icon.svg"
 
 [dotnet]
