@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cf1qf8mq7blko"]
+[gd_scene load_steps=6 format=3 uid="uid://cf1qf8mq7blko"]
 
 [ext_resource type="Script" path="res://player/player.cs" id="1_srn17"]
 [ext_resource type="Texture2D" uid="uid://bx4m468gnhl3c" path="res://player/assets/platformerPack_character.png" id="2_k505k"]
 [ext_resource type="Script" path="res://player/ChargeDisplay.cs" id="3_2arfo"]
 [ext_resource type="Texture2D" uid="uid://cgl7lvp8fvi8" path="res://player/assets/barHorizontal_green.png" id="4_j3vkq"]
-[ext_resource type="Texture2D" uid="uid://cx5rud6i5n2ov" path="res://player/assets/barHorizontal_yellow.png" id="4_xmu0q"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gt3w8"]
 radius = 251.0
@@ -36,5 +35,4 @@ offset_left = -78.0
 offset_top = -134.0
 offset_right = 122.0
 offset_bottom = -94.0
-texture_under = ExtResource("4_xmu0q")
 texture_progress = ExtResource("4_j3vkq")

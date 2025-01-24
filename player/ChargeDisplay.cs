@@ -1,23 +1,28 @@
 using Godot;
-using System;
 
 public partial class ChargeDisplay : Node2D
 {
 
-	//var bar_green = preload("res://assets/barHorizontal_green.png");
+  [Export] private Texture2D barYellow;
+  [Export] private Texture2D barRed;
 
-//
-	// onready var movebar = $moveChargeBar;
+  public override void _Ready()
+  {
+    barYellow = (Texture2D)GD.Load("res://player/assets/barHorizontal_yellow.png");
+    barRed = (Texture2D)GD.Load("res://player/assets/barHorizontal_red.png");
+  }
 	[Export] private TextureProgressBar moveChargeBar;
 	public void updateCharge(float charge)
 	{
+    if (charge >= moveChargeBar.MaxValue * 0.8)
+    {
+      moveChargeBar.TextureProgress = barRed;
+    }
+    else if (charge > moveChargeBar.MaxValue * 0.45)
+    {
+      moveChargeBar.TextureProgress = barYellow;
+    }
 		moveChargeBar.Value = charge;
-	}
-
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
