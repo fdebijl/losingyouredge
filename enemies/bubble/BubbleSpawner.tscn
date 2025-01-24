@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://7bpnmkemoum7"]
+
+[ext_resource type="Script" path="res://enemies/bubble/BubbleSpawner.cs" id="1_bg6iy"]
+[ext_resource type="PackedScene" uid="uid://dhnlbao0vrili" path="res://enemies/bubble/BubbleAgent.tscn" id="2_3poak"]
+
+[node name="Spawnor" type="Node2D" node_paths=PackedStringArray("path")]
+position = Vector2(274, 232)
+script = ExtResource("1_bg6iy")
+BubbleScene = ExtResource("2_3poak")
+path = []

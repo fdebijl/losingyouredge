@@ -1,12 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cgie1h3dp8p2a"]
+[gd_scene load_steps=6 format=3 uid="uid://cgie1h3dp8p2a"]
 
-[ext_resource type="Script" path="res://enemies/bubble/BubbleAi.cs" id="1_mqt6f"]
+[ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="1_3slw4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6vls"]
 size = Vector2(2534, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b5h0l"]
 size = Vector2(26, 1316)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xp8kx"]
+vertices = PackedVector2Array(2524.88, 1354.93, 13.0234, 1339.06, 16.9688, 22.9609, 2509.11, 15.0313)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(7, 13, 2519, 5, 2535, 1365, 3, 1349)])
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foq05"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -28,12 +35,19 @@ shape = SubResource("RectangleShape2D_l6vls")
 position = Vector2(2521, 682)
 shape = SubResource("RectangleShape2D_b5h0l")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-script = ExtResource("1_mqt6f")
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_xp8kx")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("1_mqt6f")
+[node name="Spawnor" parent="." node_paths=PackedStringArray("path") instance=ExtResource("1_3slw4")]
+position = Vector2(807, 632)
+path = NodePath("../Line2D")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CharacterBody2D"]
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(263, 392, 833, 250, 1617, 316, 2005, 456, 2165, 842, 2029, 1130, 1021, 1224, 151, 1240, 1421, 710, 1603, 948, 601, 774, 2061, 132)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="Node2D" type="Node2D" parent="." groups=["Player"]]
+position = Vector2(214, 192)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+scale = Vector2(19.5, 19.5)
+texture = SubResource("PlaceholderTexture2D_foq05")

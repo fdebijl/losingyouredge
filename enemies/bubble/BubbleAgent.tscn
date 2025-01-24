@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhnlbao0vrili"]
+
+[ext_resource type="Script" path="res://enemies/bubble/BubbleAi.cs" id="1_2o8ik"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6t7me"]
+radius = 52.469
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("_agent", "path")]
+position = Vector2(585, 356)
+collision_layer = 0
+motion_mode = 1
+script = ExtResource("1_2o8ik")
+BaseSpeed = 500.0
+kepsylon = 5.0
+_agent = NodePath("NavigationAgent2D")
+path = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6t7me")
