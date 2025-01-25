@@ -43,7 +43,8 @@ navigation_polygon = SubResource("NavigationPolygon_xp8kx")
 [node name="Spawnor" parent="." node_paths=PackedStringArray("PatrolPath") instance=ExtResource("1_3slw4")]
 position = Vector2(807, 632)
 PatrolPath = NodePath("../Line2D")
-MaxNumberOfAliveBubbles = 3
+SecondsBetweenSpawn = 0.1
+MaxNumberOfAliveBubbles = 100
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(263, 392, 833, 250, 1617, 316, 2005, 456, 2165, 842, 2029, 1130, 1021, 1224, 151, 1240, 1421, 710, 1603, 948, 601, 774, 2061, 132)

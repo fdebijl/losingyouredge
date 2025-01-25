@@ -3,22 +3,28 @@ using System.Linq;
 
 public partial class BubbleAi : CharacterBody2D
 {
-  [Export]
+  [Export(PropertyHint.Range, "0,100,0.1")]
   public float BaseSpeed = 2.0f;
+
+  [Export(PropertyHint.Range, "0,100,0.1")]
+  public float ChaseSpeed = 4.0f;
 
   public float Speed = 2.0f;
 
-  [Export(PropertyHint.Range, "0, 100")]
+  [Export(PropertyHint.Range, "0,100,1")]
   public float kepsylon = 5.0f;
 
-  [Export(PropertyHint.Range, "0, 100")]
+  [Export(PropertyHint.Range, "0,100,1")]
   public float seekKepsylon = 200.0f;
 
-  [Export(PropertyHint.Range, "0, 100")]
+  [Export(PropertyHint.Range, "0,100,1")]
   public float explodeKepsylon = 20.0f;
 
   [Export]
   public NavigationAgent2D _agent;
+
+  [Export]
+  public AnimatedSprite2D sprite;
 
   [Export]
   public Line2D path;
@@ -28,6 +34,11 @@ public partial class BubbleAi : CharacterBody2D
 
   [Export]
   private PackedScene explosion;
+
+  [Export]
+  private float explosiontimer = 1f;
+
+  private bool exploding = false;
 
   private Vector2 offset;
 
@@ -53,6 +64,23 @@ public partial class BubbleAi : CharacterBody2D
   }
 
   public override void _PhysicsProcess(double delta) {
+    // handle exploding
+    if (exploding) {
+        sprite.Modulate = explosiontimer % 0.5f < 0f ? Colors.Red : Colors.Transparent;
+        if (explosiontimer <= 0) {
+          var parent = GetParent();
+          var obj = explosion.Instantiate() as Node2D;
+          obj.GlobalPosition = this.GlobalPosition;
+          parent.AddChild(obj);
+
+          // TODO: death animation += on finish call this
+          parent.RemoveChild(this);
+        }
+
+        explosiontimer -= (float) delta;
+        return;
+    }
+
     player = this.GetTree().GetNodesInGroup("Player").Cast<Node2D>().FirstOrDefault();
     var target = GetTarget();
     var direction = Navigate(target);
@@ -66,13 +94,7 @@ public partial class BubbleAi : CharacterBody2D
 
     // within exploding radius. fucken explode.
     if (player != null && this.GlobalPosition.DistanceTo(player.GlobalPosition) < explodeKepsylon) {
-      var parent = GetParent();
-      var obj = explosion.Instantiate() as Node2D;
-      obj.GlobalPosition = this.GlobalPosition;
-      parent.AddChild(obj);
-
-      // TODO: death animation += on finish call this
-      parent.RemoveChild(this);
+      exploding = true;
     }
   }
 

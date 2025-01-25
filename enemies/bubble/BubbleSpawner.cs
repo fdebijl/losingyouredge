@@ -18,14 +18,19 @@ public partial class BubbleSpawner : Node2D
   [Export]
   public int MaxNumberOfAliveBubbles = 10;
 
-  // TODO: Wire up if needed
   [Export]
-  public float IdleSecondsAfterSpawn = 1.0f;
+  public int MaxNumberOfTotalSpawns = 30;
+
+  // TODO: Wire up if needed
+  // [Export]
+  // public float IdleSecondsAfterSpawn = 1.0f;
 
   [Export]
   public bool IsActive = true;
 
   private float _spawnTimer = 0f;
+
+  private int _spawnedCounter = 0;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
@@ -41,7 +46,8 @@ public partial class BubbleSpawner : Node2D
 
     var bubbleCount = GetTree().GetNodesInGroup($"Bubble-{Name}").Count;
 
-    if (this._spawnTimer <= 0 && bubbleCount < this.MaxNumberOfAliveBubbles) {
+    if (this._spawnTimer <= 0 && bubbleCount < this.MaxNumberOfAliveBubbles && this._spawnedCounter < this.MaxNumberOfTotalSpawns) {
+      this._spawnedCounter++;
       var bubble = this.BubbleScene.Instantiate() as BubbleAi;
       var offset = RandomUtil.RandomPointInCircle(RandomUtil.Rng.RandfRange(0f, SpawnRadius));
       bubble.GlobalPosition = this.GlobalPosition + offset;
