@@ -14,7 +14,9 @@ public partial class player : CharacterBody2D
   [Export] private float ChargeScale;
   [Export] private float chargeSpeed;
   [Export] private float Friction;
-
+	[Export] private AnimationPlayer playerAnimation;
+	[Export] private AnimatedSprite2D playerBodyAnimation;
+	[Export] private AnimatedSprite2D playerFaceAnimation;
   public void Damage(int damage)
   {
     health -= damage;

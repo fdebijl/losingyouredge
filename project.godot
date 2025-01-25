@@ -24,7 +24,7 @@ AudioManager="*res://src/AudioManager.cs"
 
 window/size/viewport_width=3000
 window/size/viewport_height=3000
-
+window/size/initial_position_type=2
 
 [dotnet]
 
