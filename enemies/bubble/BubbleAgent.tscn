@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://enemies/bubble/BubbleAi.cs" id="1_2o8ik"]
 [ext_resource type="PackedScene" uid="uid://b4dvpu7frlllo" path="res://enemies/bubble/explosions/ExplosionBomb.tscn" id="2_5n3cs"]
 [ext_resource type="AudioStream" uid="uid://ck05yy8yldleh" path="res://enemies/bubble/assets/bubble-pop.mp3" id="2_34g2u"]
-[ext_resource type="Texture2D" uid="uid://cyf5dpfbyn3qw" path="res://assets/sprites/bubble.png" id="3_3q301"]
+[ext_resource type="Texture2D" uid="uid://cyf5dpfbyn3qw" path="res://enemies/bubble/assets/bubble.png" id="3_3q301"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a5jvb"]
 random_pitch = 1.4
