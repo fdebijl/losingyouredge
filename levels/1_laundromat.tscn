@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://ud20crhqk5ub"]
+[gd_scene load_steps=10 format=4 uid="uid://drddml6l3iyql"]
 
 [ext_resource type="TileSet" uid="uid://b1vs1w6ovcb5" path="res://levels/assets/tilesets/laundromat.tres" id="1_mq18v"]
-[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/Player.tscn" id="2_6gavc"]
+[ext_resource type="PackedScene" uid="uid://dhsov4a61a624" path="res://player/Player.tscn" id="2_6gavc"]
 [ext_resource type="Texture2D" uid="uid://dylch0ecib2i3" path="res://levels/assets/sprites/random_assets.png" id="2_c1rpc"]
 [ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="3_5ayhr"]
+[ext_resource type="PackedScene" uid="uid://bfropl31e5aa" path="res://levels/backdrop.tscn" id="3_irrti"]
 [ext_resource type="PackedScene" uid="uid://dhnlbao0vrili" path="res://enemies/bubble/BubbleAgent.tscn" id="4_3brqj"]
 [ext_resource type="PackedScene" uid="uid://v1e4g5crhogy" path="res://levels/props/Washer.tscn" id="4_h12g7"]
 
@@ -75,23 +76,18 @@ position = Vector2(791, 89)
 
 [node name="Washer11" parent="Props/Room 1" instance=ExtResource("4_h12g7")]
 position = Vector2(82, 1375)
-frame = 0
 
 [node name="Washer12" parent="Props/Room 1" instance=ExtResource("4_h12g7")]
 position = Vector2(261, 1375)
-frame = 0
 
 [node name="Washer13" parent="Props/Room 1" instance=ExtResource("4_h12g7")]
 position = Vector2(450, 1375)
-frame = 0
 
 [node name="Washer14" parent="Props/Room 1" instance=ExtResource("4_h12g7")]
 position = Vector2(639, 1375)
-frame = 0
 
 [node name="Washer15" parent="Props/Room 1" instance=ExtResource("4_h12g7")]
 position = Vector2(841, 1375)
-frame = 0
 
 [node name="Desk" type="StaticBody2D" parent="Props/Room 1"]
 position = Vector2(1513, 610)
@@ -100,18 +96,23 @@ collision_layer = 8
 collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Props/Room 1/Desk"]
-scale = Vector2(1, 1)
 texture = ExtResource("2_c1rpc")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Props/Room 1/Desk"]
 polygon = PackedVector2Array(79.3734, -438.642, 78.329, -97.1279, 114.883, -55.3525, 155.614, -35.5092, 809.4, -35.5092, 807.311, -213.055, 306.005, -212.01, 255.875, -233.943, 234.987, -279.896, 234.987, -441.775)
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1204, 1393)
+
+[node name="Backdrop" parent="Camera2D" instance=ExtResource("3_irrti")]
+
 [node name="player" parent="." instance=ExtResource("2_6gavc")]
 position = Vector2(1204, 1393)
 chargeCooldown = 0.5
 
-[node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(0.8, 0.8)
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
+remote_path = NodePath("../../Camera2D")
+update_rotation = false
 
 [node name="Patrol Paths" type="Node2D" parent="."]
 
