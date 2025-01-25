@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 
 public partial class player : CharacterBody2D
@@ -10,6 +11,7 @@ public partial class player : CharacterBody2D
 	private Vector2 MousePosition;
 	private Vector2 chargeDirection;
   private Vector2 currentMovement;
+  private Vector2 playerRotation;
   private int health = 100;
 
 	[Export] private int _speed = 300;
@@ -101,6 +103,14 @@ public partial class player : CharacterBody2D
   public override void _Process(double delta)
   {
     GetInput();
+
+    playerRotation.X = Input.GetJoyAxis(0, JoyAxis.LeftX);
+    playerRotation.Y = Input.GetJoyAxis(0, JoyAxis.LeftY);
+    playerRotation.Normalized();
+
+    Rotation = Mathf.Atan2(playerRotation.Y, playerRotation.X) + Mathf.Pi / 2;
+
+
     if (Input.IsActionPressed("chargeControllerButton") || Input.IsActionPressed("chargeMouseButton"))
     {
      charging = true;
