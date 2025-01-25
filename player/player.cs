@@ -12,6 +12,7 @@ public partial class player : CharacterBody2D
 	private Vector2 chargeDirection;
   private Vector2 currentMovement;
   private Vector2 playerRotation;
+  private int maxHealth = 100;
   private int health = 100;
 
 	[Export] private int _speed = 300;
@@ -21,12 +22,14 @@ public partial class player : CharacterBody2D
   [Export] private float ChargeKillThreshold = 10f;
   [Export] private float Friction;
   [Export] private Area2D point;
+  private ShaderMaterial playerShader;
 
   private HashSet<IKillable> enemies = new HashSet<IKillable>();
 
   public override void _Ready() {
     point.BodyEntered += OnPointEnter;
     point.BodyExited += OnPointExit;
+		playerShader = playerBodyAnimation.Material as ShaderMaterial;
   }
 
   public void OnPointEnter(Node other) {
@@ -80,6 +83,7 @@ public partial class player : CharacterBody2D
       }
 		}
 		MoveAndSlide();
+		updateShader();
 
     foreach (var enemy in enemies) {
       var node = enemy as Node;
@@ -156,5 +160,9 @@ public partial class player : CharacterBody2D
 		{
 			playerAnimation.Play("jump");
 		}
+	}
+	private void updateShader()
+	{
+		playerShader.SetShaderParameter("health", health/maxHealth);
 	}
 }
