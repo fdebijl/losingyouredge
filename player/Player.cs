@@ -27,6 +27,7 @@ public partial class Player : CharacterBody2D
   [Export] private float Friction;
   [Export] private Area2D point;
   [Export] private bool isInteractive = true;
+  [Export] private AudioListener2D playerAudioListener;
 
   [Export] public AudioStream chargeSFX;
   [Export] public AudioStream jumpSFX;
@@ -150,8 +151,8 @@ public partial class Player : CharacterBody2D
     for (int i = 0; i < GetSlideCollisionCount(); i++)
       {
         var collision = GetSlideCollision(i);
-        uint collisionLayer = ((CollisionObject2D)collision.GetCollider()).CollisionLayer;
-        if (collisionLayer == 8 ){
+        var collider = collision.GetCollider() as CollisionObject2D;
+        if (collider != null && collider.CollisionLayer == 8 ){
           BentAnimation();
           Velocity = Vector2.Zero;
           charge = 0;
@@ -207,7 +208,7 @@ public partial class Player : CharacterBody2D
     {
 			if (allowCharge && !moving) {
         if (!charging) {
-          AudioManager.PlaySFX(chargeSFX);
+          AudioManager.PlaySFX(chargeSFX, 1, false, GlobalPosition);
         }
 				charging = true;
 				JumpAnimation(true);
@@ -219,7 +220,7 @@ public partial class Player : CharacterBody2D
       chargeDirection.X = Mathf.Sin(Rotation);
       chargeDirection.Y = -Mathf.Cos(Rotation);
 
-      AudioManager.PlaySFX(jumpSFX, 1.3f, true, null, "jumpSFX");
+      AudioManager.PlaySFX(jumpSFX, 1, false, GlobalPosition);
 
       ChargeDisplay.updateCharge(0);
       charging = false;
