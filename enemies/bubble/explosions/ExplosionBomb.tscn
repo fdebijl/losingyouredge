@@ -1,9 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4dvpu7frlllo"]
+[gd_scene load_steps=7 format=3 uid="uid://b4dvpu7frlllo"]
 
 [ext_resource type="Script" path="res://enemies/bubble/explosions/BubbleExplosion.cs" id="1_bcgux"]
+[ext_resource type="Texture2D" uid="uid://c7cj8cymk1qke" path="res://enemies/bubble/assets/bubble_sheet_v2.png" id="2_s481o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ikhy8"]
 radius = 124.145
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0abk"]
+atlas = ExtResource("2_s481o")
+region = Rect2(700, 1400, 700, 700)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lh2jy"]
+atlas = ExtResource("2_s481o")
+region = Rect2(1400, 1400, 700, 700)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6c1lu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0abk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lh2jy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="ExplosionBomb" type="Node2D" node_paths=PackedStringArray("sprite", "collider")]
 script = ExtResource("1_bcgux")
@@ -17,3 +40,6 @@ collision_layer = 256
 shape = SubResource("CircleShape2D_ikhy8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(0.367857, 0.353929)
+sprite_frames = SubResource("SpriteFrames_6c1lu")
