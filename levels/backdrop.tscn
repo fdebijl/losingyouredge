@@ -2,16 +2,17 @@
 
 [ext_resource type="Shader" path="res://levels/backdrop.gdshader" id="1_p6gvl"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5cfub"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xqo58"]
 shader = ExtResource("1_p6gvl")
-shader_parameter/swirl_strength = 10.0
-shader_parameter/zoom_speed = 1.737
+shader_parameter/swirl_strength = 0.01
+shader_parameter/zoom_speed = 3.97
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bccvt"]
 size = Vector2(1920, 1080)
 
 [node name="Backdrop" type="TextureRect"]
-material = SubResource("ShaderMaterial_5cfub")
+z_index = -1
+material = SubResource("ShaderMaterial_xqo58")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
