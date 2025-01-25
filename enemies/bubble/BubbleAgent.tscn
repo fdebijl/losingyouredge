@@ -121,14 +121,15 @@ collision_layer = 2
 collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_2o8ik")
-BaseSpeed = 500.0
-_agent = NodePath("NavigationAgent2D")
+BaseSpeed = 80.0
+ChaseSpeedMultiplier = 2.0
+_agent = NodePath("BubbleNavAgent")
 spriteBody = NodePath("BubbleBody")
 spriteFace = NodePath("BubbleFace")
 popSFX = SubResource("AudioStreamRandomizer_a5jvb")
 explosion = ExtResource("2_5n3cs")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="BubbleNavAgent" type="NavigationAgent2D" parent="."]
 
 [node name="BubbleBody" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w2cxv")
@@ -136,9 +137,8 @@ animation = &"Idle"
 
 [node name="BubbleFace" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v0jpj")
-animation = &"Seek"
+animation = &"Idle"
 
 [node name="BubbleCollider" type="CollisionShape2D" parent="."]
-visible = false
 scale = Vector2(1.3, 1.3)
 shape = SubResource("CircleShape2D_6t7me")

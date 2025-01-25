@@ -3,10 +3,10 @@ using System.Linq;
 
 public partial class BubbleAi : CharacterBody2D {
   [Export(PropertyHint.Range, "0,100,0.1")]
-  public float BaseSpeed = 2.0f;
+  public float BaseSpeed = 75.0f;
 
-  [Export(PropertyHint.Range, "0,100,0.1")]
-  public float ChaseSpeed = 4.0f;
+  [Export(PropertyHint.Range, "1,10,0.1")]
+  public float ChaseSpeedMultiplier = 1.2f;
 
   public float Speed = 2.0f;
 
@@ -81,12 +81,14 @@ public partial class BubbleAi : CharacterBody2D {
       return;
 
     if (seeking && !exploding) {
+      Speed = BaseSpeed * ChaseSpeedMultiplier;
       spriteBody.Animation = "Idle";
       spriteBody.Play();
 
       spriteFace.Animation = "Seek";
       spriteFace.Play();
     } else if (!exploding) {
+      Speed = BaseSpeed;
       spriteFace.Animation = "Idle";
       spriteFace.Play();
     }
