@@ -1,14 +1,39 @@
-[gd_scene load_steps=38 format=3 uid="uid://bin3r8r5qu1fi"]
+[gd_scene load_steps=43 format=3 uid="uid://cf1qf8mq7blko"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_srn17"]
+[ext_resource type="AudioStream" uid="uid://cvh68yeemhwi3" path="res://assets/sounds/Charge-up.wav" id="2_w1mds"]
 [ext_resource type="Script" path="res://player/ChargeDisplay.cs" id="3_2arfo"]
+[ext_resource type="AudioStream" uid="uid://bdsqhseeuip32" path="res://assets/sounds/Charge-up02.wav" id="3_4l8sv"]
 [ext_resource type="Shader" path="res://player/Player.gdshader" id="4_2nc5g"]
+[ext_resource type="AudioStream" uid="uid://0fkpqc55mhun" path="res://assets/sounds/Charge-up03.wav" id="4_6ydke"]
 [ext_resource type="Texture2D" uid="uid://cgl7lvp8fvi8" path="res://player/assets/barHorizontal_green.png" id="4_j3vkq"]
 [ext_resource type="Texture2D" uid="uid://bqlpwvybv4ou4" path="res://player/assets/Metal055C.png" id="5_jmyjf"]
+[ext_resource type="AudioStream" uid="uid://bwyd566dqb7re" path="res://assets/sounds/Charge-up04.wav" id="5_u01g4"]
+[ext_resource type="AudioStream" uid="uid://dqu8k6dd3n5n5" path="res://assets/sounds/Jump.wav" id="6_qwfot"]
 [ext_resource type="Texture2D" uid="uid://dndkirnocwwq6" path="res://player/assets/Metal052C.png" id="6_y4btj"]
 [ext_resource type="Texture2D" uid="uid://ckwv7kmqdrjac" path="res://player/Needle animation/needle sprite sheet 2.png" id="7_0w5l0"]
+[ext_resource type="AudioStream" uid="uid://ceqrdvy67pw3u" path="res://assets/sounds/Jump02.wav" id="7_3oi2p"]
 [ext_resource type="Texture2D" uid="uid://cxm6nfkemapao" path="res://player/Needle animation/Needle animation face.png" id="7_toxp4"]
 [ext_resource type="Texture2D" uid="uid://dp1g6jqfnglok" path="res://player/Needle animation/needle sprite sheet.png" id="8_6u7ji"]
+[ext_resource type="AudioStream" uid="uid://e82rrdirdymy" path="res://assets/sounds/Jump03.wav" id="8_a83h8"]
+[ext_resource type="AudioStream" uid="uid://bnalg116apq3k" path="res://assets/sounds/Jump04.wav" id="9_y7v6k"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_80jtj"]
+playback_mode = 1
+random_pitch = 1.3
+streams_count = 4
+stream_0/stream = ExtResource("2_w1mds")
+stream_1/stream = ExtResource("3_4l8sv")
+stream_2/stream = ExtResource("4_6ydke")
+stream_3/stream = ExtResource("5_u01g4")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v5yhj"]
+random_pitch = 1.3
+streams_count = 4
+stream_0/stream = ExtResource("6_qwfot")
+stream_1/stream = ExtResource("7_3oi2p")
+stream_2/stream = ExtResource("8_a83h8")
+stream_3/stream = ExtResource("9_y7v6k")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gt3w8"]
 radius = 64.1026
@@ -224,6 +249,8 @@ ChargeScale = 50.0
 chargeSpeed = 1.0
 Friction = 1.0
 point = NodePath("DamageArea")
+chargeSFX = SubResource("AudioStreamRandomizer_80jtj")
+jumpSFX = SubResource("AudioStreamRandomizer_v5yhj")
 playerAnimation = NodePath("AnimationPlayer")
 playerBodyAnimation = NodePath("Node2D/BodyAnnimation")
 playerFaceAnimation = NodePath("Node2D/FaceAnnimation")

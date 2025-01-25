@@ -150,8 +150,9 @@ public partial class Player : CharacterBody2D
     for (int i = 0; i < GetSlideCollisionCount(); i++)
       {
         var collision = GetSlideCollision(i);
-        if (((Node)collision.GetCollider()).Name == "Walls"){
-					BentAnimation();
+        uint collisionLayer = ((CollisionObject2D)collision.GetCollider()).CollisionLayer;
+        if (collisionLayer == 8 ){
+          BentAnimation();
           Velocity = Vector2.Zero;
           charge = 0;
           allowCharge = true;
@@ -184,14 +185,12 @@ public partial class Player : CharacterBody2D
 
     GetInput();
 
-
     if (allowCharge) {
       if (useMouse) {
         Rotation = Mathf.Atan2(MouseDirection.Y, MouseDirection.X) + Mathf.Pi / 2;
       } else {
         playerRotation.X = Input.GetJoyAxis(0, JoyAxis.LeftX);
         playerRotation.Y = Input.GetJoyAxis(0, JoyAxis.LeftY);
-        playerRotation.Normalized();
 
         if (Mathf.Abs(playerRotation.X) >= 0.09 && Mathf.Abs(playerRotation.Y) >= 0.09){
           Rotation = Mathf.Atan2(playerRotation.Y, playerRotation.X) + Mathf.Pi / 2;
@@ -204,34 +203,23 @@ public partial class Player : CharacterBody2D
 			IdleAnimation(delta);
 		}
 
-    if (Input.IsActionPressed("chargeControllerButton") || Input.IsActionPressed("chargeMouseButton"))
+    if (Input.IsActionPressed("chargeButton"))
     {
 			if (allowCharge && !moving) {
-        AudioManager.PlaySFX(chargeSFX);
+        if (!charging) {
+          AudioManager.PlaySFX(chargeSFX);
+        }
 				charging = true;
 				JumpAnimation(true);
 			}
     }
-    else if (Input.IsActionJustReleased("chargeControllerButton"))
+    else if (Input.IsActionJustReleased("chargeButton"))
     {
 		  JumpAnimation(false);
-      chargeDirection.X = Input.GetAxis("ui_left", "ui_right");
-      chargeDirection.Y = Input.GetAxis("ui_up", "ui_down");
+      chargeDirection.X = Mathf.Sin(Rotation);
+      chargeDirection.Y = -Mathf.Cos(Rotation);
 
-      AudioManager.PlaySFX(jumpSFX);
-
-      ChargeDisplay.updateCharge(0);
-      charging = false;
-      allowCharge = false;
-      moving = true;
-      SetMoveCooldown();
-    }
-    else if (Input.IsActionJustReleased("chargeMouseButton"))
-    {
-		  JumpAnimation(false);
-      chargeDirection =  (Position - GetGlobalMousePosition()).Normalized();
-
-      AudioManager.PlaySFX(jumpSFX);
+      AudioManager.PlaySFX(jumpSFX, 1.3f, true, "jumpSFX");
 
       ChargeDisplay.updateCharge(0);
       charging = false;
@@ -291,7 +279,7 @@ public partial class Player : CharacterBody2D
 
 			Timer timer = new Timer();
 			AddChild(timer);
-			timer.WaitTime = 0.3; 
+			timer.WaitTime = 0.3;
 			timer.OneShot = true;
 			timer.Connect("timeout", Callable.From(OnBentAnimationTimeout));
 			timer.Start();
