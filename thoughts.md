@@ -4,6 +4,7 @@
 - Walls are not penetrable
 - Win state?
 - Failure state?
+- Washing Machine takes 3 (configurable) hits
 
 # Levels
 - Start with one level

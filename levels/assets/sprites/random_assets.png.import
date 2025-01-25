@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jjtpj412byqo"
-path="res://.godot/imported/spawner_sheet.png-3f248fe6aa89e93f1b935baa526f7125.ctex"
+uid="uid://dylch0ecib2i3"
+path="res://.godot/imported/random_assets.png-2b8c28a74316cd37f588fbcafcd40fbd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/bubble/assets/spawner_sheet.png"
-dest_files=["res://.godot/imported/spawner_sheet.png-3f248fe6aa89e93f1b935baa526f7125.ctex"]
+source_file="res://levels/assets/sprites/random_assets.png"
+dest_files=["res://.godot/imported/random_assets.png-2b8c28a74316cd37f588fbcafcd40fbd.ctex"]
 
 [params]
 

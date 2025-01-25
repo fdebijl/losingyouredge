@@ -15,6 +15,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable
   [Export] public Line2D PatrolPath;
   [Export] public AudioStream killSFX;
   [Export] public AnimatedSprite2D Sprite;
+  [Export] public bool BossMode = false;
 
   [ExportGroup("Spawner Settings")]
   [Export(PropertyHint.Range, "0,100,0.1")]  public float SecondsBetweenSpawn = 1.0f;
@@ -30,7 +31,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable
   [Export] public float MaxOffset = 180.0f;
   [Export] public float ExplosionTimer = 1f;
   [Export(PropertyHint.Range, "0,100,1")] public float kepsylon = 5.0f;
-  [Export(PropertyHint.Range, "0,500,1")] public float seekKepsylon = 200.0f;
+  [Export(PropertyHint.Range, "0,10000,1")] public float seekKepsylon = 200.0f;
   [Export(PropertyHint.Range, "0,100,1")] public float explodeKepsylon = 20.0f;
 
 
@@ -38,6 +39,10 @@ public partial class BubbleSpawner : StaticBody2D, IKillable
   private int _spawnedCounter = 0;
 
 	public override void _Ready() {
+    if (BossMode) {
+      this.Sprite.Animation = "Boss";
+    }
+
     _spawnTimer = SecondsBetweenSpawn;
     this.Sprite.Frame = IDLE_FRAME;
   }
