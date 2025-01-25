@@ -4,9 +4,10 @@ public partial class player : CharacterBody2D
 {
 	private float charge = 0;
 	private bool charging = false;
-	private bool moving = false;
+	private bool allowCharge = true;
 	private Vector2 MousePosition;
 	private Vector2 chargeDirection;
+  private Vector2 currentMovement;
   private int health = 100;
 
 	[Export] private int _speed = 300;
@@ -41,12 +42,15 @@ public partial class player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
     GD.Print(charge);
-		if (charging) {
+		if (allowCharge && charging) {
 			charge += chargeSpeed;
 			ChargeDisplay.updateCharge(charge);
 		} else if (charge > 0) {
-			Velocity = MoveSpeed(charge);
 			charge -= Friction;
+			Velocity = currentMovement + MoveSpeed(charge);
+      if (charge < 20) {
+        allowCharge = true;
+      }
 		}
 		MoveAndCollide(Velocity * (float)delta);
 	}
@@ -71,12 +75,14 @@ public partial class player : CharacterBody2D
 
       ChargeDisplay.updateCharge(0);
       charging = false;
+      allowCharge = false;
     }
     else if (Input.IsActionJustReleased("chargeMouseButton"))
     {
       chargeDirection =  (Position - MousePosition).Normalized();
       ChargeDisplay.updateCharge(0);
       charging = false;
+      allowCharge = false;
     }
   }
 }
