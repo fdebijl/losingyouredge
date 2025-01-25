@@ -18,7 +18,7 @@ public partial class player : CharacterBody2D
   private int health = 100;
   private float randomTimer = 0;
   private Random random = new Random();
-  [Export] private float chargeCooldown;
+  [Export] private float chargeCooldown = 3f;
 	[Export] private int _speed = 300;
 	[Export] private ChargeDisplay ChargeDisplay;
   [Export] private float ChargeScale;
@@ -218,7 +218,6 @@ public partial class player : CharacterBody2D
     {
 		  JumpAnimation(false);
       chargeDirection =  (Position - GetGlobalMousePosition()).Normalized();
-      GD.Print(chargeDirection);
       ChargeDisplay.updateCharge(0);
       charging = false;
       allowCharge = false;

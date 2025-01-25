@@ -35,6 +35,7 @@ navigation_enabled = false
 
 [node name="player" parent="." instance=ExtResource("2_6gavc")]
 position = Vector2(587, 711)
+chargeCooldown = 0.2
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 
