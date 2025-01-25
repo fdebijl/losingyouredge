@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://cu4n20cc1wscg" path="res://menus/assets/DefaultButton.tres" id="2_ojfo0"]
 [ext_resource type="FontFile" uid="uid://d2oapkud6lexg" path="res://menus/assets/fonts/Poppins.ttf" id="2_puu1c"]
 [ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="4_b5vuo"]
-[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/player.tscn" id="5_h61tx"]
+[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/Player.tscn" id="5_h61tx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yhju1"]
 font = ExtResource("1_bji7r")
@@ -43,22 +43,13 @@ layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
+theme_override_constants/margin_top = 230
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 alignment = 1
-
-[node name="Spacer" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "
-
-
-
-
-"
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -70,6 +61,7 @@ vertical_alignment = 1
 
 [node name="ButtonsVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="StartGame" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
 layout_mode = 2
@@ -89,7 +81,8 @@ text = "Exit"
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "A 2025 Global Game Jam game by The Cutting Room Floor"
+text = "
+A 2025 Global Game Jam game by The Cutting Room Floor"
 label_settings = SubResource("LabelSettings_i51cn")
 horizontal_alignment = 1
 
@@ -98,12 +91,12 @@ horizontal_alignment = 1
 [node name="Spawner" parent="Demo" node_paths=PackedStringArray("PatrolPath") instance=ExtResource("4_b5vuo")]
 position = Vector2(511, 241)
 PatrolPath = NodePath("../Line2D")
-SecondsBetweenSpawn = 10.0
+SecondsBetweenSpawn = 12.0
 SpawnRadius = 0.0
 MaxNumberOfAliveBubbles = 2
 MaxNumberOfTotalSpawns = 999999
-BaseSpeed = 100.0
-ChaseSpeedMultiplier = 1.5
+BaseSpeed = 110.0
+ChaseSpeedMultiplier = 2.0
 MaxOffset = 0.0
 ExplosionTimer = 1.5
 seekKepsylon = 350.0

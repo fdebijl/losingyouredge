@@ -25,7 +25,7 @@ public partial class BubbleExplosion : Node2D {
   private void OnBodyEntered(Node other) {
     if (damaged) return;
 
-    var player = other as player;
+    var player = other as Player;
     if (player == null) return;
 
     damaged = true;

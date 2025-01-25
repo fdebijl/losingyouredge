@@ -11,11 +11,11 @@ public partial class SadPaper : Area2D
   }
 
   public void OnPointEnter(Node other) {
-    var p = other as player;
+    var p = other as Player;
     if (p == null) return;
 
     p.Heal(healingAmount);
-    
+
 		var tween = CreateTween().TweenProperty(spriteBody, "modulate", Colors.Transparent, 1f);
 		tween.Finished += () => QueueFree();
   }

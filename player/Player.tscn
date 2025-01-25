@@ -1,8 +1,8 @@
 [gd_scene load_steps=30 format=3 uid="uid://bin3r8r5qu1fi"]
 
-[ext_resource type="Script" path="res://player/player.cs" id="1_srn17"]
+[ext_resource type="Script" path="res://player/Player.cs" id="1_srn17"]
 [ext_resource type="Script" path="res://player/ChargeDisplay.cs" id="3_2arfo"]
-[ext_resource type="Shader" path="res://player/player.gdshader" id="4_2nc5g"]
+[ext_resource type="Shader" path="res://player/Player.gdshader" id="4_2nc5g"]
 [ext_resource type="Texture2D" uid="uid://cgl7lvp8fvi8" path="res://player/assets/barHorizontal_green.png" id="4_j3vkq"]
 [ext_resource type="Texture2D" uid="uid://bqlpwvybv4ou4" path="res://player/assets/Metal055C.png" id="5_jmyjf"]
 [ext_resource type="Texture2D" uid="uid://dndkirnocwwq6" path="res://player/assets/Metal052C.png" id="6_y4btj"]
@@ -189,22 +189,23 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sk27h"]
-radius = 52.4
+radius = 34.0588
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay", "point", "playerAnimation", "playerBodyAnimation", "playerFaceAnimation") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay", "point", "playerAnimation", "playerBodyAnimation", "playerFaceAnimation") groups=["Player"]]
 collision_mask = 264
 script = ExtResource("1_srn17")
 ChargeDisplay = NodePath("ChargeDisplay")
 ChargeScale = 50.0
 chargeSpeed = 1.0
 Friction = 1.0
-point = NodePath("Area2D")
+point = NodePath("DamageArea")
 playerAnimation = NodePath("AnimationPlayer")
 playerBodyAnimation = NodePath("Node2D/BodyAnnimation")
 playerFaceAnimation = NodePath("Node2D/FaceAnnimation")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -112.65)
+[node name="PlayerCollider" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -69.335)
+scale = Vector2(0.78, 0.64)
 shape = SubResource("CapsuleShape2D_gt3w8")
 
 [node name="ChargeDisplay" type="Node2D" parent="." node_paths=PackedStringArray("moveChargeBar")]
@@ -213,10 +214,10 @@ script = ExtResource("3_2arfo")
 moveChargeBar = NodePath("moveChargeBar")
 
 [node name="moveChargeBar" type="TextureProgressBar" parent="ChargeDisplay"]
-offset_left = -94.0
-offset_top = 222.0
-offset_right = 106.0
-offset_bottom = 262.0
+offset_left = -97.0
+offset_top = 184.65
+offset_right = 103.0
+offset_bottom = 224.65
 texture_progress = ExtResource("4_j3vkq")
 metadata/_edit_use_anchors_ = true
 
@@ -227,6 +228,7 @@ libraries = {
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(-2, 0.350006)
+scale = Vector2(0.6, 0.6)
 
 [node name="BodyAnnimation" type="AnimatedSprite2D" parent="Node2D"]
 material = SubResource("ShaderMaterial_h5we2")
@@ -235,14 +237,15 @@ sprite_frames = SubResource("SpriteFrames_3qih5")
 animation = &"jump"
 
 [node name="FaceAnnimation" type="AnimatedSprite2D" parent="Node2D"]
-position = Vector2(-3, -112)
+position = Vector2(3.33333, -103.917)
 sprite_frames = SubResource("SpriteFrames_6gxk3")
 animation = &"jump"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="DamageArea" type="Area2D" parent="."]
 position = Vector2(-2, -283)
 collision_layer = 16
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="DamageCollider" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(0, 90)
 shape = SubResource("CircleShape2D_sk27h")

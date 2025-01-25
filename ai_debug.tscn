@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cgie1h3dp8p2a"]
 
 [ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="1_3slw4"]
-[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/player.tscn" id="2_bdf44"]
+[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/Player.tscn" id="2_bdf44"]
 [ext_resource type="PackedScene" uid="uid://e3ayle04i3hf" path="res://level_items/SadPaper.tscn" id="3_e1vj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6vls"]

@@ -1,9 +1,8 @@
 [gd_scene load_steps=7 format=4 uid="uid://ud20crhqk5ub"]
 
 [ext_resource type="TileSet" uid="uid://b1vs1w6ovcb5" path="res://levels/assets/tilesets/laundromat.tres" id="1_mq18v"]
-[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/player.tscn" id="2_6gavc"]
+[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/Player.tscn" id="2_6gavc"]
 [ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="3_5ayhr"]
-[ext_resource type="PackedScene" uid="uid://bfropl31e5aa" path="res://levels/backdrop.tscn" id="3_j23p0"]
 [ext_resource type="PackedScene" uid="uid://dhnlbao0vrili" path="res://enemies/bubble/BubbleAgent.tscn" id="4_3brqj"]
 [ext_resource type="PackedScene" uid="uid://v1e4g5crhogy" path="res://levels/props/Washer.tscn" id="4_h12g7"]
 
@@ -117,7 +116,6 @@ SpawnDelay = 20.0
 MaxNumberOfAliveBubbles = 5
 MaxNumberOfTotalSpawns = 10
 ChaseSpeedMultiplier = 1.5
-seekKepsylon = 500.0
 
 [node name="Bubbles" type="Node2D" parent="."]
 
@@ -125,8 +123,6 @@ seekKepsylon = 500.0
 
 [node name="BubbleBody" parent="Bubbles/Room 1" instance=ExtResource("4_3brqj")]
 position = Vector2(1204, 100)
-seekKepsylon = 500.0
 
 [node name="BubbleBody2" parent="Bubbles/Room 1" instance=ExtResource("4_3brqj")]
 position = Vector2(1204, 694)
-seekKepsylon = 500.0

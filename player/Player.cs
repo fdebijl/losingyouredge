@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class player : CharacterBody2D
+public partial class Player : CharacterBody2D
 {
   private bool useMouse;
 	private float charge = 0;
