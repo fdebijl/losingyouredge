@@ -15,6 +15,8 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
   [Export] public Line2D PatrolPath;
   [Export] public AudioStream killSFX;
   [Export] public AnimatedSprite2D Sprite;
+	[Export] private AnimationPlayer playerAnimation;
+
   [Export] public bool BossMode = false;
 
   [ExportGroup("Spawner Settings")]
@@ -46,6 +48,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
 
     _spawnTimer = SecondsBetweenSpawn;
     this.Sprite.Frame = IDLE_FRAME;
+    playerAnimation.Play("shake");
   }
 
   public bool IsDead() {
@@ -75,8 +78,10 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
       this.Sprite.Frame = SPAWNING_FRAME;
     } else if (this.CanSpawn() && this._spawnTimer < READY_SPRITE_TIME) {
       this.Sprite.Frame = READY_FRAME;
+      playerAnimation.Play("rotate");
     } else {
       this.Sprite.Frame = IDLE_FRAME;
+      playerAnimation.Play("shake");
     }
 
     if (this._spawnTimer <= 0 && this.CanSpawn()) {

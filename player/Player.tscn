@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cf1qf8mq7blko"]
+[gd_scene load_steps=33 format=3 uid="uid://bin3r8r5qu1fi"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_srn17"]
 [ext_resource type="AudioStream" uid="uid://cvh68yeemhwi3" path="res://assets/sounds/Charge-up.wav" id="2_w1mds"]
