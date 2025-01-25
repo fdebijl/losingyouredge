@@ -19,7 +19,7 @@ public partial class player : CharacterBody2D
   [Export] private float Friction;
   [Export] private Area2D point;
 
-  private HashSet<BubbleAi> bubbles = new HashSet<BubbleAi>();
+  private HashSet<IKillable> enemies = new HashSet<IKillable>();
 
   public override void _Ready() {
     point.BodyEntered += OnPointEnter;
@@ -27,17 +27,17 @@ public partial class player : CharacterBody2D
   }
 
   public void OnPointEnter(Node other) {
-    var bubble = other as BubbleAi;
-    if (bubble == null) return;
+    var enemy = other as IKillable;
+    if (enemy == null) return;
 
-    bubbles.Add(bubble);
+    enemies.Add(enemy);
   }
 
   public void OnPointExit(Node other) {
-    var bubble = other as BubbleAi;
-    if (bubble == null) return;
+    var enemy = other as IKillable;
+    if (enemy == null) return;
 
-    bubbles.Remove(bubble);
+    enemies.Remove(enemy);
   }
 
 	[Export] private AnimationPlayer playerAnimation;
@@ -78,14 +78,15 @@ public partial class player : CharacterBody2D
 		}
 		MoveAndSlide();
 
-    foreach (var bubble in bubbles) {
-      if (!IsInstanceValid(bubble)) {
-          // cleanup now invalid bubbles (can happen if they suicide before you kill)
-          bubbles.Remove(bubble);
+    foreach (var enemy in enemies) {
+      var node = enemy as Node;
+      if (node != null && !IsInstanceValid(node)) {
+          // cleanup now invalid enemies (can happen if they suicide before you kill)
+          enemies.Remove(enemy);
       } else if (!charging && charge > ChargeKillThreshold) {
-          // kill bubbles
-          bubble.Pop();
-          bubbles.Remove(bubble);
+          // kill enemies
+          enemy.Kill();
+          enemies.Remove(enemy);
       }
     }
 	}
