@@ -116,6 +116,7 @@ animations = [{
 radius = 113.1
 
 [node name="BubbleBody" type="CharacterBody2D" node_paths=PackedStringArray("_agent", "spriteBody", "spriteFace")]
+scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 9
 motion_mode = 1
