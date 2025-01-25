@@ -1,14 +1,42 @@
-[gd_scene load_steps=19 format=3 uid="uid://dhnlbao0vrili"]
+[gd_scene load_steps=33 format=3 uid="uid://dhnlbao0vrili"]
 
 [ext_resource type="Script" path="res://enemies/bubble/BubbleAi.cs" id="1_2o8ik"]
 [ext_resource type="PackedScene" uid="uid://b4dvpu7frlllo" path="res://enemies/bubble/explosions/ExplosionBomb.tscn" id="2_5n3cs"]
-[ext_resource type="AudioStream" uid="uid://ck05yy8yldleh" path="res://enemies/bubble/assets/bubble-pop.mp3" id="2_34g2u"]
+[ext_resource type="AudioStream" uid="uid://78vt60j13qye" path="res://assets/sounds/Bubble-Pop.wav" id="2_pc5gi"]
 [ext_resource type="Texture2D" uid="uid://cyf5dpfbyn3qw" path="res://enemies/bubble/assets/bubble_sheet.png" id="3_3q301"]
+[ext_resource type="AudioStream" uid="uid://0ehh0t77ybok" path="res://assets/sounds/Bubble-Pop02.wav" id="3_sys1c"]
+[ext_resource type="AudioStream" uid="uid://b7r4x10d1743y" path="res://assets/sounds/Bubble-Pop11.wav" id="4_rnh7e"]
+[ext_resource type="AudioStream" uid="uid://khghk2fswvte" path="res://assets/sounds/Bubble-Pop12.wav" id="5_cp3c4"]
+[ext_resource type="AudioStream" uid="uid://cagtp3nm8at41" path="res://assets/sounds/Bubble-Pop13.wav" id="6_e6h22"]
+[ext_resource type="AudioStream" uid="uid://bib43ijcndckw" path="res://assets/sounds/Bubble-Pop14.wav" id="7_mvsji"]
+[ext_resource type="AudioStream" uid="uid://dxkndeebqd8pe" path="res://assets/sounds/Bubble-Pop15.wav" id="8_d6n88"]
+[ext_resource type="AudioStream" uid="uid://bvskwbo06cqp4" path="res://assets/sounds/Bubble-Pop03.wav" id="9_e0tpg"]
+[ext_resource type="AudioStream" uid="uid://bmgf2p50xjgx8" path="res://assets/sounds/Bubble-Pop04.wav" id="10_fxhkd"]
+[ext_resource type="AudioStream" uid="uid://b5i6mlnf2luym" path="res://assets/sounds/Bubble-Pop05.wav" id="11_xa2sd"]
+[ext_resource type="AudioStream" uid="uid://3iergi3jvsh4" path="res://assets/sounds/Bubble-Pop06.wav" id="12_f34j2"]
+[ext_resource type="AudioStream" uid="uid://ne4y3xknmalm" path="res://assets/sounds/Bubble-Pop07.wav" id="13_wcioy"]
+[ext_resource type="AudioStream" uid="uid://cm8qdyev3q3us" path="res://assets/sounds/Bubble-Pop08.wav" id="14_6rurx"]
+[ext_resource type="AudioStream" uid="uid://bp6f4wfg6t4f6" path="res://assets/sounds/Bubble-Pop09.wav" id="15_rp6qn"]
+[ext_resource type="AudioStream" uid="uid://c3g1304gjgx8r" path="res://assets/sounds/Bubble-Pop10.wav" id="16_xhw6n"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a5jvb"]
 random_pitch = 1.4
-streams_count = 1
-stream_0/stream = ExtResource("2_34g2u")
+streams_count = 15
+stream_0/stream = ExtResource("2_pc5gi")
+stream_1/stream = ExtResource("3_sys1c")
+stream_2/stream = ExtResource("9_e0tpg")
+stream_3/stream = ExtResource("10_fxhkd")
+stream_4/stream = ExtResource("11_xa2sd")
+stream_5/stream = ExtResource("12_f34j2")
+stream_6/stream = ExtResource("13_wcioy")
+stream_7/stream = ExtResource("14_6rurx")
+stream_8/stream = ExtResource("15_rp6qn")
+stream_9/stream = ExtResource("16_xhw6n")
+stream_10/stream = ExtResource("4_rnh7e")
+stream_11/stream = ExtResource("5_cp3c4")
+stream_12/stream = ExtResource("6_e6h22")
+stream_13/stream = ExtResource("7_mvsji")
+stream_14/stream = ExtResource("8_d6n88")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_clhum"]
 atlas = ExtResource("3_3q301")
