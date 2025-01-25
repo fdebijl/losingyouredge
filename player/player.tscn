@@ -1,31 +1,139 @@
-[gd_scene load_steps=7 format=3 uid="uid://cf1qf8mq7blko"]
+[gd_scene load_steps=21 format=3 uid="uid://cf1qf8mq7blko"]
 
 [ext_resource type="Script" path="res://player/player.cs" id="1_srn17"]
 [ext_resource type="Texture2D" uid="uid://bx4m468gnhl3c" path="res://player/platformerPack_character.png" id="2_k505k"]
 [ext_resource type="Script" path="res://player/ChargeDisplay.cs" id="3_2arfo"]
 [ext_resource type="Texture2D" uid="uid://cgl7lvp8fvi8" path="res://player/assets/barHorizontal_green.png" id="4_j3vkq"]
+[ext_resource type="Texture2D" uid="uid://0kxtet2qb0f3" path="res://player/Needle animation/Needle animation.png" id="6_p3fug"]
+[ext_resource type="Texture2D" uid="uid://cxm6nfkemapao" path="res://player/Needle animation/Needle animation face.png" id="7_toxp4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gt3w8"]
-radius = 159.0
-height = 500.0
+radius = 92.0
+height = 416.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mq7n1"]
-radius = 133.0
-height = 436.0
+[sub_resource type="Animation" id="Animation_tjvqd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay", "point") groups=["Player"]]
-position = Vector2(1438, 1211)
-collision_layer = 16
+[sub_resource type="Animation" id="Animation_p4eih"]
+resource_name = "jump"
+loop_mode = 1
+step = 0.333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0872665, 0.0872665, -0.0872665, 0.0872665, -0.0872665, 0.0872665, -0.0872665, 0.0872665, -0.0872665, 0.0872665]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bbecn"]
+_data = {
+"RESET": SubResource("Animation_tjvqd"),
+"jump": SubResource("Animation_p4eih")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvqpt"]
+atlas = ExtResource("6_p3fug")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7ro4"]
+atlas = ExtResource("6_p3fug")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8ttc"]
+atlas = ExtResource("6_p3fug")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3qih5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvqpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7ro4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8ttc")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh3yo"]
+atlas = ExtResource("7_toxp4")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byf28"]
+atlas = ExtResource("7_toxp4")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvd8y"]
+atlas = ExtResource("7_toxp4")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjyh4"]
+atlas = ExtResource("7_toxp4")
+region = Rect2(1500, 0, 500, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6gxk3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh3yo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byf28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvd8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjyh4")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h3sxb"]
+radius = 65.0
+height = 130.0
+
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay", "point", "playerAnimation", "playerBodyAnimation", "playerFaceAnimation")]
+position = Vector2(867, 799)
 collision_mask = 264
 script = ExtResource("1_srn17")
 ChargeDisplay = NodePath("ChargeDisplay")
-ChargeScale = 1.0
-chargeSpeed = 5.0
+ChargeScale = 50.0
+chargeSpeed = 1.0
 Friction = 1.0
 point = NodePath("Point")
+playerAnimation = NodePath("AnimationPlayer")
+playerBodyAnimation = NodePath("Node2D/BodyAnnimation")
+playerFaceAnimation = NodePath("Node2D/FaceAnnimation")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-189, -204)
+visible = false
+position = Vector2(-865, -798)
 scale = Vector2(4.25521, 4.25521)
 texture = ExtResource("2_k505k")
 centered = false
@@ -33,7 +141,6 @@ hframes = 4
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(17, 26)
 shape = SubResource("CapsuleShape2D_gt3w8")
 
 [node name="ChargeDisplay" type="Node2D" parent="." node_paths=PackedStringArray("moveChargeBar")]
@@ -41,15 +148,35 @@ script = ExtResource("3_2arfo")
 moveChargeBar = NodePath("moveChargeBar")
 
 [node name="moveChargeBar" type="TextureProgressBar" parent="ChargeDisplay"]
-offset_left = -78.0
-offset_top = -134.0
-offset_right = 122.0
-offset_bottom = -94.0
+offset_left = -94.0
+offset_top = 222.0
+offset_right = 106.0
+offset_bottom = 262.0
 texture_progress = ExtResource("4_j3vkq")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bbecn")
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, 113)
+
+[node name="BodyAnnimation" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(-1, -103)
+sprite_frames = SubResource("SpriteFrames_3qih5")
+animation = &"jump"
+
+[node name="FaceAnnimation" type="AnimatedSprite2D" parent="Node2D"]
+position = Vector2(-3, -112)
+sprite_frames = SubResource("SpriteFrames_6gxk3")
+animation = &"jump"
 
 [node name="Point" type="Area2D" parent="."]
+position = Vector2(0, -153.46)
+collision_layer = 16
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Point"]
-position = Vector2(20, 33)
-shape = SubResource("CapsuleShape2D_mq7n1")
+shape = SubResource("CapsuleShape2D_h3sxb")
