@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=4 uid="uid://dyng4bc145eaf"]
 
-[ext_resource type="TileSet" uid="uid://b1vs1w6ovcb5" path="res://levels/assets/tilesets/laundromat.tres" id="1_htsic"]
-[ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="2_kkyu0"]
-[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/player.tscn" id="3_768et"]
-[ext_resource type="PackedScene" uid="uid://dhnlbao0vrili" path="res://enemies/bubble/BubbleAgent.tscn" id="4_co0hy"]
+[ext_resource type="TileSet" uid="uid://b1vs1w6ovcb5" path="res://levels/assets/tilesets/laundromat.tres" id="1_mq18v"]
+[ext_resource type="PackedScene" uid="uid://cf1qf8mq7blko" path="res://player/player.tscn" id="2_6gavc"]
+[ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="3_5ayhr"]
+[ext_resource type="PackedScene" uid="uid://dhnlbao0vrili" path="res://enemies/bubble/BubbleAgent.tscn" id="4_3brqj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vsaj4"]
 vertices = PackedVector2Array(2493.98, 1490, 8.00781, 1491.99, 9.99219, 10, 2492.01, 10)
@@ -35,7 +35,6 @@ navigation_enabled = false
 
 [node name="player" parent="." instance=ExtResource("2_6gavc")]
 position = Vector2(587, 711)
-chargeCooldown = 0.2
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 
