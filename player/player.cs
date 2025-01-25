@@ -8,7 +8,6 @@ public partial class player : CharacterBody2D
 	private float charge = 0;
 	private bool charging = false;
 	private bool allowCharge = true;
-  private float chargeCooldown = 2.0f;
   private float chargeCooldownTimer = 0.0f;
 	private bool chargingAnnimation = false;
   private bool moving = false;
@@ -19,6 +18,7 @@ public partial class player : CharacterBody2D
   private int health = 100;
   private float randomTimer = 0;
   private Random random = new Random();
+  [Export] private float chargeCooldown;
 	[Export] private int _speed = 300;
 	[Export] private ChargeDisplay ChargeDisplay;
   [Export] private float ChargeScale;
@@ -77,25 +77,20 @@ public partial class player : CharacterBody2D
 
   public override void _Input(InputEvent @event)
   {
-    //Ask for mouse delta
-    if (@event is InputEventMouseMotion mouseEvent)
-    {
+    UseMouseCheck(@event);
+  }
+
+  private void UseMouseCheck(InputEvent @event) {
+    if (@event is InputEventMouseMotion mouseEvent){
       useMouse = true;
-    } else if (@event is InputEventJoypadMotion joypadEvent)
-    {
+    } else if (@event is InputEventJoypadMotion joypadEvent){
       useMouse = false;
     }
-
   }
 
 	public void GetInput()
 	{
-		// MouseDirection = Get/Viewport().GetMouseDirection();
-    // mouse position in world from raycast
-
-
-  MouseDirection = GlobalPosition - GetGlobalMousePosition();
-  // GD.Print("Mouse Position Relative to Player: ", MousePosition);
+    MouseDirection = GlobalPosition - GetGlobalMousePosition();
 	}
 
 	public override void _PhysicsProcess(double delta)
