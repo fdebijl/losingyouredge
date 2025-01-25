@@ -219,7 +219,7 @@ public partial class Player : CharacterBody2D
       chargeDirection.X = Mathf.Sin(Rotation);
       chargeDirection.Y = -Mathf.Cos(Rotation);
 
-      AudioManager.PlaySFX(jumpSFX, 1.3f, true, "jumpSFX");
+      AudioManager.PlaySFX(jumpSFX, 1.3f, true, null, "jumpSFX");
 
       ChargeDisplay.updateCharge(0);
       charging = false;
