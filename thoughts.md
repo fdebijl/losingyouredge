@@ -33,3 +33,8 @@
   Interacts with: 1, 2
 9: Explosion
   Interacts with: 1
+
+# Feedback
+- Start blinking while seeking?
+- Move with joystick...?
+- Bug with bolting forward?
