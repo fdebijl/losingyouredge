@@ -151,11 +151,10 @@ public partial class Player : CharacterBody2D
       {
         var collision = GetSlideCollision(i);
         if (((Node)collision.GetCollider()).Name == "Walls"){
+					BentAnimation();
           Velocity = Vector2.Zero;
           charge = 0;
           allowCharge = true;
-					playerBodyAnimation.Play("idle");
-				  playerFaceAnimation.Play("idle");
           moving = false;
         }
       }
@@ -275,13 +274,34 @@ public partial class Player : CharacterBody2D
         // Random chance to play the animation
         if (random.NextDouble() > 0.5)
         {
-            playerFaceAnimation.Play("idle");
+					playerBodyAnimation.Play("idle");
+          playerFaceAnimation.Play("idle");
         }
 
         // Reset the timer with a random interval (e.g., 1 to 5 seconds)
         randomTimer = (float)random.NextDouble() * 2 + 1;
     }
+	}
 
+	public void BentAnimation()
+	{
+			playerBodyAnimation.Play("bent");
+			playerFaceAnimation.Play("bent");
+			playerAnimation.Play("jump");
+
+			Timer timer = new Timer();
+			AddChild(timer);
+			timer.WaitTime = 0.3; 
+			timer.OneShot = true;
+			timer.Connect("timeout", Callable.From(OnBentAnimationTimeout));
+			timer.Start();
+	}
+
+	private void OnBentAnimationTimeout()
+	{
+			playerAnimation.Stop();
+			playerBodyAnimation.Play("idle");
+			playerFaceAnimation.Play("idle");
 	}
 	private void UpdateShader()
 	{

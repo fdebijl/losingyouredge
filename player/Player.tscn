@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cf1qf8mq7blko"]
+[gd_scene load_steps=33 format=3 uid="uid://bin3r8r5qu1fi"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_srn17"]
 [ext_resource type="AudioStream" uid="uid://cvh68yeemhwi3" path="res://assets/sounds/Charge-up.wav" id="2_w1mds"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bqlpwvybv4ou4" path="res://player/assets/Metal055C.png" id="5_jmyjf"]
 [ext_resource type="AudioStream" uid="uid://bwyd566dqb7re" path="res://assets/sounds/Charge-up04.wav" id="5_u01g4"]
 [ext_resource type="Texture2D" uid="uid://dndkirnocwwq6" path="res://player/assets/Metal052C.png" id="6_y4btj"]
+[ext_resource type="Texture2D" uid="uid://ckwv7kmqdrjac" path="res://player/Needle animation/needle sprite sheet 2.png" id="7_0w5l0"]
 [ext_resource type="Texture2D" uid="uid://cxm6nfkemapao" path="res://player/Needle animation/Needle animation face.png" id="7_toxp4"]
 [ext_resource type="Texture2D" uid="uid://dp1g6jqfnglok" path="res://player/Needle animation/needle sprite sheet.png" id="8_6u7ji"]
 
@@ -64,38 +65,50 @@ _data = {
 "jump": SubResource("Animation_p4eih")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wxjc0"]
-atlas = ExtResource("8_6u7ji")
-region = Rect2(0, 0, 500, 500)
+[sub_resource type="AtlasTexture" id="AtlasTexture_40guh"]
+atlas = ExtResource("7_0w5l0")
+region = Rect2(1500, 1000, 500, 500)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h5we2"]
 shader = ExtResource("4_2nc5g")
 shader_parameter/health = 1.0
-shader_parameter/sprite = SubResource("AtlasTexture_wxjc0")
+shader_parameter/sprite = SubResource("AtlasTexture_40guh")
 shader_parameter/shiney = ExtResource("6_y4btj")
 shader_parameter/rust = ExtResource("5_jmyjf")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ptf3g"]
-atlas = ExtResource("8_6u7ji")
-region = Rect2(2500, 0, 500, 500)
+[sub_resource type="AtlasTexture" id="AtlasTexture_odg54"]
+atlas = ExtResource("7_0w5l0")
+region = Rect2(500, 500, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b7dc4"]
-atlas = ExtResource("8_6u7ji")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6c2br"]
+atlas = ExtResource("7_0w5l0")
 region = Rect2(0, 0, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pw7xk"]
-atlas = ExtResource("8_6u7ji")
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6lh0"]
+atlas = ExtResource("7_0w5l0")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0um2h"]
+atlas = ExtResource("7_0w5l0")
 region = Rect2(1500, 0, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y6m3m"]
-atlas = ExtResource("8_6u7ji")
-region = Rect2(2000, 0, 500, 500)
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgqgq"]
+atlas = ExtResource("7_0w5l0")
+region = Rect2(0, 500, 500, 500)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3qih5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ptf3g")
+"texture": SubResource("AtlasTexture_40guh")
+}],
+"loop": true,
+"name": &"bent",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odg54")
 }],
 "loop": true,
 "name": &"fly",
@@ -103,7 +116,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b7dc4")
+"texture": SubResource("AtlasTexture_6c2br")
 }],
 "loop": true,
 "name": &"idle",
@@ -111,18 +124,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wxjc0")
+"texture": SubResource("AtlasTexture_h6lh0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pw7xk")
+"texture": SubResource("AtlasTexture_0um2h")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y6m3m")
+"texture": SubResource("AtlasTexture_dgqgq")
 }],
 "loop": false,
 "name": &"jump",
 "speed": 2.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cvdv"]
+atlas = ExtResource("7_0w5l0")
+region = Rect2(0, 1500, 500, 500)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l715k"]
 atlas = ExtResource("8_6u7ji")
@@ -158,6 +175,14 @@ region = Rect2(1500, 0, 500, 500)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6gxk3"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cvdv")
+}],
+"loop": true,
+"name": &"bent",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l715k")
@@ -248,12 +273,12 @@ scale = Vector2(0.6, 0.6)
 material = SubResource("ShaderMaterial_h5we2")
 position = Vector2(-1, -114)
 sprite_frames = SubResource("SpriteFrames_3qih5")
-animation = &"jump"
+animation = &"bent"
 
 [node name="FaceAnnimation" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(3.33333, -103.917)
 sprite_frames = SubResource("SpriteFrames_6gxk3")
-animation = &"jump"
+animation = &"bent"
 
 [node name="DamageArea" type="Area2D" parent="."]
 position = Vector2(-2, -283)
