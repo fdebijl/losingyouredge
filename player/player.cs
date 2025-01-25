@@ -6,6 +6,7 @@ public partial class player : CharacterBody2D
 	private float charge = 0;
 	private bool charging = false;
 	private bool allowCharge = true;
+	private bool chargingAnnimation = false;
 	private Vector2 MousePosition;
 	private Vector2 chargeDirection;
   private Vector2 currentMovement;
@@ -103,6 +104,7 @@ public partial class player : CharacterBody2D
     if (Input.IsActionPressed("chargeControllerButton") || Input.IsActionPressed("chargeMouseButton"))
     {
      charging = true;
+		 JumpAnimation(true);
     }
     else if (Input.IsActionJustReleased("chargeControllerButton"))
     {
@@ -115,10 +117,33 @@ public partial class player : CharacterBody2D
     }
     else if (Input.IsActionJustReleased("chargeMouseButton"))
     {
+		  JumpAnimation(false);
       chargeDirection =  (Position - MousePosition).Normalized();
       ChargeDisplay.updateCharge(0);
       charging = false;
       allowCharge = false;
     }
   }
+
+	private void JumpAnimation(bool on)
+	{
+		if (on && chargingAnnimation == false)
+		{
+			playerBodyAnimation.Play("jump");
+			playerFaceAnimation.Play("jump");
+			chargingAnnimation = true;
+		}
+		else if (!on && chargingAnnimation == true)
+		{
+			playerAnimation.Stop();
+			playerBodyAnimation.Stop();
+			playerFaceAnimation.Stop();
+			chargingAnnimation = false;
+		}
+
+		if (charge > 80 && chargingAnnimation == true && on)
+		{
+			playerAnimation.Play("jump");
+		}
+	}
 }
