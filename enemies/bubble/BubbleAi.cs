@@ -50,7 +50,7 @@ public partial class BubbleAi : CharacterBody2D {
 
   private bool seeking = false;
 
-  private bool exploded = false;
+  private bool popped = false;
 
   private Vector2 offset;
 
@@ -75,9 +75,31 @@ public partial class BubbleAi : CharacterBody2D {
     }
   }
 
+  public void Pop(bool spawnBomb = false) {
+    if (popped) return;
+
+    popped = true;
+    AudioManager.PlaySFX(popSFX);
+    spriteBody.Animation = "Explode";
+
+    // despawn once explode animation has finished
+    spriteBody.AnimationFinished += () => {
+      var parent = GetParent();
+
+      if (spawnBomb) {
+        var obj = explosion.Instantiate() as Node2D;
+        obj.GlobalPosition = this.GlobalPosition;
+        parent.AddChild(obj);
+      }
+
+      parent.RemoveChild(this);
+    };
+    spriteBody.Play();
+  }
+
   public override void _PhysicsProcess(double delta) {
-    // exploded stop processing things
-    if (exploded)
+    // popped stop processing things
+    if (popped)
       return;
 
     if (seeking && !exploding) {
@@ -94,21 +116,7 @@ public partial class BubbleAi : CharacterBody2D {
     // handle exploding
     if (exploding) {
       if (explosionTimer <= 0) {
-        // spawn bomb
-        exploded = true;
-        var parent = GetParent();
-        var obj = explosion.Instantiate() as Node2D;
-        obj.GlobalPosition = this.GlobalPosition;
-        parent.AddChild(obj);
-
-        AudioManager.PlaySFX(popSFX);
-        spriteBody.Animation = "Explode";
-
-        // despawn once explode animation has finished
-        spriteBody.AnimationFinished += () => {
-          parent.RemoveChild(this);
-        };
-        spriteBody.Play();
+        Pop(true);
       }
 
       explosionTimer -= (float) delta;

@@ -1,23 +1,44 @@
 using Godot;
-using System;
 
-public partial class BubbleExplosion : Node2D
-{
-	[Export]
-	private float despawnTimer = 1f;
+public partial class BubbleExplosion : Node2D {
+  [Export]
+  private AnimatedSprite2D sprite;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+  [Export]
+  private AudioStream explodeSFX;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		despawnTimer -= (float) delta;
+  [Export]
+  private Area2D collider;
 
-		if (despawnTimer < 0) {
-			GetParent().RemoveChild(this);
-		}
-	}
+  [Export]
+  private float despawnTimer = 1f;
+
+  [Export]
+  private int damage = 1;
+
+  private bool damaged = false;
+
+  public override void _Ready() {
+    collider.BodyEntered += OnBodyEntered;
+  }
+
+  private void OnBodyEntered(Node other) {
+    if (damaged) return;
+
+    var player = other as player;
+    if (player == null) return;
+
+    damaged = true;
+    player.Damage(1);
+  }
+
+  // Called every frame. 'delta' is the elapsed time since the previous frame.
+  public override void _Process(double delta) {
+    despawnTimer -= (float) delta;
+
+    if (despawnTimer < 0) {
+      AudioManager.PlaySFX(explodeSFX);
+      GetParent().RemoveChild(this);
+    }
+  }
 }
