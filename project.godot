@@ -15,9 +15,19 @@ run/main_scene="res://ai_debug.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+AudioManager="*res://src/AudioManager.cs"
+
 [dotnet]
 
 project/assembly_name="losingyouredge"
+
+[file_customization]
+
+folder_colors={
+"res://enemies/": "purple"
+}
 
 [rendering]
 
