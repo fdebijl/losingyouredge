@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://player/ChargeDisplay.cs" id="3_2arfo"]
 [ext_resource type="Shader" path="res://player/player.gdshader" id="4_2nc5g"]
 [ext_resource type="Texture2D" uid="uid://cgl7lvp8fvi8" path="res://player/assets/barHorizontal_green.png" id="4_j3vkq"]
-[ext_resource type="Texture2D" uid="uid://bqlpwvybv4ou4" path="res://player/assets/Metal055C_1K-JPG/Metal055C.png" id="5_l5ls8"]
+[ext_resource type="Texture2D" uid="uid://bqlpwvybv4ou4" path="res://player/assets/Metal055C.png" id="5_jmyjf"]
 [ext_resource type="Texture2D" uid="uid://0kxtet2qb0f3" path="res://player/Needle animation/Needle animation.png" id="6_p3fug"]
-[ext_resource type="Texture2D" uid="uid://dndkirnocwwq6" path="res://player/assets/Metal052C_1K-JPG/Metal052C.png" id="6_y4btj"]
+[ext_resource type="Texture2D" uid="uid://dndkirnocwwq6" path="res://player/assets/Metal052C.png" id="6_y4btj"]
 [ext_resource type="Texture2D" uid="uid://cxm6nfkemapao" path="res://player/Needle animation/Needle animation face.png" id="7_toxp4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gt3w8"]
@@ -60,7 +60,7 @@ shader = ExtResource("4_2nc5g")
 shader_parameter/health = 1.0
 shader_parameter/sprite = SubResource("AtlasTexture_cvqpt")
 shader_parameter/shiney = ExtResource("6_y4btj")
-shader_parameter/rust = ExtResource("5_l5ls8")
+shader_parameter/rust = ExtResource("5_jmyjf")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s7ro4"]
 atlas = ExtResource("6_p3fug")

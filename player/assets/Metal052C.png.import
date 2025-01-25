@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8bild5cfb7pu"
-path="res://.godot/imported/Metal052C_1K-JPG_Color.jpg-b05b5240d0ec4c2113e405124825a9f3.ctex"
+uid="uid://dndkirnocwwq6"
+path="res://.godot/imported/Metal052C.png-c387a83cee788d53f6b830db8b209b3c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/assets/Metal052C_1K-JPG/Metal052C_1K-JPG_Color.jpg"
-dest_files=["res://.godot/imported/Metal052C_1K-JPG_Color.jpg-b05b5240d0ec4c2113e405124825a9f3.ctex"]
+source_file="res://player/assets/Metal052C.png"
+dest_files=["res://.godot/imported/Metal052C.png-c387a83cee788d53f6b830db8b209b3c.ctex"]
 
 [params]
 
