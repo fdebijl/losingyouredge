@@ -34,7 +34,9 @@ collision_enabled = false
 navigation_enabled = false
 
 [node name="player" parent="." instance=ExtResource("3_768et")]
-position = Vector2(1285, 776)
+position = Vector2(587, 711)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
 
 [node name="Patrol Paths" type="Node2D" parent="."]
 
@@ -50,8 +52,8 @@ points = PackedVector2Array(201, 1296, 2300, 1299)
 position = Vector2(301, 304)
 PatrolPath = NodePath("../../Patrol Paths/PathUpper")
 SecondsBetweenSpawn = 5.0
-MaxNumberOfAliveBubbles = 2
-MaxNumberOfTotalSpawns = 10
+MaxNumberOfAliveBubbles = 5
+MaxNumberOfTotalSpawns = 25
 
 [node name="Bubbles" type="Node2D" parent="."]
 
