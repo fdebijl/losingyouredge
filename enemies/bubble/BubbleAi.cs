@@ -76,6 +76,7 @@ public partial class BubbleAi : CharacterBody2D {
   }
 
   public override void _PhysicsProcess(double delta) {
+    // exploded stop processing things
     if (exploded)
       return;
 
@@ -93,15 +94,17 @@ public partial class BubbleAi : CharacterBody2D {
     // handle exploding
     if (exploding) {
       if (explosionTimer <= 0) {
+        // spawn bomb
         exploded = true;
         var parent = GetParent();
         var obj = explosion.Instantiate() as Node2D;
         obj.GlobalPosition = this.GlobalPosition;
         parent.AddChild(obj);
 
-        // TODO: death animation += on finish call this
         AudioManager.PlaySFX(popSFX);
         spriteBody.Animation = "Explode";
+
+        // despawn once explode animation has finished
         spriteBody.AnimationFinished += () => {
           parent.RemoveChild(this);
         };
@@ -112,6 +115,7 @@ public partial class BubbleAi : CharacterBody2D {
       return;
     }
 
+    // get player in scene
     player = this.GetTree().GetNodesInGroup("Player").Cast<Node2D>().FirstOrDefault();
     var target = GetTarget();
     var direction = Navigate(target);
