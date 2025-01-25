@@ -1,7 +1,7 @@
 using Godot;
 using System.Linq;
 
-public partial class BubbleAi : CharacterBody2D {
+public partial class BubbleAi : CharacterBody2D, IKillable {
   [Export(PropertyHint.Range, "0,100,0.1")]
   public float BaseSpeed = 75.0f;
 
@@ -73,6 +73,10 @@ public partial class BubbleAi : CharacterBody2D {
         _navMesh = rid;
       };
     }
+  }
+
+  public void Kill() {
+    this.Pop();
   }
 
   public void Pop(bool spawnBomb = false) {

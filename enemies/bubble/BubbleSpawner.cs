@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class BubbleSpawner : Node2D
+public partial class BubbleSpawner : StaticBody2D, IKillable
 {
   [Export]
   public PackedScene BubbleScene;
@@ -35,6 +35,11 @@ public partial class BubbleSpawner : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
     _spawnTimer = SecondsBetweenSpawn;
+  }
+
+  public void Kill() {
+    this.IsActive = false;
+    GetParent().RemoveChild(this);
   }
 
   public override void _PhysicsProcess(double delta) {
