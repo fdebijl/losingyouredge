@@ -4,11 +4,12 @@ using System.Collections.Generic;
 
 public partial class player : CharacterBody2D
 {
+  private bool useMouse;
 	private float charge = 0;
 	private bool charging = false;
 	private bool allowCharge = true;
 	private bool chargingAnnimation = false;
-	private Vector2 MousePosition;
+	private Vector2 MouseDirection;
 	private Vector2 chargeDirection;
   private Vector2 currentMovement;
   private Vector2 playerRotation;
@@ -65,15 +66,36 @@ public partial class player : CharacterBody2D
    //Play death sound
   }
 
+  public override void _Input(InputEvent @event)
+  {
+    //Ask for mouse delta
+    if (@event is InputEventMouseMotion mouseEvent)
+    {
+      useMouse = true;
+    } else if (@event is InputEventJoypadMotion joypadEvent)
+    {
+      useMouse = false;
+    }
+
+  }
+
 	public void GetInput()
 	{
-		MousePosition = GetViewport().GetMousePosition();
+		// MouseDirection = Get/Viewport().GetMouseDirection();
+    // mouse position in world from raycast
+
+
+  MouseDirection = GlobalPosition - GetGlobalMousePosition();
+  // GD.Print("Mouse Position Relative to Player: ", MousePosition);
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		if (allowCharge && charging) {
-			charge += chargeSpeed;
+      if (charge < 100) {
+        charge += chargeSpeed;
+      }
+
 			ChargeDisplay.updateCharge(charge);
 		} else if (charge > 0) {
 			charge -= Friction;
@@ -107,14 +129,18 @@ public partial class player : CharacterBody2D
   public override void _Process(double delta)
   {
     GetInput();
+    Vector2 mouseLookPosition = GetGlobalMousePosition();
 
+    if (useMouse){
+      Rotation = Mathf.Atan2(MouseDirection.Y, MouseDirection.X) + Mathf.Pi / 2;
+    } else {
     playerRotation.X = Input.GetJoyAxis(0, JoyAxis.LeftX);
     playerRotation.Y = Input.GetJoyAxis(0, JoyAxis.LeftY);
-    GD.Print(playerRotation);
     playerRotation.Normalized();
+
     if (Mathf.Abs(playerRotation.X) >= 0.09 && Mathf.Abs(playerRotation.Y) >= 0.09){
       Rotation = Mathf.Atan2(playerRotation.Y, playerRotation.X) + Mathf.Pi / 2;
-    }
+    }}
 
     if (Input.IsActionPressed("chargeControllerButton") || Input.IsActionPressed("chargeMouseButton"))
     {
@@ -134,7 +160,8 @@ public partial class player : CharacterBody2D
     else if (Input.IsActionJustReleased("chargeMouseButton"))
     {
 		  JumpAnimation(false);
-      chargeDirection =  (Position - MousePosition).Normalized();
+      chargeDirection =  (Position - GetGlobalMousePosition()).Normalized();
+      GD.Print(chargeDirection);
       ChargeDisplay.updateCharge(0);
       charging = false;
       allowCharge = false;
