@@ -114,9 +114,8 @@ animations = [{
 "speed": 2.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h3sxb"]
-radius = 65.0
-height = 130.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_sk27h"]
+radius = 52.4
 
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay", "point", "playerAnimation", "playerBodyAnimation", "playerFaceAnimation")]
 position = Vector2(867, 799)
@@ -126,7 +125,7 @@ ChargeDisplay = NodePath("ChargeDisplay")
 ChargeScale = 50.0
 chargeSpeed = 1.0
 Friction = 1.0
-point = NodePath("Point")
+point = NodePath("Area2D")
 playerAnimation = NodePath("AnimationPlayer")
 playerBodyAnimation = NodePath("Node2D/BodyAnnimation")
 playerFaceAnimation = NodePath("Node2D/FaceAnnimation")
@@ -173,10 +172,10 @@ position = Vector2(-3, -112)
 sprite_frames = SubResource("SpriteFrames_6gxk3")
 animation = &"jump"
 
-[node name="Point" type="Area2D" parent="."]
-position = Vector2(0, -153.46)
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -170.35)
 collision_layer = 16
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Point"]
-shape = SubResource("CapsuleShape2D_h3sxb")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_sk27h")
