@@ -1,13 +1,16 @@
-[gd_scene load_steps=12 format=4 uid="uid://d0nkv5i2xdvw4"]
+[gd_scene load_steps=16 format=4 uid="uid://drddml6l3iyql"]
 
 [ext_resource type="TileSet" uid="uid://b1vs1w6ovcb5" path="res://levels/assets/tilesets/laundromat.tres" id="1_mq18v"]
-[ext_resource type="PackedScene" uid="uid://cf1qf8mq7blko" path="res://player/Player.tscn" id="2_6gavc"]
+[ext_resource type="PackedScene" uid="uid://dhsov4a61a624" path="res://player/Player.tscn" id="2_6gavc"]
 [ext_resource type="Texture2D" uid="uid://dylch0ecib2i3" path="res://levels/assets/sprites/random_assets.png" id="2_c1rpc"]
 [ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="3_5ayhr"]
-[ext_resource type="PackedScene" path="res://levels/backdrop.tscn" id="3_irrti"]
+[ext_resource type="PackedScene" uid="uid://bfropl31e5aa" path="res://levels/backdrop.tscn" id="3_irrti"]
 [ext_resource type="PackedScene" uid="uid://dhnlbao0vrili" path="res://enemies/bubble/BubbleAgent.tscn" id="4_3brqj"]
 [ext_resource type="PackedScene" uid="uid://v1e4g5crhogy" path="res://levels/props/Washer.tscn" id="4_h12g7"]
 [ext_resource type="PackedScene" path="res://levels/RoomDoor.tscn" id="8_g7rm7"]
+[ext_resource type="AudioStream" uid="uid://becikkl1lbqqa" path="res://assets/sounds/Washing-Machine-Starting-Up.wav" id="9_i445e"]
+[ext_resource type="AudioStream" uid="uid://l1s0a45cmgm1" path="res://assets/sounds/Washing-Machine-Loop01.wav" id="10_vi8kx"]
+[ext_resource type="AudioStream" uid="uid://bxpvgvqtyu53e" path="res://assets/sounds/Washing-Machine-Loop02.wav" id="11_q8mff"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vsaj4"]
 vertices = PackedVector2Array(2493.98, 1490, 8.00781, 1491.99, 9.99219, 10, 2492.01, 10)
@@ -19,6 +22,12 @@ size = Vector2(1093, 190)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n00ov"]
 size = Vector2(929.5, 235)
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_h17ey"]
+stream_count = 3
+stream_0 = ExtResource("9_i445e")
+stream_1 = ExtResource("10_vi8kx")
+stream_2 = ExtResource("11_q8mff")
 
 [node name="Laundromat" type="Node2D"]
 
@@ -191,3 +200,10 @@ triggers = [NodePath("../../Spawners/Room 1/SpawnerLeft"), NodePath("../../Spawn
 
 [node name="RoomDoor2" parent="Doors" instance=ExtResource("8_g7rm7")]
 position = Vector2(-1300, -2201)
+
+[node name="Ambient" type="Node2D" parent="."]
+
+[node name="Washing Machine Ambient" type="AudioStreamPlayer2D" parent="Ambient"]
+position = Vector2(583, 117)
+stream = SubResource("AudioStreamPlaylist_h17ey")
+autoplay = true
