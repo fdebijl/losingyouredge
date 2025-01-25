@@ -1,8 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhnlbao0vrili"]
+[gd_scene load_steps=12 format=3 uid="uid://dhnlbao0vrili"]
 
 [ext_resource type="Script" path="res://enemies/bubble/BubbleAi.cs" id="1_2o8ik"]
 [ext_resource type="PackedScene" uid="uid://b4dvpu7frlllo" path="res://enemies/bubble/explosions/ExplosionBomb.tscn" id="2_5n3cs"]
+[ext_resource type="AudioStream" uid="uid://ck05yy8yldleh" path="res://enemies/bubble/assets/bubble-pop.mp3" id="2_34g2u"]
 [ext_resource type="Texture2D" uid="uid://dm1v0wqjfqtex" path="res://assets/placeholder/bubble_sprite.png" id="3_cxx4w"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7xjtk"]
+random_pitch = 1.31
+streams_count = 1
+stream_0/stream = ExtResource("2_34g2u")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ladb"]
 atlas = ExtResource("3_cxx4w")
@@ -44,13 +50,15 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_6t7me"]
 radius = 52.469
 
-[node name="BubbleBody" type="CharacterBody2D" node_paths=PackedStringArray("_agent")]
+[node name="BubbleBody" type="CharacterBody2D" node_paths=PackedStringArray("_agent", "sprite")]
 collision_layer = 2
 collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_2o8ik")
 BaseSpeed = 500.0
 _agent = NodePath("NavigationAgent2D")
+sprite = NodePath("BubbleSpriteAnimation")
+popSFX = SubResource("AudioStreamRandomizer_7xjtk")
 explosion = ExtResource("2_5n3cs")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
