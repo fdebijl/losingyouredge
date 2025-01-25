@@ -36,7 +36,10 @@ public partial class BubbleAi : CharacterBody2D
   private PackedScene explosion;
 
   [Export]
-  private float explosiontimer = 1f;
+  private float explosionTimer = 1f;
+
+  [Export]
+  private Color warningColor = Colors.Red;
 
   private bool exploding = false;
 
@@ -66,8 +69,7 @@ public partial class BubbleAi : CharacterBody2D
   public override void _PhysicsProcess(double delta) {
     // handle exploding
     if (exploding) {
-        sprite.Modulate = explosiontimer % 0.5f < 0f ? Colors.Red : Colors.Transparent;
-        if (explosiontimer <= 0) {
+        if (explosionTimer <= 0) {
           var parent = GetParent();
           var obj = explosion.Instantiate() as Node2D;
           obj.GlobalPosition = this.GlobalPosition;
@@ -77,7 +79,7 @@ public partial class BubbleAi : CharacterBody2D
           parent.RemoveChild(this);
         }
 
-        explosiontimer -= (float) delta;
+        explosionTimer -= (float) delta;
         return;
     }
 
@@ -95,6 +97,28 @@ public partial class BubbleAi : CharacterBody2D
     // within exploding radius. fucken explode.
     if (player != null && this.GlobalPosition.DistanceTo(player.GlobalPosition) < explodeKepsylon) {
       exploding = true;
+			var tween = GetTree().CreateTween();
+			var originalModulate = sprite.Modulate;
+
+      // 1/3 of the time 
+			tween.TweenProperty(sprite, "modulate", warningColor, explosionTimer / 3 / 2);
+      tween.TweenProperty(sprite, "modulate", originalModulate, explosionTimer / 3 / 2);
+
+      // 1/3 of the time 
+			tween.TweenProperty(sprite, "modulate", warningColor, explosionTimer / 3 / 4);
+			tween.TweenProperty(sprite, "modulate", originalModulate, explosionTimer / 3 / 4);
+			tween.TweenProperty(sprite, "modulate", warningColor, explosionTimer / 3 / 4);
+			tween.TweenProperty(sprite, "modulate", originalModulate, explosionTimer / 3 / 4);
+
+      // 1/3 of the time 
+			tween.TweenProperty(sprite, "modulate", warningColor, explosionTimer / 3 / 8);
+			tween.TweenProperty(sprite, "modulate", originalModulate, explosionTimer / 3 / 8);
+			tween.TweenProperty(sprite, "modulate", warningColor, explosionTimer / 3 / 8);
+			tween.TweenProperty(sprite, "modulate", originalModulate, explosionTimer / 3 / 8);
+			tween.TweenProperty(sprite, "modulate", warningColor, explosionTimer / 3 / 8);
+			tween.TweenProperty(sprite, "modulate", originalModulate, explosionTimer / 3 / 8);
+			tween.TweenProperty(sprite, "modulate", warningColor, explosionTimer / 3 / 8);
+			tween.TweenProperty(sprite, "modulate", originalModulate, explosionTimer / 3 / 8);
     }
   }
 
