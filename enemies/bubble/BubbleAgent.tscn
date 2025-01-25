@@ -1,7 +1,45 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhnlbao0vrili"]
+[gd_scene load_steps=10 format=3 uid="uid://dhnlbao0vrili"]
 
 [ext_resource type="Script" path="res://enemies/bubble/BubbleAi.cs" id="1_2o8ik"]
 [ext_resource type="PackedScene" uid="uid://b4dvpu7frlllo" path="res://enemies/bubble/explosions/ExplosionBomb.tscn" id="2_5n3cs"]
+[ext_resource type="Texture2D" uid="uid://dm1v0wqjfqtex" path="res://assets/placeholder/bubble_sprite.png" id="3_cxx4w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ladb"]
+atlas = ExtResource("3_cxx4w")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7xma"]
+atlas = ExtResource("3_cxx4w")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgomq"]
+atlas = ExtResource("3_cxx4w")
+region = Rect2(400, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5lm3"]
+atlas = ExtResource("3_cxx4w")
+region = Rect2(600, 0, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w2cxv"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ladb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7xma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgomq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5lm3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6t7me"]
 radius = 52.469
@@ -17,5 +55,11 @@ explosion = ExtResource("2_5n3cs")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="BubbleSpriteAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w2cxv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="BubbleCollider" type="CollisionShape2D" parent="."]
+scale = Vector2(1.3, 1.3)
 shape = SubResource("CircleShape2D_6t7me")
