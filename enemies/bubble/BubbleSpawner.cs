@@ -21,6 +21,9 @@ public partial class BubbleSpawner : StaticBody2D, IKillable
   [Export]
   public int MaxNumberOfTotalSpawns = 30;
 
+  [Export]
+  public AudioStream killSFX;
+
   // TODO: Wire up if needed
   // [Export]
   // public float IdleSecondsAfterSpawn = 1.0f;
@@ -39,6 +42,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable
 
   public void Kill() {
     this.IsActive = false;
+    AudioManager.PlaySFX(killSFX);
     GetParent().RemoveChild(this);
   }
 
