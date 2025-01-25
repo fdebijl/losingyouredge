@@ -8,6 +8,7 @@ public partial class AudioManager : Node {
   public static AudioManager Instance { get; private set; }
 
   private List<AudioStreamPlayer2D> _sfxPlayers = new List<AudioStreamPlayer2D>();
+  private Dictionary<string, AudioStreamPlayer2D> _taggedSfxPlayers = new Dictionary<string, AudioStreamPlayer2D>();
 
   private void SfxFinished(Node player) {
     if (_sfxPlayers.Count > _sfxChannelCount)
@@ -34,8 +35,19 @@ public partial class AudioManager : Node {
   /// <param name="stream">Stream to play</param>
   /// <param name="PitchScale">Optionally adjust pitch</param>
   /// <param name="IsPriority">Force the sound to play, even if the channels are busy. </param>
-  public static void PlaySFX(AudioStream stream, float PitchScale = 1.0f, bool IsPriority = false) {
+  public static void PlaySFX(AudioStream stream, float PitchScale = 1.0f, bool IsPriority = false, string id = "") {
     var player = Instance.GetPlayer(IsPriority);
+    if (id != "") {
+      // check for existing player
+      if (Instance._taggedSfxPlayers.TryGetValue(id, out var p)) {
+        if (p.IsPlaying()) {
+          return;
+        }
+      } else {
+        Instance._taggedSfxPlayers.Add(id, player);
+      }
+    }
+
     if (player != null) {
       player.PitchScale = PitchScale;
       player.Stream = stream;
