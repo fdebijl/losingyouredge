@@ -1,7 +1,6 @@
 using Godot;
 
-public partial class BubbleSpawner : StaticBody2D, IKillable
-{
+public partial class BubbleSpawner : StaticBody2D, IKillable {
   // How many seconds before spawning to show the ready sprite
   const float READY_SPRITE_TIME = 2f;
   // How many seconds before and after spawning to show the spawning sprite
@@ -10,6 +9,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable
   const int IDLE_FRAME = 0;
   const int READY_FRAME = 1;
   const int SPAWNING_FRAME = 2;
+  const int DESTROYED_FRAME = 3;
 
   [Export] public PackedScene BubbleScene;
   [Export] public Line2D PatrolPath;
@@ -37,6 +37,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable
 
   private float _spawnTimer = 0f;
   private int _spawnedCounter = 0;
+  private bool _isDead = false;
 
 	public override void _Ready() {
     if (BossMode) {
@@ -47,10 +48,15 @@ public partial class BubbleSpawner : StaticBody2D, IKillable
     this.Sprite.Frame = IDLE_FRAME;
   }
 
+  public bool IsDead() {
+    return this._isDead;
+  }
+
   public void Kill() {
     this.IsActive = false;
+    this._isDead = true;
     AudioManager.PlaySFX(killSFX);
-    GetParent().RemoveChild(this);
+    this.Sprite.Frame = DESTROYED_FRAME;
   }
 
   public override void _PhysicsProcess(double delta) {

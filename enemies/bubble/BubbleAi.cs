@@ -79,6 +79,10 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
     this.Pop();
   }
 
+  public bool IsDead() {
+    return popped;
+  }
+
   public void Pop(bool spawnBomb = false) {
     if (popped) return;
 

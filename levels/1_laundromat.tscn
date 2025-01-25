@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=4 uid="uid://drddml6l3iyql"]
+[gd_scene load_steps=12 format=4 uid="uid://ud20crhqk5ub"]
 
 [ext_resource type="TileSet" uid="uid://b1vs1w6ovcb5" path="res://levels/assets/tilesets/laundromat.tres" id="1_mq18v"]
-[ext_resource type="PackedScene" uid="uid://dhsov4a61a624" path="res://player/Player.tscn" id="2_6gavc"]
+[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/Player.tscn" id="2_6gavc"]
 [ext_resource type="Texture2D" uid="uid://dylch0ecib2i3" path="res://levels/assets/sprites/random_assets.png" id="2_c1rpc"]
 [ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="3_5ayhr"]
-[ext_resource type="PackedScene" uid="uid://bfropl31e5aa" path="res://levels/backdrop.tscn" id="3_irrti"]
+[ext_resource type="PackedScene" path="res://levels/backdrop.tscn" id="3_irrti"]
 [ext_resource type="PackedScene" uid="uid://dhnlbao0vrili" path="res://enemies/bubble/BubbleAgent.tscn" id="4_3brqj"]
 [ext_resource type="PackedScene" uid="uid://v1e4g5crhogy" path="res://levels/props/Washer.tscn" id="4_h12g7"]
+[ext_resource type="Script" path="res://levels/Door.cs" id="8_48wdg"]
+[ext_resource type="Texture2D" uid="uid://1ry218kn72qy" path="res://levels/assets/sprites/doors.png" id="9_gyusq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vsaj4"]
 vertices = PackedVector2Array(2493.98, 1490, 8.00781, 1491.99, 9.99219, 10, 2492.01, 10)
@@ -64,15 +66,19 @@ polygon = PackedVector2Array(1305, -303, 1900, -301, 1900, -2105, 2152, -2112, 2
 
 [node name="Washer" parent="Props/Room 1" instance=ExtResource("4_h12g7")]
 position = Vector2(79, 87)
+frame = 1
 
 [node name="Washer2" parent="Props/Room 1" instance=ExtResource("4_h12g7")]
 position = Vector2(426, 87)
+frame = 1
 
 [node name="Washer3" parent="Props/Room 1" instance=ExtResource("4_h12g7")]
 position = Vector2(606, 87)
+frame = 1
 
 [node name="Washer4" parent="Props/Room 1" instance=ExtResource("4_h12g7")]
 position = Vector2(791, 89)
+frame = 1
 
 [node name="Washer11" parent="Props/Room 1" instance=ExtResource("4_h12g7")]
 position = Vector2(82, 1375)
@@ -99,7 +105,7 @@ collision_mask = 3
 texture = ExtResource("2_c1rpc")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Props/Room 1/Desk"]
-polygon = PackedVector2Array(79.3734, -438.642, 78.329, -97.1279, 114.883, -55.3525, 155.614, -35.5092, 809.4, -35.5092, 807.311, -213.055, 306.005, -212.01, 255.875, -233.943, 234.987, -279.896, 234.987, -441.775)
+polygon = PackedVector2Array(78.329, -387.467, 78.329, -97.1279, 114.883, -55.3525, 155.614, -35.5092, 809.4, -35.5092, 807.311, -213.055, 306.005, -212.01, 255.875, -233.943, 234.987, -279.896, 232.898, -387.467)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1204, 1393)
@@ -134,21 +140,22 @@ width = 0.0
 [node name="SpawnerLeft" parent="Spawners/Room 1" node_paths=PackedStringArray("PatrolPath") instance=ExtResource("3_5ayhr")]
 position = Vector2(255, 100)
 PatrolPath = NodePath("../../../Patrol Paths/Room 1/PathLeft")
-SecondsBetweenSpawn = 5.0
-SpawnDelay = 8.0
-MaxNumberOfAliveBubbles = 5
-MaxNumberOfTotalSpawns = 10
+SecondsBetweenSpawn = 3.0
+SpawnDelay = 5.0
+MaxNumberOfAliveBubbles = 6
+MaxNumberOfTotalSpawns = 12
 ChaseSpeedMultiplier = 1.5
 
 [node name="SpawnerRight" parent="Spawners/Room 1" node_paths=PackedStringArray("PatrolPath") instance=ExtResource("3_5ayhr")]
 position = Vector2(995, 100)
 PatrolPath = NodePath("../../../Patrol Paths/Room 1/PathRight")
-SecondsBetweenSpawn = 8.0
-SpawnDelay = 16.0
-MaxNumberOfAliveBubbles = 5
+SecondsBetweenSpawn = 5.0
+SpawnDelay = 8.0
+MaxNumberOfAliveBubbles = 3
 MaxNumberOfTotalSpawns = 10
-BaseSpeed = 100.0
+BaseSpeed = 140.0
 ChaseSpeedMultiplier = 2.0
+ExplosionTimer = 0.7
 seekKepsylon = 2000.0
 
 [node name="Bubbles" type="Node2D" parent="."]
@@ -164,8 +171,16 @@ position = Vector2(1201, 808)
 
 [node name="Doors" type="Node2D" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Doors"]
+[node name="DoorRoom1" type="StaticBody2D" parent="Doors" node_paths=PackedStringArray("triggers")]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("8_48wdg")
+triggers = [NodePath("../../Spawners/Room 1/SpawnerLeft"), NodePath("../../Spawners/Room 1/SpawnerRight"), NodePath("../../Bubbles/Room 1/BubbleBody"), NodePath("../../Bubbles/Room 1/BubbleBody2")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/DoorRoom1"]
 position = Vector2(1201, 0.25)
 shape = SubResource("RectangleShape2D_cyaol")
+
+[node name="Sprite2D" type="Sprite2D" parent="Doors/DoorRoom1"]
+position = Vector2(1201, 0)
+texture = ExtResource("9_gyusq")
