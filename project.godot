@@ -56,3 +56,10 @@ chargeMouseButton={
 
 renderer/rendering_method="mobile"
 textures/default_filters/anisotropic_filtering_level=4
+
+[shader_globals]
+
+swirl_strength={
+"type": "float",
+"value": 0.0
+}
