@@ -23,7 +23,10 @@ public partial class BubbleAi : CharacterBody2D {
   public NavigationAgent2D _agent;
 
   [Export]
-  public AnimatedSprite2D sprite;
+  public AnimatedSprite2D spriteBody;
+
+  [Export]
+  public AnimatedSprite2D spriteFace;
 
   [Export]
   public AudioStream popSFX;
@@ -44,6 +47,10 @@ public partial class BubbleAi : CharacterBody2D {
   private Color warningColor = Colors.Red;
 
   private bool exploding = false;
+
+  private bool seeking = false;
+
+  private bool exploded = false;
 
   private Vector2 offset;
 
@@ -69,9 +76,24 @@ public partial class BubbleAi : CharacterBody2D {
   }
 
   public override void _PhysicsProcess(double delta) {
+    if (exploded)
+      return;
+
+    if (seeking && !exploding) {
+      spriteBody.Animation = "Idle";
+      spriteBody.Play();
+
+      spriteFace.Animation = "Seek";
+      spriteFace.Play();
+    } else if (!exploding) {
+      spriteFace.Animation = "Idle";
+      spriteFace.Play();
+    }
+
     // handle exploding
     if (exploding) {
       if (explosionTimer <= 0) {
+        exploded = true;
         var parent = GetParent();
         var obj = explosion.Instantiate() as Node2D;
         obj.GlobalPosition = this.GlobalPosition;
@@ -79,7 +101,11 @@ public partial class BubbleAi : CharacterBody2D {
 
         // TODO: death animation += on finish call this
         AudioManager.PlaySFX(popSFX);
-        parent.RemoveChild(this);
+        spriteBody.Animation = "Explode";
+        spriteBody.AnimationFinished += () => {
+          parent.RemoveChild(this);
+        };
+        spriteBody.Play();
       }
 
       explosionTimer -= (float) delta;
@@ -100,28 +126,30 @@ public partial class BubbleAi : CharacterBody2D {
     // within exploding radius. fucken explode.
     if (player != null && this.GlobalPosition.DistanceTo(player.GlobalPosition) < explodeKepsylon) {
       exploding = true;
+      spriteFace.Animation = "Explode";
+      spriteFace.Play();
       var tween = GetTree().CreateTween();
-      var originalModulate = sprite.Modulate;
+      var originalModulate = spriteBody.Modulate;
 
       // 1/3 of the time
-      tween.TweenProperty(sprite, "modulate", warningColor, explosionTimer / 3 / 2);
-      tween.TweenProperty(sprite, "modulate", originalModulate, explosionTimer / 3 / 2);
+      tween.TweenProperty(spriteBody, "modulate", warningColor, explosionTimer / 3 / 2);
+      tween.TweenProperty(spriteBody, "modulate", originalModulate, explosionTimer / 3 / 2);
 
       // 1/3 of the time
-      tween.TweenProperty(sprite, "modulate", warningColor, explosionTimer / 3 / 4);
-      tween.TweenProperty(sprite, "modulate", originalModulate, explosionTimer / 3 / 4);
-      tween.TweenProperty(sprite, "modulate", warningColor, explosionTimer / 3 / 4);
-      tween.TweenProperty(sprite, "modulate", originalModulate, explosionTimer / 3 / 4);
+      tween.TweenProperty(spriteBody, "modulate", warningColor, explosionTimer / 3 / 4);
+      tween.TweenProperty(spriteBody, "modulate", originalModulate, explosionTimer / 3 / 4);
+      tween.TweenProperty(spriteBody, "modulate", warningColor, explosionTimer / 3 / 4);
+      tween.TweenProperty(spriteBody, "modulate", originalModulate, explosionTimer / 3 / 4);
 
       // 1/3 of the time
-      tween.TweenProperty(sprite, "modulate", warningColor, explosionTimer / 3 / 8);
-      tween.TweenProperty(sprite, "modulate", originalModulate, explosionTimer / 3 / 8);
-      tween.TweenProperty(sprite, "modulate", warningColor, explosionTimer / 3 / 8);
-      tween.TweenProperty(sprite, "modulate", originalModulate, explosionTimer / 3 / 8);
-      tween.TweenProperty(sprite, "modulate", warningColor, explosionTimer / 3 / 8);
-      tween.TweenProperty(sprite, "modulate", originalModulate, explosionTimer / 3 / 8);
-      tween.TweenProperty(sprite, "modulate", warningColor, explosionTimer / 3 / 8);
-      tween.TweenProperty(sprite, "modulate", originalModulate, explosionTimer / 3 / 8);
+      tween.TweenProperty(spriteBody, "modulate", warningColor, explosionTimer / 3 / 8);
+      tween.TweenProperty(spriteBody, "modulate", originalModulate, explosionTimer / 3 / 8);
+      tween.TweenProperty(spriteBody, "modulate", warningColor, explosionTimer / 3 / 8);
+      tween.TweenProperty(spriteBody, "modulate", originalModulate, explosionTimer / 3 / 8);
+      tween.TweenProperty(spriteBody, "modulate", warningColor, explosionTimer / 3 / 8);
+      tween.TweenProperty(spriteBody, "modulate", originalModulate, explosionTimer / 3 / 8);
+      tween.TweenProperty(spriteBody, "modulate", warningColor, explosionTimer / 3 / 8);
+      tween.TweenProperty(spriteBody, "modulate", originalModulate, explosionTimer / 3 / 8);
     }
   }
 
@@ -141,9 +169,11 @@ public partial class BubbleAi : CharacterBody2D {
     }
 
     if (player != null && this.GlobalPosition.DistanceTo(player.GlobalPosition) < seekKepsylon) {
+      seeking = true;
       return player.GlobalPosition;
     }
 
+    seeking = false;
     var target = path.Points[_step] + offset;
 
     if (this.GlobalPosition.DistanceTo(target) < this.kepsylon) {
