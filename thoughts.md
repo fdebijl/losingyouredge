@@ -24,8 +24,10 @@
 # Collision layers
 1: Player
   Interacts with: 4, 9
+5: Player Tip
+  Interacts with: 2
 2: Bubbles
-  Interacts with: 1, 4
+  Interacts with: 1, 5
 4: Walls
   Interacts with: 1, 2
 9: Explosion
