@@ -17,7 +17,7 @@ public partial class player : CharacterBody2D
   private Vector2 playerRotation;
   private int maxHealth = 100;
   private int health = 100;
-  private float randomTimer = 0; 
+  private float randomTimer = 0;
   private Random random = new Random();
 	[Export] private int _speed = 300;
 	[Export] private ChargeDisplay ChargeDisplay;
@@ -100,7 +100,9 @@ public partial class player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (allowCharge && charging) {
+    CooldownTimerTick(delta);
+
+		if (allowCharge && chargeCooldownTimer <= 0 && charging) {
       if (charge < 100) {
         charge += chargeSpeed;
       }
@@ -109,20 +111,20 @@ public partial class player : CharacterBody2D
 		} else if (charge > 0) {
 			charge -= Friction;
 			Velocity = MoveSpeed(charge);
-      if (charge == 0) {
-        moving = false;
-      }
-      if (charge < 20) {
-        allowCharge = true;
-				playerBodyAnimation.Play("idle");
-				playerFaceAnimation.Play("idle");
-      }
+    } else if (charge == 0) {
+      moving = false;
+    }
 
-			if (allowCharge == false) {
-				playerBodyAnimation.Play("fly");
-				playerFaceAnimation.Play("fly");
-			}
-		}
+    if (charge < 20) {
+      allowCharge = true;
+      playerBodyAnimation.Play("idle");
+      playerFaceAnimation.Play("idle");
+    }
+    if (allowCharge == false) {
+      playerBodyAnimation.Play("fly");
+      playerFaceAnimation.Play("fly");
+    }
+
 		MoveAndSlide();
     DetectCollisions();
 		updateShader();
@@ -156,8 +158,14 @@ public partial class player : CharacterBody2D
       }
   }
 
-  private void MoveCooldown() {
+  private void SetMoveCooldown() {
     chargeCooldownTimer = chargeCooldown;
+  }
+
+  private void CooldownTimerTick(double delta) {
+    if (chargeCooldownTimer > 0) {
+      chargeCooldownTimer -= (float)delta;
+    }
   }
 
 	private Vector2 MoveSpeed(float charge)
@@ -174,6 +182,7 @@ public partial class player : CharacterBody2D
 
     GetInput();
 
+
     if (allowCharge) {
       if (useMouse) {
         Rotation = Mathf.Atan2(MouseDirection.Y, MouseDirection.X) + Mathf.Pi / 2;
@@ -188,7 +197,7 @@ public partial class player : CharacterBody2D
       }
     }
 
-		if (!charging) 
+		if (!charging)
 		{
 			IdleAnimation(delta);
 		}
@@ -208,6 +217,7 @@ public partial class player : CharacterBody2D
       charging = false;
       allowCharge = false;
       moving = true;
+      SetMoveCooldown();
     }
     else if (Input.IsActionJustReleased("chargeMouseButton"))
     {
@@ -218,6 +228,7 @@ public partial class player : CharacterBody2D
       charging = false;
       allowCharge = false;
       moving = true;
+      SetMoveCooldown();
     }
   }
 
