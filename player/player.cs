@@ -103,7 +103,14 @@ public partial class player : CharacterBody2D
 			Velocity = currentMovement + MoveSpeed(charge);
       if (charge < 20) {
         allowCharge = true;
+				playerBodyAnimation.Play("idle");
+				playerFaceAnimation.Play("idle");
       }
+
+			if (allowCharge == false) {
+				playerBodyAnimation.Play("fly");
+				playerFaceAnimation.Play("fly");
+			}
 		}
 		MoveAndSlide();
 		updateShader();

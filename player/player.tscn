@@ -1,11 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://bin3r8r5qu1fi"]
+[gd_scene load_steps=30 format=3 uid="uid://bin3r8r5qu1fi"]
 
 [ext_resource type="Script" path="res://player/player.cs" id="1_srn17"]
 [ext_resource type="Script" path="res://player/ChargeDisplay.cs" id="3_2arfo"]
 [ext_resource type="Shader" path="res://player/player.gdshader" id="4_2nc5g"]
 [ext_resource type="Texture2D" uid="uid://cgl7lvp8fvi8" path="res://player/assets/barHorizontal_green.png" id="4_j3vkq"]
 [ext_resource type="Texture2D" uid="uid://bqlpwvybv4ou4" path="res://player/assets/Metal055C.png" id="5_jmyjf"]
-[ext_resource type="Texture2D" uid="uid://0kxtet2qb0f3" path="res://player/Needle animation/Needle animation.png" id="6_p3fug"]
 [ext_resource type="Texture2D" uid="uid://dndkirnocwwq6" path="res://player/assets/Metal052C.png" id="6_y4btj"]
 [ext_resource type="Texture2D" uid="uid://cxm6nfkemapao" path="res://player/Needle animation/Needle animation face.png" id="7_toxp4"]
 [ext_resource type="Texture2D" uid="uid://dp1g6jqfnglok" path="res://player/Needle animation/needle sprite sheet.png" id="8_6u7ji"]
@@ -52,41 +51,69 @@ _data = {
 "jump": SubResource("Animation_p4eih")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cvqpt"]
-atlas = ExtResource("6_p3fug")
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxjc0"]
+atlas = ExtResource("8_6u7ji")
 region = Rect2(0, 0, 500, 500)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h5we2"]
 shader = ExtResource("4_2nc5g")
 shader_parameter/health = 1.0
-shader_parameter/sprite = SubResource("AtlasTexture_cvqpt")
+shader_parameter/sprite = SubResource("AtlasTexture_wxjc0")
 shader_parameter/shiney = ExtResource("6_y4btj")
 shader_parameter/rust = ExtResource("5_jmyjf")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s7ro4"]
-atlas = ExtResource("6_p3fug")
-region = Rect2(500, 0, 500, 500)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptf3g"]
+atlas = ExtResource("8_6u7ji")
+region = Rect2(2500, 0, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r8ttc"]
-atlas = ExtResource("6_p3fug")
-region = Rect2(1000, 0, 500, 500)
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7dc4"]
+atlas = ExtResource("8_6u7ji")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw7xk"]
+atlas = ExtResource("8_6u7ji")
+region = Rect2(1500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6m3m"]
+atlas = ExtResource("8_6u7ji")
+region = Rect2(2000, 0, 500, 500)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3qih5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cvqpt")
+"texture": SubResource("AtlasTexture_ptf3g")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7dc4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxjc0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s7ro4")
+"texture": SubResource("AtlasTexture_pw7xk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r8ttc")
+"texture": SubResource("AtlasTexture_y6m3m")
 }],
 "loop": false,
 "name": &"jump",
 "speed": 2.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l715k"]
+atlas = ExtResource("8_6u7ji")
+region = Rect2(1000, 0, 500, 500)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4npcb"]
 atlas = ExtResource("8_6u7ji")
@@ -118,6 +145,14 @@ region = Rect2(1500, 0, 500, 500)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6gxk3"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l715k")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4npcb")
@@ -195,14 +230,14 @@ position = Vector2(-2, 0.350006)
 
 [node name="BodyAnnimation" type="AnimatedSprite2D" parent="Node2D"]
 material = SubResource("ShaderMaterial_h5we2")
-position = Vector2(-1, -103)
+position = Vector2(-1, -114)
 sprite_frames = SubResource("SpriteFrames_3qih5")
-animation = &"jump"
+animation = &"idle"
 
 [node name="FaceAnnimation" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(-3, -112)
 sprite_frames = SubResource("SpriteFrames_6gxk3")
-animation = &"idle"
+animation = &"fly"
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-2, -283)
