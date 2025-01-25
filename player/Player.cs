@@ -27,6 +27,9 @@ public partial class Player : CharacterBody2D
   [Export] private float Friction;
   [Export] private Area2D point;
   [Export] private bool isInteractive = true;
+
+  [Export] public AudioStream chargeSFX;
+  [Export] public AudioStream jumpSFX;
   private ShaderMaterial playerShader;
 
   private HashSet<IKillable> enemies = new HashSet<IKillable>();
@@ -204,7 +207,8 @@ public partial class Player : CharacterBody2D
 
     if (Input.IsActionPressed("chargeControllerButton") || Input.IsActionPressed("chargeMouseButton"))
     {
-			if (allowCharge && moving != true) {
+			if (allowCharge && !moving) {
+        AudioManager.PlaySFX(chargeSFX);
 				charging = true;
 				JumpAnimation(true);
 			}
@@ -214,6 +218,8 @@ public partial class Player : CharacterBody2D
 		  JumpAnimation(false);
       chargeDirection.X = Input.GetAxis("ui_left", "ui_right");
       chargeDirection.Y = Input.GetAxis("ui_up", "ui_down");
+
+      AudioManager.PlaySFX(jumpSFX);
 
       ChargeDisplay.updateCharge(0);
       charging = false;
@@ -225,6 +231,9 @@ public partial class Player : CharacterBody2D
     {
 		  JumpAnimation(false);
       chargeDirection =  (Position - GetGlobalMousePosition()).Normalized();
+
+      AudioManager.PlaySFX(jumpSFX);
+
       ChargeDisplay.updateCharge(0);
       charging = false;
       allowCharge = false;
