@@ -13,7 +13,7 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
   [Export(PropertyHint.Range, "0,100,1")]
   public float kepsylon = 5.0f;
 
-  [Export(PropertyHint.Range, "0,100,1")]
+  [Export(PropertyHint.Range, "0,500,1")]
   public float seekKepsylon = 200.0f;
 
   [Export(PropertyHint.Range, "0,100,1")]

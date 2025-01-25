@@ -19,13 +19,18 @@ texture_region_size = Vector2i(50, 50)
 2:5/0 = 0
 4:4/size_in_atlas = Vector2i(2, 4)
 4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -100, 50, -100, 50, 100, -50, 100)
 2:8/size_in_atlas = Vector2i(2, 4)
 2:8/0 = 0
+2:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -100, 50, -100, 50, 100, -50, 100)
 4:8/size_in_atlas = Vector2i(2, 4)
 4:8/0 = 0
+4:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -100, 50, -100, 50, 100, -50, 100)
 0:9/size_in_atlas = Vector2i(2, 2)
 0:9/0 = 0
 
 [resource]
 tile_size = Vector2i(100, 100)
+physics_layer_0/collision_layer = 8
+physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_1vt5c")
