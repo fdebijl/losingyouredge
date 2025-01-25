@@ -168,13 +168,13 @@ public partial class BubbleAi : CharacterBody2D {
   }
 
   public Vector2 GetTarget() {
-    if (path.GetPointCount() == 0) {
-      return Vector2.Zero;
-    }
-
     if (player != null && this.GlobalPosition.DistanceTo(player.GlobalPosition) < seekKepsylon) {
       seeking = true;
       return player.GlobalPosition;
+    }
+
+    if (path == null || path.GetPointCount() == 0) {
+      return this.GlobalPosition;
     }
 
     seeking = false;
