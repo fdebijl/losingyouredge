@@ -52,6 +52,11 @@ public partial class player : CharacterBody2D
 	[Export] private AnimationPlayer playerAnimation;
 	[Export] private AnimatedSprite2D playerBodyAnimation;
 	[Export] private AnimatedSprite2D playerFaceAnimation;
+
+	public void Heal(int value)
+	{
+		health += value;
+	}
   public void Damage(int damage)
   {
     health -= damage;
