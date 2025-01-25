@@ -1,129 +1,134 @@
-[gd_scene load_steps=12 format=3 uid="uid://dhnlbao0vrili"]
+[gd_scene load_steps=17 format=3 uid="uid://dhnlbao0vrili"]
 
 [ext_resource type="Script" path="res://enemies/bubble/BubbleAi.cs" id="1_2o8ik"]
 [ext_resource type="PackedScene" uid="uid://b4dvpu7frlllo" path="res://enemies/bubble/explosions/ExplosionBomb.tscn" id="2_5n3cs"]
-[ext_resource type="AudioStream" uid="uid://ck05yy8yldleh" path="res://enemies/bubble/assets/bubble-pop.mp3" id="2_34g2u"]
-[ext_resource type="Texture2D" uid="uid://dm1v0wqjfqtex" path="res://assets/placeholder/bubble_sprite.png" id="3_cxx4w"]
+[ext_resource type="Texture2D" uid="uid://cyf5dpfbyn3qw" path="res://assets/sprites/bubble.png" id="3_3q301"]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7xjtk"]
-random_pitch = 1.31
-streams_count = 1
-stream_0/stream = ExtResource("2_34g2u")
+[sub_resource type="AtlasTexture" id="AtlasTexture_clhum"]
+atlas = ExtResource("3_3q301")
+region = Rect2(500, 500, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ladb"]
-atlas = ExtResource("3_cxx4w")
-region = Rect2(0, 0, 200, 200)
+[sub_resource type="AtlasTexture" id="AtlasTexture_iss58"]
+atlas = ExtResource("3_3q301")
+region = Rect2(1000, 500, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f7xma"]
-atlas = ExtResource("3_cxx4w")
-region = Rect2(200, 0, 200, 200)
+[sub_resource type="AtlasTexture" id="AtlasTexture_omoc3"]
+atlas = ExtResource("3_3q301")
+region = Rect2(1500, 500, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mgomq"]
-atlas = ExtResource("3_cxx4w")
-region = Rect2(400, 0, 200, 200)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahqoa"]
+atlas = ExtResource("3_3q301")
+region = Rect2(0, 500, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d5lm3"]
-atlas = ExtResource("3_cxx4w")
-region = Rect2(600, 0, 200, 200)
+[sub_resource type="AtlasTexture" id="AtlasTexture_uy6k3"]
+atlas = ExtResource("3_3q301")
+region = Rect2(500, 500, 500, 500)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w2cxv"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2ladb")
+"texture": SubResource("AtlasTexture_clhum")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f7xma")
+"texture": SubResource("AtlasTexture_iss58")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mgomq")
+"texture": SubResource("AtlasTexture_omoc3")
+}],
+"loop": false,
+"name": &"Explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahqoa")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d5lm3")
+"texture": SubResource("AtlasTexture_uy6k3")
 }],
 "loop": true,
-"name": &"default",
-"speed": 3.0
+"name": &"Idle",
+"speed": 2.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_arlo1"]
-atlas = ExtResource("3_cxx4w")
-region = Rect2(0, 200, 200, 200)
+[sub_resource type="AtlasTexture" id="AtlasTexture_11cct"]
+atlas = ExtResource("3_3q301")
+region = Rect2(1000, 0, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m3n6m"]
-atlas = ExtResource("3_cxx4w")
-region = Rect2(200, 200, 200, 200)
+[sub_resource type="AtlasTexture" id="AtlasTexture_45oym"]
+atlas = ExtResource("3_3q301")
+region = Rect2(2000, 0, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_20u33"]
-atlas = ExtResource("3_cxx4w")
-region = Rect2(400, 200, 200, 200)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2aiy1"]
+atlas = ExtResource("3_3q301")
+region = Rect2(0, 0, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5dij1"]
-atlas = ExtResource("3_cxx4w")
-region = Rect2(600, 200, 200, 200)
+[sub_resource type="AtlasTexture" id="AtlasTexture_i21v6"]
+atlas = ExtResource("3_3q301")
+region = Rect2(500, 0, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4unaq"]
-atlas = ExtResource("3_cxx4w")
-region = Rect2(800, 200, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_626yp"]
-atlas = ExtResource("3_cxx4w")
-region = Rect2(800, 0, 200, 200)
+[sub_resource type="AtlasTexture" id="AtlasTexture_u552y"]
+atlas = ExtResource("3_3q301")
+region = Rect2(1500, 0, 500, 500)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v0jpj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_arlo1")
+"texture": SubResource("AtlasTexture_11cct")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_m3n6m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_20u33")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5dij1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4unaq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_626yp")
+"texture": SubResource("AtlasTexture_45oym")
 }],
 "loop": false,
-"name": &"default",
-"speed": 10.0
+"name": &"Explode",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 20.0,
+"texture": SubResource("AtlasTexture_2aiy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i21v6")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u552y")
+}],
+"loop": true,
+"name": &"Seek",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6t7me"]
-radius = 52.469
+radius = 113.1
 
-[node name="BubbleBody" type="CharacterBody2D" node_paths=PackedStringArray("_agent", "sprite")]
+[node name="BubbleBody" type="CharacterBody2D" node_paths=PackedStringArray("_agent")]
 collision_layer = 2
 collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_2o8ik")
 BaseSpeed = 500.0
 _agent = NodePath("NavigationAgent2D")
-sprite = NodePath("BubbleSpriteAnimation")
-popSFX = SubResource("AudioStreamRandomizer_7xjtk")
 explosion = ExtResource("2_5n3cs")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[node name="BubbleSpriteIdleAnimation" type="AnimatedSprite2D" parent="."]
+[node name="BubbleBody" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w2cxv")
+animation = &"Idle"
 
-[node name="BubbleSpriteExplodingAnimation" type="AnimatedSprite2D" parent="."]
-visible = false
+[node name="BubbleFace" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v0jpj")
-frame = 5
-frame_progress = 1.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+animation = &"Seek"
 
 [node name="BubbleCollider" type="CollisionShape2D" parent="."]
+visible = false
 scale = Vector2(1.3, 1.3)
 shape = SubResource("CircleShape2D_6t7me")
