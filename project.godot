@@ -35,6 +35,7 @@ project/assembly_name="losingyouredge"
 
 folder_colors={
 "res://enemies/": "purple"
+}
 
 [input]
 
