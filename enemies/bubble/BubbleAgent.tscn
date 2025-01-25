@@ -47,6 +47,56 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_arlo1"]
+atlas = ExtResource("3_cxx4w")
+region = Rect2(0, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3n6m"]
+atlas = ExtResource("3_cxx4w")
+region = Rect2(200, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20u33"]
+atlas = ExtResource("3_cxx4w")
+region = Rect2(400, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dij1"]
+atlas = ExtResource("3_cxx4w")
+region = Rect2(600, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4unaq"]
+atlas = ExtResource("3_cxx4w")
+region = Rect2(800, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_626yp"]
+atlas = ExtResource("3_cxx4w")
+region = Rect2(800, 0, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v0jpj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arlo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3n6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20u33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dij1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4unaq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_626yp")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_6t7me"]
 radius = 52.469
 
@@ -63,8 +113,14 @@ explosion = ExtResource("2_5n3cs")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[node name="BubbleSpriteAnimation" type="AnimatedSprite2D" parent="."]
+[node name="BubbleSpriteIdleAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w2cxv")
+
+[node name="BubbleSpriteExplodingAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_v0jpj")
+frame = 5
+frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
