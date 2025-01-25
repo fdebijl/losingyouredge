@@ -232,12 +232,12 @@ position = Vector2(-2, 0.350006)
 material = SubResource("ShaderMaterial_h5we2")
 position = Vector2(-1, -114)
 sprite_frames = SubResource("SpriteFrames_3qih5")
-animation = &"idle"
+animation = &"jump"
 
 [node name="FaceAnnimation" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(-3, -112)
 sprite_frames = SubResource("SpriteFrames_6gxk3")
-animation = &"fly"
+animation = &"jump"
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-2, -283)
