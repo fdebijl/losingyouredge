@@ -18,7 +18,7 @@ void fragment() {
 	float gray = 1.0-dot(spriteColor.rgb, vec3(0.299, 0.587, 0.114));
 
     // apply damage coloring
-    COLOR.rgb = mix(spriteColor.rgb, rustage.rgb * gray, 1.0 - health);
+    COLOR.rgb = mix(spriteColor.rgb, rustColor.rgb * gray, 1.0 - health);
 	//COLOR.rgb = rustage.rgb;
 
 	// Called for every pixel the material is visible on.

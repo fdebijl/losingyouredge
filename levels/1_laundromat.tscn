@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dhnlbao0vrili" path="res://enemies/bubble/BubbleAgent.tscn" id="4_3brqj"]
 [ext_resource type="PackedScene" uid="uid://v1e4g5crhogy" path="res://levels/props/Washer.tscn" id="4_h12g7"]
 [ext_resource type="PackedScene" path="res://levels/RoomDoor.tscn" id="8_g7rm7"]
+[ext_resource type="PackedScene" uid="uid://e3ayle04i3hf" path="res://level_items/SadPaper.tscn" id="9_5llem"]
 [ext_resource type="AudioStream" uid="uid://becikkl1lbqqa" path="res://assets/sounds/Washing-Machine-Starting-Up.wav" id="9_i445e"]
 [ext_resource type="AudioStream" uid="uid://l1s0a45cmgm1" path="res://assets/sounds/Washing-Machine-Loop01.wav" id="10_vi8kx"]
 [ext_resource type="AudioStream" uid="uid://bxpvgvqtyu53e" path="res://assets/sounds/Washing-Machine-Loop02.wav" id="11_q8mff"]
@@ -207,3 +208,8 @@ position = Vector2(-1300, -2201)
 position = Vector2(583, 117)
 stream = SubResource("AudioStreamPlaylist_h17ey")
 autoplay = true
+[node name="Area2D" parent="." instance=ExtResource("9_5llem")]
+position = Vector2(198, 899)
+rotation = -0.558505
+scale = Vector2(1, 1)
+skew = -0.301942

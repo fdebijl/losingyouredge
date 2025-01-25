@@ -9,6 +9,7 @@ size = Vector2(90, 90)
 [node name="Area2D" type="Area2D" node_paths=PackedStringArray("spriteBody")]
 scale = Vector2(5, 5)
 script = ExtResource("1_a3q4a")
+healingAmount = 20
 spriteBody = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

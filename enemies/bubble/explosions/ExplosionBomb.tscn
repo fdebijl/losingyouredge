@@ -32,6 +32,7 @@ animations = [{
 script = ExtResource("1_bcgux")
 sprite = NodePath("AnimatedSprite2D")
 collider = NodePath("AnimatableBody2D")
+damage = 20
 
 [node name="AnimatableBody2D" type="Area2D" parent="."]
 collision_layer = 256

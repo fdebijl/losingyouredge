@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cf1qf8mq7blko"]
+[gd_scene load_steps=44 format=3 uid="uid://bin3r8r5qu1fi"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_srn17"]
 [ext_resource type="AudioStream" uid="uid://cvh68yeemhwi3" path="res://assets/sounds/Charge-up.wav" id="2_w1mds"]
@@ -77,24 +77,24 @@ _data = {
 "jump": SubResource("Animation_p4eih")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_40guh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6c2br"]
 atlas = ExtResource("7_0w5l0")
-region = Rect2(1500, 1000, 500, 500)
+region = Rect2(0, 0, 500, 500)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h5we2"]
 shader = ExtResource("4_2nc5g")
 shader_parameter/health = 1.0
-shader_parameter/sprite = SubResource("AtlasTexture_40guh")
+shader_parameter/sprite = SubResource("AtlasTexture_6c2br")
 shader_parameter/shiney = ExtResource("6_y4btj")
 shader_parameter/rust = ExtResource("5_jmyjf")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40guh"]
+atlas = ExtResource("7_0w5l0")
+region = Rect2(1500, 1000, 500, 500)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_odg54"]
 atlas = ExtResource("7_0w5l0")
 region = Rect2(500, 500, 500, 500)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6c2br"]
-atlas = ExtResource("7_0w5l0")
-region = Rect2(0, 0, 500, 500)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h6lh0"]
 atlas = ExtResource("7_0w5l0")
@@ -153,6 +153,10 @@ animations = [{
 atlas = ExtResource("7_0w5l0")
 region = Rect2(0, 1500, 500, 500)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_src27"]
+atlas = ExtResource("7_0w5l0")
+region = Rect2(1000, 1000, 500, 500)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_l715k"]
 atlas = ExtResource("8_6u7ji")
 region = Rect2(1000, 0, 500, 500)
@@ -193,6 +197,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"bent",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_src27")
+}],
+"loop": false,
+"name": &"damage",
 "speed": 5.0
 }, {
 "frames": [{
@@ -287,12 +299,12 @@ scale = Vector2(0.6, 0.6)
 material = SubResource("ShaderMaterial_h5we2")
 position = Vector2(-1, -114)
 sprite_frames = SubResource("SpriteFrames_3qih5")
-animation = &"idle"
+animation = &"jump"
 
 [node name="FaceAnnimation" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(3.33333, -103.917)
 sprite_frames = SubResource("SpriteFrames_6gxk3")
-animation = &"idle"
+animation = &"damage"
 
 [node name="DamageArea" type="Area2D" parent="."]
 position = Vector2(-2, -283)

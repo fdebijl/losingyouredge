@@ -29,7 +29,7 @@ public partial class BubbleExplosion : Node2D {
     if (player == null) return;
 
     damaged = true;
-    player.Damage(1);
+    player.Damage(damage);
   }
 
   // Called every frame. 'delta' is the elapsed time since the previous frame.

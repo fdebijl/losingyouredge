@@ -66,6 +66,7 @@ public partial class Player : CharacterBody2D
   public void Damage(int damage)
   {
     health -= damage;
+		DamageAnimation();
     if (health <= 0)
     {
       Death();
@@ -285,11 +286,28 @@ public partial class Player : CharacterBody2D
 			timer.Connect("timeout", Callable.From(OnBentAnimationTimeout));
 			timer.Start();
 	}
-
+	
 	private void OnBentAnimationTimeout()
 	{
 			playerAnimation.Stop();
 			playerBodyAnimation.Play("idle");
+			playerFaceAnimation.Play("idle");
+	}
+
+	public void DamageAnimation()
+	{
+			playerFaceAnimation.Play("damage");
+
+			Timer timer = new Timer();
+			AddChild(timer);
+			timer.WaitTime = 0.6;
+			timer.OneShot = true;
+			timer.Connect("timeout", Callable.From(OnDamageAnimationTimeout));
+			timer.Start();
+	}
+
+	private void OnDamageAnimationTimeout()
+	{
 			playerFaceAnimation.Play("idle");
 	}
 	private void UpdateShader()
