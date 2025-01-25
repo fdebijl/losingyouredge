@@ -59,7 +59,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
     this.IsActive = false;
     this._isDead = true;
     playerAnimation.Stop();
-    AudioManager.PlaySFX(killSFX);
+    AudioManager.PlaySFX(killSFX, 1f, false, GlobalPosition);
     this.Sprite.Frame = DESTROYED_FRAME;
   }
 

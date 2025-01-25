@@ -92,7 +92,7 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
     if (popped) return;
 
     popped = true;
-    AudioManager.PlaySFX(popSFX);
+    AudioManager.PlaySFX(popSFX, 1f, false, GlobalPosition);
     spriteBody.Animation = "Explode";
 
     // despawn once explode animation has finished
