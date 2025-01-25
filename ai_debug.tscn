@@ -52,3 +52,9 @@ default_color = Color(1, 0, 1, 1)
 
 [node name="player" parent="." groups=["Player"] instance=ExtResource("2_bdf44")]
 position = Vector2(404, 312)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(404, 312)
