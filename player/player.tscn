@@ -116,7 +116,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_sk27h"]
 radius = 52.4
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay", "point", "playerAnimation", "playerBodyAnimation", "playerFaceAnimation")]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay", "point", "playerAnimation", "playerBodyAnimation", "playerFaceAnimation") groups=["Player"]]
 collision_mask = 264
 script = ExtResource("1_srn17")
 ChargeDisplay = NodePath("ChargeDisplay")
