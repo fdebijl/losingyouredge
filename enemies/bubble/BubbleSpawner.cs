@@ -18,6 +18,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable
 
   [ExportGroup("Spawner Settings")]
   [Export(PropertyHint.Range, "0,100,0.1")]  public float SecondsBetweenSpawn = 1.0f;
+  [Export] public float SpawnDelay = 0.0f;
   [Export] public float SpawnRadius = 5.0f;
   [Export] public int MaxNumberOfAliveBubbles = 10;
   [Export] public int MaxNumberOfTotalSpawns = 30;
@@ -49,6 +50,11 @@ public partial class BubbleSpawner : StaticBody2D, IKillable
 
   public override void _PhysicsProcess(double delta) {
     if (!this.IsActive) {
+      return;
+    }
+
+    if (this.SpawnDelay > 0) {
+      this.SpawnDelay -= (float)delta;
       return;
     }
 

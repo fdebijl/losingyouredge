@@ -42,6 +42,7 @@ collision_mask = 8
 script = ExtResource("1_bg6iy")
 BubbleScene = ExtResource("2_3poak")
 Sprite = NodePath("SpawnerAnimatedSprite")
+seekKepsylon = 500.0
 
 [node name="SpawnerCollider" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -11.5)

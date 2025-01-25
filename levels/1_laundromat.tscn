@@ -37,8 +37,12 @@ navigation_enabled = false
 
 [node name="Colliders" type="Node2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Colliders"]
-polygon = PackedVector2Array(0, -1, 0, 1502, 2504, 1499, 2499, -121, 2588, -127, 2598, 1491, 2596, 1628, -142, 1600, -153, -9)
+[node name="StaticBody2D" type="StaticBody2D" parent="Colliders"]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Colliders/StaticBody2D"]
+polygon = PackedVector2Array(0, -122, 0, 1501, 2502, 1499, 2506, -126, 2614, -126, 2608, 1605, -100, 1606, -100, -124)
 
 [node name="Props" type="Node2D" parent="."]
 
@@ -74,36 +78,55 @@ position = Vector2(2357, 89)
 
 [node name="player" parent="." instance=ExtResource("2_6gavc")]
 position = Vector2(1204, 1393)
+chargeCooldown = 0.5
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 visible = false
 
 [node name="Patrol Paths" type="Node2D" parent="."]
 
-[node name="PathUpper" type="Line2D" parent="Patrol Paths"]
-points = PackedVector2Array(502, 203, 2200, 200, 2200, 701)
+[node name="Room 1" type="Node2D" parent="Patrol Paths"]
 
-[node name="PathLower" type="Line2D" parent="Patrol Paths"]
-points = PackedVector2Array(201, 1296, 2300, 1299)
+[node name="PathRight" type="Line2D" parent="Patrol Paths/Room 1"]
+points = PackedVector2Array(1398, 404, 1402, 899, 2298, 897, 2303, 401)
+width = 0.0
+
+[node name="PathLeft" type="Line2D" parent="Patrol Paths/Room 1"]
+points = PackedVector2Array(261, 299, 1300, 300)
+width = 0.0
 
 [node name="Spawners" type="Node2D" parent="."]
 
-[node name="Spawner" parent="Spawners" node_paths=PackedStringArray("PatrolPath") instance=ExtResource("3_5ayhr")]
-position = Vector2(255, 100)
-PatrolPath = NodePath("../../Patrol Paths/PathUpper")
-SecondsBetweenSpawn = 5.0
-MaxNumberOfAliveBubbles = 5
-MaxNumberOfTotalSpawns = 25
+[node name="Room 1" type="Node2D" parent="Spawners"]
 
-[node name="Spawner2" parent="Spawners" instance=ExtResource("3_5ayhr")]
+[node name="SpawnerLeft" parent="Spawners/Room 1" node_paths=PackedStringArray("PatrolPath") instance=ExtResource("3_5ayhr")]
+position = Vector2(255, 100)
+PatrolPath = NodePath("../../../Patrol Paths/Room 1/PathLeft")
+SecondsBetweenSpawn = 5.0
+SpawnDelay = 10.0
+MaxNumberOfAliveBubbles = 5
+MaxNumberOfTotalSpawns = 10
+ChaseSpeedMultiplier = 1.5
+seekKepsylon = 350.0
+
+[node name="SpawnerRight" parent="Spawners/Room 1" node_paths=PackedStringArray("PatrolPath") instance=ExtResource("3_5ayhr")]
 position = Vector2(1776, 100)
+PatrolPath = NodePath("../../../Patrol Paths/Room 1/PathRight")
+SecondsBetweenSpawn = 5.0
+SpawnDelay = 20.0
+MaxNumberOfAliveBubbles = 5
+MaxNumberOfTotalSpawns = 10
+ChaseSpeedMultiplier = 1.5
+seekKepsylon = 500.0
 
 [node name="Bubbles" type="Node2D" parent="."]
 
-[node name="BubbleBody" parent="Bubbles" instance=ExtResource("4_3brqj")]
-position = Vector2(301, 901)
+[node name="Room 1" type="Node2D" parent="Bubbles"]
 
-[node name="BubbleBody2" parent="Bubbles" node_paths=PackedStringArray("path") instance=ExtResource("4_3brqj")]
-position = Vector2(204, 1296)
+[node name="BubbleBody" parent="Bubbles/Room 1" instance=ExtResource("4_3brqj")]
+position = Vector2(1204, 100)
 seekKepsylon = 500.0
-path = NodePath("../../Patrol Paths/PathLower")
+
+[node name="BubbleBody2" parent="Bubbles/Room 1" instance=ExtResource("4_3brqj")]
+position = Vector2(1204, 694)
+seekKepsylon = 500.0
