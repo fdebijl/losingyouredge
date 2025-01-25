@@ -110,10 +110,11 @@ public partial class player : CharacterBody2D
 
     playerRotation.X = Input.GetJoyAxis(0, JoyAxis.LeftX);
     playerRotation.Y = Input.GetJoyAxis(0, JoyAxis.LeftY);
+    GD.Print(playerRotation);
     playerRotation.Normalized();
-
-    Rotation = Mathf.Atan2(playerRotation.Y, playerRotation.X) + Mathf.Pi / 2;
-
+    if (Mathf.Abs(playerRotation.X) >= 0.09 && Mathf.Abs(playerRotation.Y) >= 0.09){
+      Rotation = Mathf.Atan2(playerRotation.Y, playerRotation.X) + Mathf.Pi / 2;
+    }
 
     if (Input.IsActionPressed("chargeControllerButton") || Input.IsActionPressed("chargeMouseButton"))
     {
