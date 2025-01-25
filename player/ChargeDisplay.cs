@@ -2,9 +2,8 @@ using Godot;
 
 public partial class ChargeDisplay : Node2D
 {
-
-  [Export] private Texture2D barYellow;
-  [Export] private Texture2D barRed;
+  private Texture2D barYellow;
+  private Texture2D barRed;
 
   public override void _Ready()
   {

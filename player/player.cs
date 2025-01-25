@@ -2,19 +2,36 @@ using Godot;
 
 public partial class player : CharacterBody2D
 {
-	private int _speed = 300;
-	private Vector2 MousePosition;
 	private float charge = 0;
 	private bool charging = false;
+	private bool moving = false;
+	private Vector2 MousePosition;
 	private Vector2 chargeDirection;
+  private int health = 100;
 
+	[Export] private int _speed = 300;
 	[Export] private ChargeDisplay ChargeDisplay;
   [Export] private float ChargeScale;
+  [Export] private float chargeSpeed;
+
+  public void Damage(int damage)
+  {
+    health -= damage;
+    if (health <= 0)
+    {
+      Death();
+    }
+  }
+
+  public void Death()
+  {
+   //Play death animation
+   //Disable player input
+   //Play death sound
+  }
+
 	public void GetInput()
 	{
-		Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		Velocity = inputDir * _speed;
-
 		MousePosition = GetViewport().GetMousePosition();
 	}
 
@@ -23,7 +40,7 @@ public partial class player : CharacterBody2D
 		GetInput();
 
 		if (charging) {
-			charge += 1;
+			charge += chargeSpeed;
 			ChargeDisplay.updateCharge(charge);
 		} else if (charge > 0) {
 			Velocity = MoveSpeed(charge);
@@ -34,8 +51,8 @@ public partial class player : CharacterBody2D
 
 	private Vector2 MoveSpeed(float charge)
 	{
-		float chargeScale = (float)(charge * ChargeScale);
-		return chargeScale  * (Position - chargeDirection);
+		float chargeScale = charge * ChargeScale;
+		return chargeScale  * (Position - chargeDirection).Normalized();
 	}
 	public override void _Input(InputEvent @event)
 	{

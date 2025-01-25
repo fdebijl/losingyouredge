@@ -6,14 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://cgl7lvp8fvi8" path="res://player/assets/barHorizontal_green.png" id="4_j3vkq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gt3w8"]
-radius = 251.0
-height = 918.0
+radius = 159.0
+height = 500.0
 
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay")]
-position = Vector2(235, 521)
+position = Vector2(1438, 1211)
 script = ExtResource("1_srn17")
 ChargeDisplay = NodePath("ChargeDisplay")
-ChargeScale = 0.01
+ChargeScale = 10.0
+chargeSpeed = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-189, -204)
@@ -24,6 +25,7 @@ hframes = 4
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(17, 26)
 shape = SubResource("CapsuleShape2D_gt3w8")
 
 [node name="ChargeDisplay" type="Node2D" parent="." node_paths=PackedStringArray("moveChargeBar")]
