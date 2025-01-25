@@ -15,7 +15,8 @@ public partial class player : CharacterBody2D
   private Vector2 playerRotation;
   private int maxHealth = 100;
   private int health = 100;
-
+  private float randomTimer = 0; 
+  private Random random = new Random();
 	[Export] private int _speed = 300;
 	[Export] private ChargeDisplay ChargeDisplay;
   [Export] private float ChargeScale;
@@ -142,6 +143,11 @@ public partial class player : CharacterBody2D
       Rotation = Mathf.Atan2(playerRotation.Y, playerRotation.X) + Mathf.Pi / 2;
     }}
 
+		if (!charging) 
+		{
+			IdleAnimation(delta);
+		}
+
     if (Input.IsActionPressed("chargeControllerButton") || Input.IsActionPressed("chargeMouseButton"))
     {
      charging = true;
@@ -188,6 +194,26 @@ public partial class player : CharacterBody2D
 		{
 			playerAnimation.Play("jump");
 		}
+	}
+
+	private void IdleAnimation(double delta)
+	{
+    // Decrease the timer
+    randomTimer -= (float)delta;
+
+    // When the timer reaches 0, decide whether to play the animation
+    if (randomTimer <= 0)
+    {
+        // Random chance to play the animation
+        if (random.NextDouble() > 0.5)
+        {
+            playerFaceAnimation.Play("idle");
+        }
+
+        // Reset the timer with a random interval (e.g., 1 to 5 seconds)
+        randomTimer = (float)random.NextDouble() * 2 + 1;
+    }
+
 	}
 	private void updateShader()
 	{

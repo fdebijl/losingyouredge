@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bin3r8r5qu1fi"]
+[gd_scene load_steps=28 format=3 uid="uid://bin3r8r5qu1fi"]
 
 [ext_resource type="Script" path="res://player/player.cs" id="1_srn17"]
 [ext_resource type="Script" path="res://player/ChargeDisplay.cs" id="3_2arfo"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://0kxtet2qb0f3" path="res://player/Needle animation/Needle animation.png" id="6_p3fug"]
 [ext_resource type="Texture2D" uid="uid://dndkirnocwwq6" path="res://player/assets/Metal052C.png" id="6_y4btj"]
 [ext_resource type="Texture2D" uid="uid://cxm6nfkemapao" path="res://player/Needle animation/Needle animation face.png" id="7_toxp4"]
+[ext_resource type="Texture2D" uid="uid://dp1g6jqfnglok" path="res://player/Needle animation/needle sprite sheet.png" id="8_6u7ji"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gt3w8"]
 radius = 92.0
@@ -87,6 +88,18 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4npcb"]
+atlas = ExtResource("8_6u7ji")
+region = Rect2(500, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5cn5"]
+atlas = ExtResource("8_6u7ji")
+region = Rect2(1000, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1k6v"]
+atlas = ExtResource("8_6u7ji")
+region = Rect2(500, 0, 500, 500)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_qh3yo"]
 atlas = ExtResource("7_toxp4")
 region = Rect2(0, 0, 500, 500)
@@ -105,6 +118,23 @@ region = Rect2(1500, 0, 500, 500)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6gxk3"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4npcb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5cn5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1k6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4npcb")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qh3yo")
@@ -172,7 +202,7 @@ animation = &"jump"
 [node name="FaceAnnimation" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(-3, -112)
 sprite_frames = SubResource("SpriteFrames_6gxk3")
-animation = &"jump"
+animation = &"idle"
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-2, -283)
