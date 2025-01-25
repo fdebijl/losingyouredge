@@ -285,8 +285,9 @@ public partial class Player : CharacterBody2D
 	}
 	private void UpdateShader()
 	{
-    float hp01 = health/maxHealth;
-    RenderingServer.GlobalShaderParameterSet("swirl_strength", hp01);
+    float hp01 = (float) health/ (float) maxHealth;
+
+    RenderingServer.GlobalShaderParameterSet("swirl_strength", Mathf.Max(1.0f - hp01, 0.01f));
 		playerShader.SetShaderParameter("health", hp01);
 	}
 }
