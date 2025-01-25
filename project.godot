@@ -36,6 +36,7 @@ folder_colors={
 "res://enemies/": "purple",
 "res://levels/": "teal",
 "res://menus/": "orange"
+"res://player/": "yellow"
 }
 
 [input]

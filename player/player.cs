@@ -8,10 +8,12 @@ public partial class player : CharacterBody2D
 	private float charge = 0;
 	private bool charging = false;
 	private bool allowCharge = true;
+  private float chargeCooldown = 2.0f;
+  private float chargeCooldownTimer = 0.0f;
 	private bool chargingAnnimation = false;
+  private bool moving = false;
 	private Vector2 MouseDirection;
 	private Vector2 chargeDirection;
-  private Vector2 currentMovement;
   private Vector2 playerRotation;
   private int maxHealth = 100;
   private int health = 100;
@@ -106,7 +108,10 @@ public partial class player : CharacterBody2D
 			ChargeDisplay.updateCharge(charge);
 		} else if (charge > 0) {
 			charge -= Friction;
-			Velocity = currentMovement + MoveSpeed(charge);
+			Velocity = MoveSpeed(charge);
+      if (charge == 0) {
+        moving = false;
+      }
       if (charge < 20) {
         allowCharge = true;
 				playerBodyAnimation.Play("idle");
@@ -119,6 +124,7 @@ public partial class player : CharacterBody2D
 			}
 		}
 		MoveAndSlide();
+    DetectCollisions();
 		updateShader();
 
     foreach (var enemy in enemies) {
@@ -134,6 +140,26 @@ public partial class player : CharacterBody2D
     }
 	}
 
+  private void DetectCollisions() {
+    if (!moving){
+      return;
+    }
+    for (int i = 0; i < GetSlideCollisionCount(); i++)
+      {
+        var collision = GetSlideCollision(i);
+        if (((Node)collision.GetCollider()).Name == "Walls"){
+          Velocity = Vector2.Zero;
+          charge = 0;
+          allowCharge = true;
+          moving = false;
+        }
+      }
+  }
+
+  private void MoveCooldown() {
+    chargeCooldownTimer = chargeCooldown;
+  }
+
 	private Vector2 MoveSpeed(float charge)
 	{
 		float chargeScale = charge * ChargeScale;
@@ -147,18 +173,20 @@ public partial class player : CharacterBody2D
     }
 
     GetInput();
-    Vector2 mouseLookPosition = GetGlobalMousePosition();
 
-    if (useMouse){
-      Rotation = Mathf.Atan2(MouseDirection.Y, MouseDirection.X) + Mathf.Pi / 2;
-    } else {
-    playerRotation.X = Input.GetJoyAxis(0, JoyAxis.LeftX);
-    playerRotation.Y = Input.GetJoyAxis(0, JoyAxis.LeftY);
-    playerRotation.Normalized();
+    if (allowCharge) {
+      if (useMouse) {
+        Rotation = Mathf.Atan2(MouseDirection.Y, MouseDirection.X) + Mathf.Pi / 2;
+      } else {
+        playerRotation.X = Input.GetJoyAxis(0, JoyAxis.LeftX);
+        playerRotation.Y = Input.GetJoyAxis(0, JoyAxis.LeftY);
+        playerRotation.Normalized();
 
-    if (Mathf.Abs(playerRotation.X) >= 0.09 && Mathf.Abs(playerRotation.Y) >= 0.09){
-      Rotation = Mathf.Atan2(playerRotation.Y, playerRotation.X) + Mathf.Pi / 2;
-    }}
+        if (Mathf.Abs(playerRotation.X) >= 0.09 && Mathf.Abs(playerRotation.Y) >= 0.09){
+          Rotation = Mathf.Atan2(playerRotation.Y, playerRotation.X) + Mathf.Pi / 2;
+        }
+      }
+    }
 
 		if (!charging) 
 		{
@@ -179,6 +207,7 @@ public partial class player : CharacterBody2D
       ChargeDisplay.updateCharge(0);
       charging = false;
       allowCharge = false;
+      moving = true;
     }
     else if (Input.IsActionJustReleased("chargeMouseButton"))
     {
@@ -188,6 +217,7 @@ public partial class player : CharacterBody2D
       ChargeDisplay.updateCharge(0);
       charging = false;
       allowCharge = false;
+      moving = true;
     }
   }
 
