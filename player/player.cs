@@ -108,6 +108,7 @@ public partial class player : CharacterBody2D
     }
     else if (Input.IsActionJustReleased("chargeControllerButton"))
     {
+		  JumpAnimation(false);
       chargeDirection.X = Input.GetAxis("ui_left", "ui_right");
       chargeDirection.Y = Input.GetAxis("ui_up", "ui_down");
 
