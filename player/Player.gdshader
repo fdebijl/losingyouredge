@@ -20,7 +20,7 @@ void fragment() {
     // apply damage coloring
     COLOR.rgb = mix(spriteColor.rgb, rustage.rgb * gray, 1.0 - health);
 	//COLOR.rgb = rustage.rgb;
-	
+
 	// Called for every pixel the material is visible on.
 }
 

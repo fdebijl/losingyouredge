@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bin3r8r5qu1fi"]
+[gd_scene load_steps=38 format=3 uid="uid://bin3r8r5qu1fi"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_srn17"]
 [ext_resource type="Script" path="res://player/ChargeDisplay.cs" id="3_2arfo"]
@@ -89,7 +89,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_40guh")
 }],
-"loop": true,
+"loop": false,
 "name": &"bent",
 "speed": 5.0
 }, {
@@ -97,7 +97,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_odg54")
 }],
-"loop": true,
+"loop": false,
 "name": &"fly",
 "speed": 5.0
 }, {
@@ -105,7 +105,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6c2br")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -166,7 +166,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6cvdv")
 }],
-"loop": true,
+"loop": false,
 "name": &"bent",
 "speed": 5.0
 }, {
@@ -174,7 +174,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l715k")
 }],
-"loop": true,
+"loop": false,
 "name": &"fly",
 "speed": 5.0
 }, {
@@ -259,12 +259,12 @@ scale = Vector2(0.6, 0.6)
 material = SubResource("ShaderMaterial_h5we2")
 position = Vector2(-1, -114)
 sprite_frames = SubResource("SpriteFrames_3qih5")
-animation = &"bent"
+animation = &"idle"
 
 [node name="FaceAnnimation" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(3.33333, -103.917)
 sprite_frames = SubResource("SpriteFrames_6gxk3")
-animation = &"bent"
+animation = &"idle"
 
 [node name="DamageArea" type="Area2D" parent="."]
 position = Vector2(-2, -283)
