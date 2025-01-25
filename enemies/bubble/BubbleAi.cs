@@ -8,6 +8,9 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
   [Export(PropertyHint.Range, "1,10,0.1")]
   public float ChaseSpeedMultiplier = 1.2f;
 
+  [Export(PropertyHint.Range, "1,10,0.1")]
+  public float SpawnerDeadSpeedMultiplier = 2.2f;
+
   public float Speed = 2.0f;
 
   [Export(PropertyHint.Range, "0,100,1")]
@@ -51,6 +54,8 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
   private bool seeking = false;
 
   private bool popped = false;
+
+  public BubbleSpawner Spawner;
 
   private Vector2 offset;
 
@@ -112,7 +117,9 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
       return;
 
     if (seeking && !exploding) {
-      Speed = BaseSpeed * ChaseSpeedMultiplier;
+      Speed = (Spawner != null && Spawner.IsDead())
+        ? BaseSpeed * SpawnerDeadSpeedMultiplier
+        : BaseSpeed * ChaseSpeedMultiplier;
 
       spriteFace.Animation = "Seek";
       spriteFace.Play();
@@ -188,7 +195,7 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
   }
 
   public Vector2 GetTarget() {
-    if (player != null && this.GlobalPosition.DistanceTo(player.GlobalPosition) < seekKepsylon) {
+    if ((player != null && this.GlobalPosition.DistanceTo(player.GlobalPosition) < seekKepsylon) || (Spawner != null && Spawner.IsDead())) {
       seeking = true;
       return player.GlobalPosition;
     }

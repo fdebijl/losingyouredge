@@ -100,6 +100,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
     bubble.explodeKepsylon = this.explodeKepsylon;
     bubble.AddToGroup($"Bubble-{Name}");
 
+    bubble.Spawner = this;
     GetParent().AddChild(bubble);
     this._spawnTimer = this.SecondsBetweenSpawn;
   }
