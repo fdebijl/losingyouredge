@@ -102,7 +102,7 @@ ExplosionTimer = 1.5
 seekKepsylon = 350.0
 
 [node name="Player" parent="Demo" instance=ExtResource("5_h61tx")]
-position = Vector2(1359, 270)
+position = Vector2(1359, 289)
 isInteractive = false
 
 [node name="Line2D" type="Line2D" parent="Demo"]

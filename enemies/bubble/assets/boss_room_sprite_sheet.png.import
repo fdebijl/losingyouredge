@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jjtpj412byqo"
-path="res://.godot/imported/spawner_sheet.png-3f248fe6aa89e93f1b935baa526f7125.ctex"
+uid="uid://cxbpfd5vjk10n"
+path="res://.godot/imported/boss_room_sprite_sheet.png-d7e4dc390f2044d7678d450370389efb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/bubble/assets/spawner_sheet.png"
-dest_files=["res://.godot/imported/spawner_sheet.png-3f248fe6aa89e93f1b935baa526f7125.ctex"]
+source_file="res://enemies/bubble/assets/boss_room_sprite_sheet.png"
+dest_files=["res://.godot/imported/boss_room_sprite_sheet.png-d7e4dc390f2044d7678d450370389efb.ctex"]
 
 [params]
 
