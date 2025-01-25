@@ -125,7 +125,7 @@ public partial class Player : CharacterBody2D
 
 		MoveAndSlide();
     DetectCollisions();
-		updateShader();
+		UpdateShader();
 
     foreach (var enemy in enemies) {
       var node = enemy as Node;
@@ -274,8 +274,10 @@ public partial class Player : CharacterBody2D
     }
 
 	}
-	private void updateShader()
+	private void UpdateShader()
 	{
-		playerShader.SetShaderParameter("health", health/maxHealth);
+    float hp01 = health/maxHealth;
+    RenderingServer.GlobalShaderParameterSet("swirl_strength", hp01);
+		playerShader.SetShaderParameter("health", hp01);
 	}
 }
