@@ -1,20 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://cf1qf8mq7blko"]
+[gd_scene load_steps=6 format=3 uid="uid://cf1qf8mq7blko"]
 
 [ext_resource type="Script" path="res://player/player.cs" id="1_srn17"]
 [ext_resource type="Texture2D" uid="uid://bx4m468gnhl3c" path="res://player/assets/platformerPack_character.png" id="2_k505k"]
 [ext_resource type="Script" path="res://player/ChargeDisplay.cs" id="3_2arfo"]
 [ext_resource type="Texture2D" uid="uid://cgl7lvp8fvi8" path="res://player/assets/barHorizontal_green.png" id="4_j3vkq"]
-[ext_resource type="Texture2D" uid="uid://cx5rud6i5n2ov" path="res://player/assets/barHorizontal_yellow.png" id="4_xmu0q"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gt3w8"]
-radius = 251.0
-height = 918.0
+radius = 159.0
+height = 500.0
 
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay")]
-position = Vector2(235, 521)
+position = Vector2(1438, 1211)
 script = ExtResource("1_srn17")
 ChargeDisplay = NodePath("ChargeDisplay")
-ChargeScale = 0.01
+ChargeScale = 10.0
+chargeSpeed = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-189, -204)
@@ -25,6 +25,7 @@ hframes = 4
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(17, 26)
 shape = SubResource("CapsuleShape2D_gt3w8")
 
 [node name="ChargeDisplay" type="Node2D" parent="." node_paths=PackedStringArray("moveChargeBar")]
@@ -36,5 +37,4 @@ offset_left = -78.0
 offset_top = -134.0
 offset_right = 122.0
 offset_bottom = -94.0
-texture_under = ExtResource("4_xmu0q")
 texture_progress = ExtResource("4_j3vkq")
