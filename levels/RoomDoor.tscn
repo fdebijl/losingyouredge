@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c454484v5xrsg"]
+
+[ext_resource type="Script" path="res://levels/Door.cs" id="1_vtfgk"]
+[ext_resource type="Texture2D" uid="uid://1ry218kn72qy" path="res://levels/assets/sprites/doors.png" id="2_gvyii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cyaol"]
+size = Vector2(198.5, 200.5)
+
+[node name="RoomDoor" type="StaticBody2D" node_paths=PackedStringArray("triggers")]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_vtfgk")
+triggers = []
+
+[node name="DoorCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cyaol")
+
+[node name="DoorSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_gvyii")
