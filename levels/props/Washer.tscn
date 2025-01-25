@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://v1e4g5crhogy"]
+
+[ext_resource type="Texture2D" uid="uid://ckg7udk87ihht" path="res://enemies/bubble/assets/spawner_sheet.png" id="1_xeye2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ptgv"]
+atlas = ExtResource("1_xeye2")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l6r3"]
+atlas = ExtResource("1_xeye2")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yey8e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ptgv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l6r3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Washer" type="AnimatedSprite2D"]
+scale = Vector2(0.509, 0.509)
+sprite_frames = SubResource("SpriteFrames_yey8e")
+frame = 1
