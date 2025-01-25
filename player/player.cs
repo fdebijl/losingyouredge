@@ -13,6 +13,7 @@ public partial class player : CharacterBody2D
 	[Export] private ChargeDisplay ChargeDisplay;
   [Export] private float ChargeScale;
   [Export] private float chargeSpeed;
+  [Export] private float Friction;
 
   public void Damage(int damage)
   {
@@ -37,14 +38,13 @@ public partial class player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		GetInput();
-
+    GD.Print(charge);
 		if (charging) {
 			charge += chargeSpeed;
 			ChargeDisplay.updateCharge(charge);
 		} else if (charge > 0) {
 			Velocity = MoveSpeed(charge);
-			charge -= 1;
+			charge -= Friction;
 		}
 		MoveAndCollide(Velocity * (float)delta);
 	}
@@ -52,21 +52,29 @@ public partial class player : CharacterBody2D
 	private Vector2 MoveSpeed(float charge)
 	{
 		float chargeScale = charge * ChargeScale;
-		return chargeScale  * (Position - chargeDirection).Normalized();
+		return chargeScale  * chargeDirection;
 	}
-	public override void _Input(InputEvent @event)
-	{
-		if (@event is InputEventMouseButton eventMouseButton){
-			if (eventMouseButton.ButtonIndex == MouseButton.Left && eventMouseButton.Pressed)
-			{
-				charging = true;
-			}
-			else if (eventMouseButton.ButtonIndex == MouseButton.Left && !eventMouseButton.Pressed)
-			{
-				chargeDirection = eventMouseButton.Position;
-				ChargeDisplay.updateCharge(0);
-				charging = false;
-			}
-		}
-	}
+
+  public override void _Process(double delta)
+  {
+    GetInput();
+    if (Input.IsActionPressed("chargeControllerButton") || Input.IsActionPressed("chargeMouseButton"))
+    {
+     charging = true;
+    }
+    else if (Input.IsActionJustReleased("chargeControllerButton"))
+    {
+      chargeDirection.X = Input.GetAxis("ui_left", "ui_right");
+      chargeDirection.Y = Input.GetAxis("ui_up", "ui_down");
+
+      ChargeDisplay.updateCharge(0);
+      charging = false;
+    }
+    else if (Input.IsActionJustReleased("chargeMouseButton"))
+    {
+      chargeDirection =  (Position - MousePosition).Normalized();
+      ChargeDisplay.updateCharge(0);
+      charging = false;
+    }
+  }
 }

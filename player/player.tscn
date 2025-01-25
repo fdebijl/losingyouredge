@@ -13,7 +13,9 @@ height = 500.0
 position = Vector2(1438, 1211)
 script = ExtResource("1_srn17")
 ChargeDisplay = NodePath("ChargeDisplay")
-ChargeScale = 10.0
+ChargeScale = 1.0
+chargeSpeed = 5.0
+Friction = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-189, -204)
