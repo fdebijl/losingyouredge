@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections.Generic;
 
 public partial class player : CharacterBody2D
 {
@@ -13,7 +14,30 @@ public partial class player : CharacterBody2D
 	[Export] private ChargeDisplay ChargeDisplay;
   [Export] private float ChargeScale;
   [Export] private float chargeSpeed;
+  [Export] private float ChargeKillThreshold = 10f;
   [Export] private float Friction;
+  [Export] private Area2D point;
+
+  private HashSet<BubbleAi> bubbles = new HashSet<BubbleAi>();
+
+  public override void _Ready() {
+    point.BodyEntered += OnPointEnter;
+    point.BodyExited += OnPointExit;
+  }
+
+  public void OnPointEnter(Node other) {
+    var bubble = other as BubbleAi;
+    if (bubble == null) return;
+
+    bubbles.Add(bubble);
+  }
+
+  public void OnPointExit(Node other) {
+    var bubble = other as BubbleAi;
+    if (bubble == null) return;
+
+    bubbles.Remove(bubble);
+  }
 
   public void Damage(int damage)
   {
@@ -38,7 +62,6 @@ public partial class player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-    GD.Print(charge);
 		if (charging) {
 			charge += chargeSpeed;
 			ChargeDisplay.updateCharge(charge);
@@ -46,7 +69,18 @@ public partial class player : CharacterBody2D
 			Velocity = MoveSpeed(charge);
 			charge -= Friction;
 		}
-		MoveAndCollide(Velocity * (float)delta);
+		MoveAndSlide();
+
+    foreach (var bubble in bubbles) {
+      if (!IsInstanceValid(bubble)) {
+          // cleanup now invalid bubbles (can happen if they suicide before you kill)
+          bubbles.Remove(bubble);
+      } else if (!charging && charge > ChargeKillThreshold) {
+          // kill bubbles
+          bubble.Pop();
+          bubbles.Remove(bubble);
+      }
+    }
 	}
 
 	private Vector2 MoveSpeed(float charge)

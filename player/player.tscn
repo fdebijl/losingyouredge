@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cf1qf8mq7blko"]
+[gd_scene load_steps=7 format=3 uid="uid://cf1qf8mq7blko"]
 
 [ext_resource type="Script" path="res://player/player.cs" id="1_srn17"]
 [ext_resource type="Texture2D" uid="uid://bx4m468gnhl3c" path="res://player/platformerPack_character.png" id="2_k505k"]
@@ -9,13 +9,20 @@
 radius = 159.0
 height = 500.0
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mq7n1"]
+radius = 133.0
+height = 436.0
+
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay", "point") groups=["Player"]]
 position = Vector2(1438, 1211)
+collision_layer = 16
+collision_mask = 264
 script = ExtResource("1_srn17")
 ChargeDisplay = NodePath("ChargeDisplay")
 ChargeScale = 1.0
 chargeSpeed = 5.0
 Friction = 1.0
+point = NodePath("Point")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-189, -204)
@@ -39,3 +46,10 @@ offset_top = -134.0
 offset_right = 122.0
 offset_bottom = -94.0
 texture_progress = ExtResource("4_j3vkq")
+
+[node name="Point" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Point"]
+position = Vector2(20, 33)
+shape = SubResource("CapsuleShape2D_mq7n1")

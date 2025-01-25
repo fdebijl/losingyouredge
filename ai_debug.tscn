@@ -1,6 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cgie1h3dp8p2a"]
 
 [ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="1_3slw4"]
+[ext_resource type="PackedScene" uid="uid://cf1qf8mq7blko" path="res://player/player.tscn" id="2_bdf44"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6vls"]
 size = Vector2(2534, 24)
@@ -12,8 +13,6 @@ size = Vector2(26, 1316)
 vertices = PackedVector2Array(2524.88, 1354.93, 13.0234, 1339.06, 16.9688, 22.9609, 2509.11, 15.0313)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(7, 13, 2519, 5, 2535, 1365, 3, 1349)])
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foq05"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -49,9 +48,5 @@ MaxNumberOfAliveBubbles = 100
 points = PackedVector2Array(263, 392, 833, 250, 1617, 316, 2005, 456, 2165, 842, 2029, 1130, 1021, 1224, 151, 1240, 1421, 710, 1603, 948, 601, 774, 2061, 132)
 default_color = Color(1, 0, 1, 1)
 
-[node name="Node2D" type="Node2D" parent="." groups=["Player"]]
-position = Vector2(214, 192)
-
-[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
-scale = Vector2(19.5, 19.5)
-texture = SubResource("PlaceholderTexture2D_foq05")
+[node name="player" parent="." instance=ExtResource("2_bdf44")]
+position = Vector2(404, 312)
