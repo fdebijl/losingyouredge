@@ -11,36 +11,29 @@ public partial class BubbleSpawner : StaticBody2D, IKillable
   const int READY_FRAME = 1;
   const int SPAWNING_FRAME = 2;
 
-  [Export]
-  public PackedScene BubbleScene;
-
-  [Export]
-  public Line2D PatrolPath;
-
-  [Export]
-  public AudioStream killSFX;
-
-  [Export]
-  public AnimatedSprite2D Sprite;
+  [Export] public PackedScene BubbleScene;
+  [Export] public Line2D PatrolPath;
+  [Export] public AudioStream killSFX;
+  [Export] public AnimatedSprite2D Sprite;
 
   [ExportGroup("Spawner Settings")]
-  [Export(PropertyHint.Range, "0,100,0.1")]
-  public float SecondsBetweenSpawn = 1.0f;
+  [Export(PropertyHint.Range, "0,100,0.1")]  public float SecondsBetweenSpawn = 1.0f;
+  [Export] public float SpawnRadius = 5.0f;
+  [Export] public int MaxNumberOfAliveBubbles = 10;
+  [Export] public int MaxNumberOfTotalSpawns = 30;
+  [Export] public bool IsActive = true;
 
-  [Export]
-  public float SpawnRadius = 5.0f;
+  [ExportGroup("Bubble Overrides")]
+  [Export] public float BaseSpeed = 80f;
+  [Export] public float ChaseSpeedMultiplier = 1.2f;
+  [Export] public float MaxOffset = 180.0f;
+  [Export] public float ExplosionTimer = 1f;
+  [Export(PropertyHint.Range, "0,100,1")] public float kepsylon = 5.0f;
+  [Export(PropertyHint.Range, "0,500,1")] public float seekKepsylon = 200.0f;
+  [Export(PropertyHint.Range, "0,100,1")] public float explodeKepsylon = 20.0f;
 
-  [Export]
-  public int MaxNumberOfAliveBubbles = 10;
-
-  [Export]
-  public int MaxNumberOfTotalSpawns = 30;
-
-  [Export]
-  public bool IsActive = true;
 
   private float _spawnTimer = 0f;
-
   private int _spawnedCounter = 0;
 
 	public override void _Ready() {
@@ -78,9 +71,18 @@ public partial class BubbleSpawner : StaticBody2D, IKillable
   private void SpawnBubble() {
     var bubble = this.BubbleScene.Instantiate() as BubbleAi;
     var offset = RandomUtil.RandomPointInCircle(RandomUtil.Rng.RandfRange(0f, SpawnRadius));
+
     bubble.GlobalPosition = this.GlobalPosition + offset;
     bubble.path = PatrolPath;
+    bubble.BaseSpeed = this.BaseSpeed;
+    bubble.ChaseSpeedMultiplier = this.ChaseSpeedMultiplier;
+    bubble.maxOffset = this.MaxOffset;
+    bubble.explosionTimer = this.ExplosionTimer;
+    bubble.kepsylon = this.kepsylon;
+    bubble.seekKepsylon = this.seekKepsylon;
+    bubble.explodeKepsylon = this.explodeKepsylon;
     bubble.AddToGroup($"Bubble-{Name}");
+
     GetParent().AddChild(bubble);
     this._spawnTimer = this.SecondsBetweenSpawn;
   }

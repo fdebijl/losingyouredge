@@ -35,13 +35,13 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
   public Line2D path;
 
   [Export]
-  private float maxOffset = 180.0f;
+  public float maxOffset = 180.0f;
+
+  [Export]
+  public float explosionTimer = 1f;
 
   [Export]
   private PackedScene explosion;
-
-  [Export]
-  private float explosionTimer = 1f;
 
   [Export]
   private Color warningColor = Colors.Red;
@@ -98,6 +98,7 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
 
       parent.RemoveChild(this);
     };
+
     spriteBody.Play();
   }
 
@@ -108,8 +109,6 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
 
     if (seeking && !exploding) {
       Speed = BaseSpeed * ChaseSpeedMultiplier;
-      spriteBody.Animation = "Idle";
-      spriteBody.Play();
 
       spriteFace.Animation = "Seek";
       spriteFace.Play();
@@ -117,6 +116,9 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
       Speed = BaseSpeed;
       spriteFace.Animation = "Idle";
       spriteFace.Play();
+
+      spriteBody.Animation = "Idle";
+      spriteBody.Play();
     }
 
     // handle exploding

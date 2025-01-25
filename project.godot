@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Losing Your Edge"
-run/main_scene="res://levels/1_laundromat.tscn"
+run/main_scene="res://levels/1_Laundromat.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 config/icon="res://icon.svg"
 
@@ -34,7 +34,8 @@ project/assembly_name="losingyouredge"
 
 folder_colors={
 "res://enemies/": "purple",
-"res://levels/": "teal"
+"res://levels/": "teal",
+"res://menus/": "orange"
 }
 
 [input]
@@ -53,3 +54,4 @@ chargeMouseButton={
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/default_filters/anisotropic_filtering_level=4

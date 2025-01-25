@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://dcgtdetd5brpg"]
+
+[ext_resource type="FontFile" uid="uid://boo61ehi8k82u" path="res://menus/assets/fonts/Small Town Skyline.ttf" id="1_bji7r"]
+[ext_resource type="Script" path="res://menus/MainMenu.cs" id="1_vbikr"]
+[ext_resource type="Theme" uid="uid://cu4n20cc1wscg" path="res://menus/assets/DefaultButton.tres" id="2_ojfo0"]
+[ext_resource type="FontFile" uid="uid://d2oapkud6lexg" path="res://menus/assets/fonts/Poppins.ttf" id="2_puu1c"]
+[ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="4_b5vuo"]
+[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/player.tscn" id="5_h61tx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yhju1"]
+font = ExtResource("1_bji7r")
+font_size = 345
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jdn7o"]
+vertices = PackedVector2Array(1696.78, 324.063, 307.023, 332.93, 307.969, 6, 1690.2, 6)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(298, -4, 297, 343, 1707, 334, 1700, -4)])
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vbikr")
+gameScenePath = "res://levels/1_Laundromat.tscn"
+startButton = NodePath("MarginContainer/VBoxContainer/ButtonsVBox/StartGame")
+exitButton = NodePath("MarginContainer/VBoxContainer/ButtonsVBox/QuitGame")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Losing your Edge"
+label_settings = SubResource("LabelSettings_yhju1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StartGame" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_ojfo0")
+theme_override_fonts/font = ExtResource("2_puu1c")
+theme_override_font_sizes/font_size = 30
+text = "Start game"
+
+[node name="QuitGame" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_ojfo0")
+theme_override_fonts/font = ExtResource("2_puu1c")
+theme_override_font_sizes/font_size = 30
+text = "Exit"
+
+[node name="Demo" type="Node2D" parent="."]
+
+[node name="Spawner" parent="Demo" node_paths=PackedStringArray("PatrolPath") instance=ExtResource("4_b5vuo")]
+position = Vector2(511, 185)
+PatrolPath = NodePath("../Line2D")
+SecondsBetweenSpawn = 10.0
+SpawnRadius = 0.0
+MaxNumberOfAliveBubbles = 2
+MaxNumberOfTotalSpawns = 999999
+BaseSpeed = 100.0
+ChaseSpeedMultiplier = 1.5
+MaxOffset = 0.0
+ExplosionTimer = 1.5
+seekKepsylon = 350.0
+
+[node name="Player" parent="Demo" instance=ExtResource("5_h61tx")]
+position = Vector2(1356, 223)
+isInteractive = false
+
+[node name="Line2D" type="Line2D" parent="Demo"]
+points = PackedVector2Array(628, 194, 1594, 194)
+width = 0.0
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Demo"]
+navigation_polygon = SubResource("NavigationPolygon_jdn7o")

@@ -24,6 +24,7 @@ public partial class player : CharacterBody2D
   [Export] private float ChargeKillThreshold = 10f;
   [Export] private float Friction;
   [Export] private Area2D point;
+  [Export] private bool isInteractive = true;
   private ShaderMaterial playerShader;
 
   private HashSet<IKillable> enemies = new HashSet<IKillable>();
@@ -136,6 +137,10 @@ public partial class player : CharacterBody2D
 
   public override void _Process(double delta)
   {
+    if (!isInteractive) {
+      return;
+    }
+
     GetInput();
     Vector2 mouseLookPosition = GetGlobalMousePosition();
 
