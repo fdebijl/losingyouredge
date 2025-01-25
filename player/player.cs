@@ -110,14 +110,17 @@ public partial class player : CharacterBody2D
       moving = false;
     }
 
-    if (charge < 20) {
-      allowCharge = true;
-      playerBodyAnimation.Play("idle");
-      playerFaceAnimation.Play("idle");
-    }
+    // if (charge < 20) {
+    //   allowCharge = true;
+    // }
     if (allowCharge == false) {
       playerBodyAnimation.Play("fly");
       playerFaceAnimation.Play("fly");
+			if (charge < 20){
+				 allowCharge = true;
+				playerBodyAnimation.Play("idle");
+				playerFaceAnimation.Play("idle");
+			}
     }
 
 		MoveAndSlide();
@@ -148,6 +151,8 @@ public partial class player : CharacterBody2D
           Velocity = Vector2.Zero;
           charge = 0;
           allowCharge = true;
+					playerBodyAnimation.Play("idle");
+				  playerFaceAnimation.Play("idle");
           moving = false;
         }
       }
@@ -199,8 +204,10 @@ public partial class player : CharacterBody2D
 
     if (Input.IsActionPressed("chargeControllerButton") || Input.IsActionPressed("chargeMouseButton"))
     {
-     charging = true;
-		 JumpAnimation(true);
+			if (allowCharge && moving != true) {
+				charging = true;
+				JumpAnimation(true);
+			}
     }
     else if (Input.IsActionJustReleased("chargeControllerButton"))
     {

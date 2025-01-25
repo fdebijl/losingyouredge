@@ -3,5 +3,5 @@
 /android/
 .vscode
 .DS_Store
-builds/
 
+bin/

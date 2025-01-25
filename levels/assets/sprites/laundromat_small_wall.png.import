@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://11mw2go3blfj"
-path="res://.godot/imported/laundromat_walls.png-c4a0a89847ac86ee3851348e66dde497.ctex"
+uid="uid://dhbluflocitlx"
+path="res://.godot/imported/laundromat_small_wall.png-26c7a32c43f808dc4922b931f938a05c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/assets/sprites/laundromat_walls.png"
-dest_files=["res://.godot/imported/laundromat_walls.png-c4a0a89847ac86ee3851348e66dde497.ctex"]
+source_file="res://levels/assets/sprites/laundromat_small_wall.png"
+dest_files=["res://.godot/imported/laundromat_small_wall.png-26c7a32c43f808dc4922b931f938a05c.ctex"]
 
 [params]
 
