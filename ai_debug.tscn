@@ -50,7 +50,7 @@ PatrolPath = NodePath("../Line2D")
 
 [node name="player" parent="." instance=ExtResource("2_bdf44")]
 position = Vector2(1848, 615)
-chargeCooldown = 0.5
+endScreenPath = ""
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
 remote_path = NodePath("../../Camera2D")
