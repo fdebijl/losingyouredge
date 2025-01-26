@@ -114,7 +114,7 @@ public partial class Player : CharacterBody2D {
     DamageAnimation();
 
     healthAnimation();
-    if (health <= 90) {
+    if (health <= 0) {
       Death();
     }
   }
