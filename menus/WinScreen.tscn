@@ -1,13 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://brgvtyv4f7g13"]
+[gd_scene load_steps=7 format=3 uid="uid://dvs2lk8oqdond"]
 
 [ext_resource type="Script" path="res://menus/WinScreen.cs" id="1_dyk5a"]
+[ext_resource type="Texture2D" uid="uid://djadls083twk0" path="res://menus/assets/win_screen_placeholder.png" id="2_877tn"]
 [ext_resource type="Theme" uid="uid://cu4n20cc1wscg" path="res://menus/assets/DefaultButton.tres" id="3_8s5ja"]
+[ext_resource type="VideoStream" path="res://menus/assets/win_screen.ogv" id="3_rjgba"]
 [ext_resource type="AudioStream" uid="uid://psq05af0cg43" path="res://assets/sounds/BGM_End of loop.wav" id="4_8j8nx"]
 [ext_resource type="FontFile" uid="uid://d2oapkud6lexg" path="res://menus/assets/fonts/Poppins.ttf" id="4_sfhcj"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_slx8h"]
-font = ExtResource("4_sfhcj")
-font_color = Color(0.60933, 0.60933, 0.60933, 1)
 
 [node name="WinScreen" type="Control" node_paths=PackedStringArray("restartButton", "exitButton")]
 layout_mode = 3
@@ -21,11 +19,27 @@ gameScenePath = "res://levels/1_Laundromat.tscn"
 restartButton = NodePath("MarginContainer/VBoxContainer/ButtonsVBox/StartGame")
 exitButton = NodePath("MarginContainer/VBoxContainer/ButtonsVBox/QuitGame")
 
+[node name="WinScreenVideoReference" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_877tn")
+
+[node name="WinScreenVideo" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("3_rjgba")
+autoplay = true
+loop = true
+buffering_msec = 1000
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 230
+theme_override_constants/margin_top = 700
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
@@ -52,13 +66,6 @@ theme = ExtResource("3_8s5ja")
 theme_override_fonts/font = ExtResource("4_sfhcj")
 theme_override_font_sizes/font_size = 30
 text = "Exit"
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "
-A 2025 Global Game Jam game by The Cutting Room Floor"
-label_settings = SubResource("LabelSettings_slx8h")
-horizontal_alignment = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(971, 497)

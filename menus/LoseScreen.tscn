@@ -1,13 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3xsporcysr3q"]
+[gd_scene load_steps=7 format=3 uid="uid://c7b2gtnqqnkfv"]
 
 [ext_resource type="Theme" uid="uid://cu4n20cc1wscg" path="res://menus/assets/DefaultButton.tres" id="1_3njuk"]
 [ext_resource type="Script" path="res://menus/LoseScreen.cs" id="1_hw7ul"]
 [ext_resource type="FontFile" uid="uid://d2oapkud6lexg" path="res://menus/assets/fonts/Poppins.ttf" id="2_g0xxh"]
+[ext_resource type="Texture2D" uid="uid://cry28i87kyxh2" path="res://menus/assets/death_screen_placeholder.png" id="2_kgmkc"]
 [ext_resource type="AudioStream" uid="uid://psq05af0cg43" path="res://assets/sounds/BGM_End of loop.wav" id="3_k08mm"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_uhxx1"]
-font = ExtResource("2_g0xxh")
-font_color = Color(0.60933, 0.60933, 0.60933, 1)
+[ext_resource type="VideoStream" path="res://menus/assets/death_screen.ogv" id="3_qu37d"]
 
 [node name="LoseScreen" type="Control" node_paths=PackedStringArray("restartButton", "exitButton")]
 layout_mode = 3
@@ -21,11 +19,27 @@ gameScenePath = "res://levels/1_laundromat.tscn"
 restartButton = NodePath("MarginContainer/VBoxContainer/ButtonsVBox/StartGame")
 exitButton = NodePath("MarginContainer/VBoxContainer/ButtonsVBox/QuitGame")
 
+[node name="LoseScreenVideoReference" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_kgmkc")
+
+[node name="LoseScreenVideo" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("3_qu37d")
+autoplay = true
+loop = true
+buffering_msec = 1000
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 230
+theme_override_constants/margin_top = 700
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
@@ -52,13 +66,6 @@ theme = ExtResource("1_3njuk")
 theme_override_fonts/font = ExtResource("2_g0xxh")
 theme_override_font_sizes/font_size = 30
 text = "Exit"
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "
-A 2025 Global Game Jam game by The Cutting Room Floor"
-label_settings = SubResource("LabelSettings_uhxx1")
-horizontal_alignment = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(971, 497)

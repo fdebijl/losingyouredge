@@ -9,7 +9,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_i51cn"]
 font = ExtResource("2_puu1c")
-font_color = Color(0.60933, 0.60933, 0.60933, 1)
+font_color = Color(0.607843, 0.607843, 0.607843, 0.627451)
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
 layout_mode = 3

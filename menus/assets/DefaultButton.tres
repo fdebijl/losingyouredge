@@ -14,6 +14,9 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 corner_detail = 16
+shadow_color = Color(0, 0, 0, 0.521569)
+shadow_size = 1
+shadow_offset = Vector2(4, 4)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxcp1"]
 content_margin_left = 20.0
@@ -27,6 +30,9 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 corner_detail = 16
+shadow_color = Color(0, 0, 0, 0.521569)
+shadow_size = 1
+shadow_offset = Vector2(4, 4)
 
 [resource]
 default_font = ExtResource("1_d1ltj")
