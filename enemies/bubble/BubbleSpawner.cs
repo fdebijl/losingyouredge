@@ -119,7 +119,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
     bubble.AddToGroup($"Bubble-{Name}");
 
     bubble.Spawner = this;
-    GetTree().Root.AddChild(bubble);
+    GetParent().AddChild(bubble);
     this._spawnTimer = this.SecondsBetweenSpawn;
   }
 

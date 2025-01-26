@@ -101,7 +101,7 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
       if (spawnBomb) {
       var obj = explosion.Instantiate() as Node2D;
         obj.GlobalPosition = this.GlobalPosition;
-        GetTree().Root.AddChild(obj);
+        GetParent().AddChild(obj);
       }
 
       QueueFree();
