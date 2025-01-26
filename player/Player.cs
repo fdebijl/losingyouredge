@@ -163,6 +163,16 @@ public partial class Player : CharacterBody2D {
     //Disable player input
     //Play death sound
     //get the end screen scene
+
+    Timer timer = new Timer();
+    AddChild(timer);
+    timer.WaitTime = 2;
+    timer.OneShot = true;
+    timer.Connect("timeout", Callable.From(TransitionToDeathScreen));
+    timer.Start();
+  }
+
+  private void TransitionToDeathScreen() {
     Callable
     .From(() => {
       GetTree().ChangeSceneToFile(endScreenPath);

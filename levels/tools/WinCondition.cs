@@ -26,6 +26,15 @@ public partial class WinCondition : Node {
   }
 
   private void DoOnAllDead() {
+    Timer timer = new Timer();
+    AddChild(timer);
+    timer.WaitTime = 3;
+    timer.OneShot = true;
+    timer.Connect("timeout", Callable.From(TransitionToWinScreen));
+    timer.Start();
+  }
+
+  private void TransitionToWinScreen() {
     Callable
     .From(() => {
       GetTree().ChangeSceneToFile(endScreenPath);

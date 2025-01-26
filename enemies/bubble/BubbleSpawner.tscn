@@ -212,7 +212,7 @@ shape = SubResource("RectangleShape2D_n28xm")
 position = Vector2(-7, -15)
 scale = Vector2(0.50875, 0.50875)
 sprite_frames = SubResource("SpriteFrames_sd2th")
-animation = &"death"
+animation = &"Default"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

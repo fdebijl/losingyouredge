@@ -47,6 +47,8 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
 	public override void _Ready() {
     if (BossMode) {
       this.Sprite.Animation = "Boss";
+    } else {
+      this.Sprite.Animation = "Default";
     }
 
     _spawnTimer = SecondsBetweenSpawn;
@@ -64,7 +66,9 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
 
     this.IsActive = false;
     this._isDead = true;
-    this.Sprite.Animation = "death";
+    if (BossMode) {
+      this.Sprite.Animation = "death";
+    }
     playerAnimation.Stop();
     AudioManager.PlaySFX(killSFX, 1f, false, GlobalPosition);
     this.Sprite.Frame = DESTROYED_FRAME;
