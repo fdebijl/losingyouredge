@@ -1,15 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://7bpnmkemoum7"]
+[gd_scene load_steps=18 format=3 uid="uid://7bpnmkemoum7"]
 
 [ext_resource type="Script" path="res://enemies/bubble/BubbleSpawner.cs" id="1_bg6iy"]
-[ext_resource type="PackedScene" uid="uid://bs4v3borvqwuj" path="res://enemies/bubble/BubbleAgent.tscn" id="2_3poak"]
+[ext_resource type="PackedScene" uid="uid://dhnlbao0vrili" path="res://enemies/bubble/BubbleAgent.tscn" id="2_3poak"]
 [ext_resource type="Texture2D" uid="uid://cxbpfd5vjk10n" path="res://enemies/bubble/assets/boss_room_sprite_sheet.png" id="3_jjxe1"]
-[ext_resource type="AudioStream" uid="uid://c0q1jjwq5gcpw" path="res://assets/sounds/Washing-Machine-Shutting-Down.wav" id="3_qitem"]
-[ext_resource type="Texture2D" uid="uid://jjtpj412byqo" path="res://enemies/bubble/assets/spawner_sheet.png" id="4_1kfc0"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bdvmx"]
-random_pitch = 1.29
-streams_count = 1
-stream_0/stream = ExtResource("3_qitem")
+[ext_resource type="Texture2D" uid="uid://16p6w6jh2264" path="res://enemies/bubble/assets/spawner_sheet.png" id="4_4idlj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n28xm"]
 size = Vector2(174, 227)
@@ -26,21 +20,21 @@ region = Rect2(1500, 500, 500, 500)
 atlas = ExtResource("3_jjxe1")
 region = Rect2(1000, 500, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0x2w4"]
-atlas = ExtResource("4_1kfc0")
-region = Rect2(1000, 0, 500, 500)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xrc7m"]
-atlas = ExtResource("4_1kfc0")
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2hvk"]
+atlas = ExtResource("4_4idlj")
 region = Rect2(0, 500, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fe35y"]
-atlas = ExtResource("4_1kfc0")
-region = Rect2(0, 0, 500, 500)
+[sub_resource type="AtlasTexture" id="AtlasTexture_06kdj"]
+atlas = ExtResource("4_4idlj")
+region = Rect2(500, 500, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t5if1"]
-atlas = ExtResource("4_1kfc0")
-region = Rect2(1000, 500, 500, 500)
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1s2y"]
+atlas = ExtResource("4_4idlj")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q85ma"]
+atlas = ExtResource("4_4idlj")
+region = Rect2(0, 1000, 500, 500)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sd2th"]
 animations = [{
@@ -60,16 +54,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0x2w4")
+"texture": SubResource("AtlasTexture_b2hvk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xrc7m")
+"texture": SubResource("AtlasTexture_06kdj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fe35y")
+"texture": SubResource("AtlasTexture_q1s2y")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t5if1")
+"texture": SubResource("AtlasTexture_q85ma")
 }],
 "loop": true,
 "name": &"Default",
@@ -113,10 +107,10 @@ tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"times": PackedFloat32Array(0, 0.08, 0.2, 0.28, 0.4, 0.48, 0.6, 0.68, 0.8, 0.9, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.174533, -0.174533, 0.174533, -0.174533, 0.174533, -0.174533, 0.174533, -0.174533, 0.174533, -0.174533, 0.174533]
+"values": [0.0872665, -0.0872665, 0.0872665, -0.0872665, 0.0872665, -0.0872665, 0.0872665, -0.0872665, 0.0872665, -0.0872665, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_a5khy"]
@@ -132,7 +126,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.466667, 0.533333, 0.666667, 0.766667, 0.833333, 0.933333, 0.966667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-7, -15), Vector2(0, 0), Vector2(-7, -15), Vector2(7, 7), Vector2(3, -1), Vector2(-7, 0), Vector2(2, 5), Vector2(-7, -7), Vector2(3, -1), Vector2(0, 0), Vector2(3, -1)]
+"values": [Vector2(-3, -7), Vector2(0, 0), Vector2(-3, -7), Vector2(7, 7), Vector2(3, -1), Vector2(-7, 0), Vector2(2, 5), Vector2(-7, -7), Vector2(3, -1), Vector2(0, 0), Vector2(3, -1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_70oxk"]
@@ -147,7 +141,6 @@ collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_bg6iy")
 BubbleScene = ExtResource("2_3poak")
-killSFX = SubResource("AudioStreamRandomizer_bdvmx")
 Sprite = NodePath("SpawnerAnimatedSprite")
 playerAnimation = NodePath("AnimationPlayer")
 seekKepsylon = 500.0

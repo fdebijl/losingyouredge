@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c454484v5xrsg"]
 
-[ext_resource type="Script" path="res://levels/Door.cs" id="1_vtfgk"]
+[ext_resource type="Script" path="res://levels/tools/Door.cs" id="1_vtfgk"]
 [ext_resource type="Texture2D" uid="uid://1ry218kn72qy" path="res://levels/assets/sprites/doors.png" id="2_gvyii"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cyaol"]

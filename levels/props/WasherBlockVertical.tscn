@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp4omffev8ctu"]
+
+[ext_resource type="PackedScene" uid="uid://v1e4g5crhogy" path="res://levels/props/Washer.tscn" id="1_2lsys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gedum"]
+size = Vector2(287, 382)
+
+[node name="WasherBlock" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 3
+
+[node name="WasherTopLeft" parent="." instance=ExtResource("1_2lsys")]
+position = Vector2(-63, -86.75)
+frame = 2
+
+[node name="WasherTopRight" parent="." instance=ExtResource("1_2lsys")]
+position = Vector2(64, -88)
+scale = Vector2(-0.509, 0.509)
+frame = 2
+
+[node name="WasherBottomLeft" parent="." instance=ExtResource("1_2lsys")]
+position = Vector2(-62, 88)
+frame = 2
+
+[node name="WasherBottomRight" parent="." instance=ExtResource("1_2lsys")]
+position = Vector2(64, 87)
+scale = Vector2(-0.509, 0.509)
+frame = 2
+
+[node name="WasherBlockCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 5)
+shape = SubResource("RectangleShape2D_gedum")

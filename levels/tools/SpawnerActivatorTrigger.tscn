@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://daufqf8xuagho"]
+
+[ext_resource type="Script" path="res://levels/tools/SpawnerActivatorTrigger.cs" id="1_s8e1d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fli8p"]
+size = Vector2(392.5, 413.5)
+
+[node name="SpawnerActivatorTrigger" type="Area2D" node_paths=PackedStringArray("spawners")]
+script = ExtResource("1_s8e1d")
+spawners = []
+
+[node name="TriggerCollissionArea" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fli8p")
+
+[connection signal="body_entered" from="." to="." method="On_SpawnerActivatorTrigger_body_entered"]
