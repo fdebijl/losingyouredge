@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cybeupyuh27ki"]
+
+[ext_resource type="Texture2D" uid="uid://bmoace6y2jpkn" path="res://levels/assets/sprites/greeblies.png" id="1_tc2kk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swpb6"]
+atlas = ExtResource("1_tc2kk")
+region = Rect2(0, 0, 1000, 500)
+
+[node name="Greeblie1" type="Sprite2D"]
+texture = SubResource("AtlasTexture_swpb6")

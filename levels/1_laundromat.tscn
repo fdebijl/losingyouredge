@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://ud20crhqk5ub"]
+[gd_scene load_steps=27 format=4 uid="uid://ud20crhqk5ub"]
 
 [ext_resource type="TileSet" uid="uid://b1vs1w6ovcb5" path="res://levels/assets/tilesets/laundromat.tres" id="1_mq18v"]
 [ext_resource type="PackedScene" uid="uid://cf1qf8mq7blko" path="res://player/Player.tscn" id="2_6gavc"]
@@ -10,12 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://v1e4g5crhogy" path="res://levels/props/Washer.tscn" id="4_h12g7"]
 [ext_resource type="PackedScene" uid="uid://bp4omffev8ctu" path="res://levels/props/WasherBlockVertical.tscn" id="5_m8mki"]
 [ext_resource type="PackedScene" uid="uid://c454484v5xrsg" path="res://levels/tools/RoomDoor.tscn" id="8_g7rm7"]
+[ext_resource type="PackedScene" uid="uid://cybeupyuh27ki" path="res://levels/props/Greeblie.tscn" id="8_quuxv"]
 [ext_resource type="PackedScene" uid="uid://e3ayle04i3hf" path="res://level_items/SadPaper.tscn" id="9_5llem"]
+[ext_resource type="Texture2D" uid="uid://bmoace6y2jpkn" path="res://levels/assets/sprites/greeblies.png" id="9_7n1qp"]
 [ext_resource type="Texture2D" uid="uid://1ry218kn72qy" path="res://levels/assets/sprites/doors.png" id="9_gyusq"]
 [ext_resource type="AudioStream" uid="uid://becikkl1lbqqa" path="res://assets/sounds/Washing-Machine-Starting-Up.wav" id="9_i445e"]
 [ext_resource type="PackedScene" uid="uid://drvgha5vehgmy" path="res://levels/props/WasherBlockHorizontal.tscn" id="9_rfabs"]
 [ext_resource type="AudioStream" uid="uid://l1s0a45cmgm1" path="res://assets/sounds/Washing-Machine-Loop01.wav" id="10_vi8kx"]
 [ext_resource type="AudioStream" uid="uid://bxpvgvqtyu53e" path="res://assets/sounds/Washing-Machine-Loop02.wav" id="11_q8mff"]
+[ext_resource type="AudioStream" uid="uid://i221fdusm41p" path="res://assets/sounds/BGM_Loop.wav" id="16_fw7wq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vsaj4"]
 vertices = PackedVector2Array(-1712.09, -302.023, -1728.9, -2103.58, -1407.24, -2090.6, 1113.15, -310.031, 1314, -99.9219, 2506.91, -108.922, 2494.07, 1490, 8.02344, 1491.99, 1109.85, -91.8594, 11.9688, -106.859, 1314, -309.898, -1822.7, -2507.93, -2122.99, -2817.04, -2119.02, -4650.93, -470.953, -4640.06, -463.008, -2799.43, -792.883, -2501.97, -1195.29, -2498.92, -1397.77, -2500.83, -1183.72, -2097.04, 1912.95, -2083.04, 1905.04, -315.891)
@@ -27,6 +30,18 @@ size = Vector2(1037, 162)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n00ov"]
 size = Vector2(929.5, 235)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25bye"]
+atlas = ExtResource("9_7n1qp")
+region = Rect2(2000, 0, 1000, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmaqp"]
+atlas = ExtResource("9_7n1qp")
+region = Rect2(500, 0, 1000, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oub28"]
+atlas = ExtResource("9_7n1qp")
+region = Rect2(2000, 500, 1000, 500)
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_h17ey"]
 stream_count = 3
@@ -189,6 +204,21 @@ position = Vector2(1727, -895)
 [node name="WasherBlock2" parent="Props/Room 2" instance=ExtResource("9_rfabs")]
 position = Vector2(1727, -1493)
 
+[node name="Greeblie1" parent="Props/Room 2" instance=ExtResource("8_quuxv")]
+position = Vector2(182, -1897)
+texture = SubResource("AtlasTexture_25bye")
+
+[node name="Greeblie2" parent="Props/Room 2" instance=ExtResource("8_quuxv")]
+position = Vector2(1850, -621)
+
+[node name="Greeblie3" parent="Props/Room 2" instance=ExtResource("8_quuxv")]
+position = Vector2(-479, -1999)
+texture = SubResource("AtlasTexture_cmaqp")
+
+[node name="Greeblie4" parent="Props/Room 2" instance=ExtResource("8_quuxv")]
+position = Vector2(-1253, -588)
+texture = SubResource("AtlasTexture_oub28")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1201, -519)
 
@@ -206,6 +236,13 @@ chargeCooldown = 0.5
 visible = false
 remote_path = NodePath("../../Camera2D")
 update_rotation = false
+
+[node name="BGMPlayer" type="AudioStreamPlayer2D" parent="player"]
+position = Vector2(-2, 81)
+stream = ExtResource("16_fw7wq")
+volume_db = -8.0
+autoplay = true
+max_distance = 1e+10
 
 [node name="Patrol Paths" type="Node2D" parent="."]
 
@@ -232,6 +269,7 @@ width = 0.0
 
 [node name="PathLate" type="Line2D" parent="Patrol Paths/Room 2"]
 points = PackedVector2Array(-1302, -1806, -1299, -500, 207, -503, 205, -1896, 1299, -1901, 1304, -500)
+width = 0.0
 
 [node name="Spawners" type="Node2D" parent="."]
 
