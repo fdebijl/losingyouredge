@@ -339,7 +339,7 @@ ChaseSpeedMultiplier = 2.0
 seekKepsylon = 1500.0
 
 [node name="SpawnerLate2" parent="Spawners/Room 2" node_paths=PackedStringArray("PatrolPath") instance=ExtResource("3_5ayhr")]
-position = Vector2(-914, -2111)
+position = Vector2(-1000, -2111)
 PatrolPath = NodePath("../../../Patrol Paths/Room 2/PathLate")
 SecondsBetweenSpawn = 0.1
 MaxNumberOfAliveBubbles = 4

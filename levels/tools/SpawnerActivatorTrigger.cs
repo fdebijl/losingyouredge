@@ -7,12 +7,11 @@ public partial class SpawnerActivatorTrigger : Area2D {
   private bool _hasTriggered = false;
 
   public void On_SpawnerActivatorTrigger_body_entered(Node body) {
-    if (body is Player) {
+    if (body is Player && (TriggerEveryTIme || !_hasTriggered)) {
+      _hasTriggered = true;
+
       foreach (BubbleSpawner spawner in spawners) {
-        if (TriggerEveryTIme || !_hasTriggered) {
-          spawner.IsActive = true;
-          _hasTriggered = true;
-        }
+        spawner.IsActive = true;
       }
     }
   }
