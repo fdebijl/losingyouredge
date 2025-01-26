@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bin3r8r5qu1fi"]
+[gd_scene load_steps=51 format=3 uid="uid://cf1qf8mq7blko"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_srn17"]
 [ext_resource type="AudioStream" uid="uid://cvh68yeemhwi3" path="res://assets/sounds/Charge-up.wav" id="2_w1mds"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://dp1g6jqfnglok" path="res://player/Needle animation/needle sprite sheet.png" id="8_6u7ji"]
 [ext_resource type="AudioStream" uid="uid://e82rrdirdymy" path="res://assets/sounds/Jump03.wav" id="8_a83h8"]
 [ext_resource type="AudioStream" uid="uid://bnalg116apq3k" path="res://assets/sounds/Jump04.wav" id="9_y7v6k"]
+[ext_resource type="PackedScene" uid="uid://d0x0lwbd4lusd" path="res://menus/EndScreen.tscn" id="10_ehcpq"]
+[ext_resource type="Texture2D" uid="uid://c7ewofksvx3hj" path="res://player/Needle animation/Damage sprites.png" id="18_3pj83"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_80jtj"]
 playback_mode = 1
@@ -250,10 +252,46 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1a6q"]
+atlas = ExtResource("18_3pj83")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6570e"]
+atlas = ExtResource("18_3pj83")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw1vi"]
+atlas = ExtResource("18_3pj83")
+region = Rect2(500, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7pnb"]
+atlas = ExtResource("18_3pj83")
+region = Rect2(0, 500, 500, 500)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fwl8y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1a6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6570e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qw1vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7pnb")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 0.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_sk27h"]
 radius = 27.0185
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay", "point", "playerAudioListener", "playerAnimation", "playerBodyAnimation", "playerFaceAnimation") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay", "point", "playerAnimation", "playerBodyAnimation", "playerFaceAnimation", "playerDamageAnimation") groups=["Player"]]
 collision_mask = 264
 script = ExtResource("1_srn17")
 ChargeDisplay = NodePath("ChargeDisplay")
@@ -261,12 +299,13 @@ ChargeScale = 50.0
 chargeSpeed = 1.0
 Friction = 1.0
 point = NodePath("DamageArea")
-playerAudioListener = NodePath("AudioListener2D")
 chargeSFX = SubResource("AudioStreamRandomizer_80jtj")
 jumpSFX = SubResource("AudioStreamRandomizer_v5yhj")
+endPackedScreen = ExtResource("10_ehcpq")
 playerAnimation = NodePath("AnimationPlayer")
 playerBodyAnimation = NodePath("Node2D/BodyAnnimation")
 playerFaceAnimation = NodePath("Node2D/FaceAnnimation")
+playerDamageAnimation = NodePath("Node2D/DamageAnnimation")
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -69.335)
@@ -305,6 +344,12 @@ animation = &"jump"
 position = Vector2(3.33333, -103.917)
 sprite_frames = SubResource("SpriteFrames_6gxk3")
 animation = &"damage"
+
+[node name="DamageAnnimation" type="AnimatedSprite2D" parent="Node2D"]
+visible = false
+position = Vector2(0, -115.583)
+sprite_frames = SubResource("SpriteFrames_fwl8y")
+animation = &"hurt"
 
 [node name="DamageArea" type="Area2D" parent="."]
 position = Vector2(-2, -283)

@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://cu4n20cc1wscg" path="res://menus/assets/DefaultButton.tres" id="2_ojfo0"]
 [ext_resource type="FontFile" uid="uid://d2oapkud6lexg" path="res://menus/assets/fonts/Poppins.ttf" id="2_puu1c"]
 [ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="4_b5vuo"]
-[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/Player.tscn" id="5_h61tx"]
+[ext_resource type="PackedScene" uid="uid://cf1qf8mq7blko" path="res://player/Player.tscn" id="5_h61tx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yhju1"]
 font = ExtResource("1_bji7r")

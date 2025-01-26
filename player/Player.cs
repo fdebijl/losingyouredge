@@ -27,11 +27,13 @@ public partial class Player : CharacterBody2D
   [Export] private float Friction;
   [Export] private Area2D point;
   [Export] private bool isInteractive = true;
-  [Export] private AudioListener2D playerAudioListener;
   [Export] private int damage = 10;
+  [Export] private AudioListener2D playerAudioListener;
 
   [Export] public AudioStream chargeSFX;
   [Export] public AudioStream jumpSFX;
+
+  [Export] private PackedScene endPackedScreen;
   private ShaderMaterial playerShader;
 
   private HashSet<IKillable> enemies = new HashSet<IKillable>();
@@ -59,26 +61,62 @@ public partial class Player : CharacterBody2D
 	[Export] private AnimationPlayer playerAnimation;
 	[Export] private AnimatedSprite2D playerBodyAnimation;
 	[Export] private AnimatedSprite2D playerFaceAnimation;
+	[Export] private AnimatedSprite2D playerDamageAnimation;
 
 	public void Heal(int value)
 	{
 		health += value;
+		healthAnimation();
 	}
   public void Damage(int damage)
   {
     health -= damage;
 		DamageAnimation();
-    if (health <= 0)
+
+		healthAnimation();
+    if (health <= 80)
     {
       Death();
     }
   }
 
+	private void healthAnimation() {
+		switch (health)
+		{
+			case 100:
+				playerDamageAnimation.Visible = false;
+				break;
+			case 80:
+				playerDamageAnimation.Visible = true;
+				playerDamageAnimation.Frame = 0;
+				break;
+			case 60:
+				playerDamageAnimation.Visible = true;
+				playerDamageAnimation.Frame = 1;
+				break;
+			case 40:
+				playerDamageAnimation.Visible = true;
+				playerDamageAnimation.Frame = 2;
+				break;
+			case 20:
+				playerDamageAnimation.Visible = true;
+				playerDamageAnimation.Frame = 4;
+				break;
+			default:
+				break;
+    }
+	}
+
   public void Death()
   {
-   //Play death animation
-   //Disable player input
-   //Play death sound
+    //Play death animation
+    //Disable player input
+    //Play death sound
+    //get the end screen scene
+    var endScreen = endPackedScreen.Instantiate() as EndScreen;
+    endScreen.SetEndText(false);
+    GetTree().Root.AddChild(endScreen);
+    //GetTree().ChangeSceneToFile(endScreen);
   }
 
   public override void _Input(InputEvent @event)
@@ -287,7 +325,7 @@ public partial class Player : CharacterBody2D
 			timer.Connect("timeout", Callable.From(OnBentAnimationTimeout));
 			timer.Start();
 	}
-	
+
 	private void OnBentAnimationTimeout()
 	{
 			playerAnimation.Stop();

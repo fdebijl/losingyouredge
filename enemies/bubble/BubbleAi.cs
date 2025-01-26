@@ -2,7 +2,7 @@ using System.Linq;
 using Godot;
 
 public partial class BubbleAi : CharacterBody2D, IKillable {
-  [Export(PropertyHint.Range, "0,100,0.1")]
+  [Export(PropertyHint.Range, "0,500,1")]
   public float BaseSpeed = 75.0f;
 
   [Export(PropertyHint.Range, "1,10,0.1")]
@@ -16,7 +16,7 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
   [Export(PropertyHint.Range, "0,100,1")]
   public float kepsylon = 5.0f;
 
-  [Export(PropertyHint.Range, "0,500,1")]
+  [Export(PropertyHint.Range, "0,10000,1")]
   public float seekKepsylon = 200.0f;
 
   [Export(PropertyHint.Range, "0,100,1")]

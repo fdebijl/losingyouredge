@@ -1,38 +1,24 @@
-[gd_scene load_steps=21 format=4 uid="uid://d0nkv5i2xdvw4"]
+[gd_scene load_steps=12 format=4 uid="uid://ud20crhqk5ub"]
 
 [ext_resource type="TileSet" uid="uid://b1vs1w6ovcb5" path="res://levels/assets/tilesets/laundromat.tres" id="1_mq18v"]
 [ext_resource type="PackedScene" uid="uid://cf1qf8mq7blko" path="res://player/Player.tscn" id="2_6gavc"]
 [ext_resource type="Texture2D" uid="uid://dylch0ecib2i3" path="res://levels/assets/sprites/random_assets.png" id="2_c1rpc"]
-[ext_resource type="PackedScene" uid="uid://daufqf8xuagho" path="res://levels/tools/SpawnerActivatorTrigger.tscn" id="2_gmyht"]
 [ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="3_5ayhr"]
-[ext_resource type="PackedScene" path="res://levels/backdrop.tscn" id="3_irrti"]
+[ext_resource type="PackedScene" uid="uid://bfropl31e5aa" path="res://levels/backdrop.tscn" id="3_irrti"]
 [ext_resource type="PackedScene" uid="uid://dhnlbao0vrili" path="res://enemies/bubble/BubbleAgent.tscn" id="4_3brqj"]
 [ext_resource type="PackedScene" uid="uid://v1e4g5crhogy" path="res://levels/props/Washer.tscn" id="4_h12g7"]
-[ext_resource type="PackedScene" uid="uid://bp4omffev8ctu" path="res://levels/props/WasherBlockVertical.tscn" id="5_m8mki"]
 [ext_resource type="PackedScene" uid="uid://c454484v5xrsg" path="res://levels/tools/RoomDoor.tscn" id="8_g7rm7"]
-[ext_resource type="PackedScene" uid="uid://e3ayle04i3hf" path="res://level_items/SadPaper.tscn" id="9_5llem"]
-[ext_resource type="Texture2D" uid="uid://1ry218kn72qy" path="res://levels/assets/sprites/doors.png" id="9_gyusq"]
-[ext_resource type="AudioStream" uid="uid://becikkl1lbqqa" path="res://assets/sounds/Washing-Machine-Starting-Up.wav" id="9_i445e"]
-[ext_resource type="PackedScene" uid="uid://drvgha5vehgmy" path="res://levels/props/WasherBlockHorizontal.tscn" id="9_rfabs"]
-[ext_resource type="AudioStream" uid="uid://l1s0a45cmgm1" path="res://assets/sounds/Washing-Machine-Loop01.wav" id="10_vi8kx"]
-[ext_resource type="AudioStream" uid="uid://bxpvgvqtyu53e" path="res://assets/sounds/Washing-Machine-Loop02.wav" id="11_q8mff"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vsaj4"]
-vertices = PackedVector2Array(-1712.09, -302.023, -1728.9, -2103.58, -1407.24, -2090.6, 1113.15, -310.031, 1314, -99.9219, 2506.91, -108.922, 2494.07, 1490, 8.02344, 1491.99, 1109.85, -91.8594, 11.9688, -106.859, 1314, -309.898, -1822.7, -2507.93, -2122.99, -2817.04, -2119.02, -4650.93, -470.953, -4640.06, -463.008, -2799.43, -792.883, -2501.97, -1195.29, -2498.92, -1397.77, -2500.83, -1183.72, -2097.04, 1912.95, -2083.04, 1905.04, -315.891)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(7, 9, 8), PackedInt32Array(4, 8, 3, 10), PackedInt32Array(11, 12, 13, 14, 15, 16, 17, 18), PackedInt32Array(19, 20, 21, 10, 3, 2), PackedInt32Array(19, 2, 18, 17)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-2, 1502, 2504, 1500, 2517, -119, 1324, -110, 1324, -300, 1915, -306, 1923, -2093, -1174, -2107, -1185, -2489, -789, -2492, -453, -2795, -461, -4650, -2129, -4661, -2133, -2813, -1827, -2498, -1408, -2491, -1417, -2101, -1739, -2114, -1722, -292, 1103, -300, 1100, -102, 2, -117)])
+vertices = PackedVector2Array(2493.98, 1490, 8.00781, 1491.99, 9.99219, 10, 2492.01, 10)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, -2, 1502, 2504, 1500, 2502, 0)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3lbsx"]
-size = Vector2(1037, 162)
+size = Vector2(1093, 190)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n00ov"]
 size = Vector2(929.5, 235)
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_h17ey"]
-stream_count = 3
-stream_0 = ExtResource("9_i445e")
-stream_1 = ExtResource("10_vi8kx")
-stream_2 = ExtResource("11_q8mff")
 
 [node name="Laundromat" type="Node2D"]
 
@@ -61,7 +47,7 @@ navigation_enabled = false
 
 [node name="SpawnerActivatorTriggerRoom2" parent="Triggers" node_paths=PackedStringArray("spawners") instance=ExtResource("2_gmyht")]
 position = Vector2(1199, -198)
-spawners = [NodePath("../../Spawners/Room 2/SpawnerEarly1")]
+spawners = [NodePath("../../Spawners/Room 2/SpawnerEarly1"), NodePath("../../Spawners/Room 2/SpawnerEarly2")]
 
 [node name="Colliders" type="Node2D" parent="."]
 
@@ -118,7 +104,7 @@ position = Vector2(639, 1375)
 position = Vector2(841, 1375)
 
 [node name="Desk" type="StaticBody2D" parent="Props/Room 1"]
-position = Vector2(1513, 672)
+position = Vector2(1513, 610)
 scale = Vector2(0.9575, 0.9575)
 collision_layer = 8
 collision_mask = 3
@@ -130,76 +116,28 @@ texture = ExtResource("2_c1rpc")
 polygon = PackedVector2Array(80.4178, -367.624, 78.329, -97.1279, 114.883, -55.3525, 155.614, -35.5092, 809.4, -35.5092, 807.311, -213.055, 306.005, -212.01, 255.875, -233.943, 234.987, -279.896, 230.809, -368.668)
 
 [node name="UpperWashers" type="StaticBody2D" parent="Props/Room 1"]
-collision_layer = 8
-collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Room 1/UpperWashers"]
-position = Vector2(508.5, 71)
+position = Vector2(536.5, 85)
 shape = SubResource("RectangleShape2D_3lbsx")
 
 [node name="LowerWashers" type="StaticBody2D" parent="Props/Room 1"]
-collision_layer = 8
-collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/Room 1/LowerWashers"]
 position = Vector2(467.25, 1380.5)
 shape = SubResource("RectangleShape2D_n00ov")
 
-[node name="ExternalDoors" type="Sprite2D" parent="Props/Room 1"]
-position = Vector2(1204, 1597)
-texture = ExtResource("9_gyusq")
-
-[node name="Room 2" type="Node2D" parent="Props"]
-
-[node name="WasherWallRight" type="Node2D" parent="Props/Room 2"]
-
-[node name="WasherBlockVert1" parent="Props/Room 2/WasherWallRight" instance=ExtResource("5_m8mki")]
-position = Vector2(900, -1493)
-
-[node name="WasherBlockVert2" parent="Props/Room 2/WasherWallRight" instance=ExtResource("5_m8mki")]
-position = Vector2(900, -1153)
-
-[node name="WasherBlockVert3" parent="Props/Room 2/WasherWallRight" instance=ExtResource("5_m8mki")]
-position = Vector2(900, -836)
-
-[node name="WasherBlockVert4" parent="Props/Room 2/WasherWallRight" instance=ExtResource("5_m8mki")]
-position = Vector2(900, -503)
-
-[node name="WasherWallLeft" type="Node2D" parent="Props/Room 2"]
-
-[node name="WasherBlockVert1" parent="Props/Room 2/WasherWallLeft" instance=ExtResource("5_m8mki")]
-position = Vector2(-399, -1992)
-
-[node name="WasherBlockVert2" parent="Props/Room 2/WasherWallLeft" instance=ExtResource("5_m8mki")]
-position = Vector2(-399, -1652)
-
-[node name="WasherBlockVert3" parent="Props/Room 2/WasherWallLeft" instance=ExtResource("5_m8mki")]
-position = Vector2(-399, -1335)
-
-[node name="WasherBlockVert4" parent="Props/Room 2/WasherWallLeft" instance=ExtResource("5_m8mki")]
-position = Vector2(-399, -1002)
-
-[node name="WasherBlock" parent="Props/Room 2" instance=ExtResource("9_rfabs")]
-position = Vector2(1727, -895)
-
-[node name="WasherBlock2" parent="Props/Room 2" instance=ExtResource("9_rfabs")]
-position = Vector2(1727, -1493)
-
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1201, -519)
+position = Vector2(1204, 1393)
 
 [node name="Backdrop" parent="Camera2D" instance=ExtResource("3_irrti")]
-offset_left = -963.0
-offset_top = -566.0
-offset_right = 957.0
-offset_bottom = 514.0
 
-[node name="player" parent="." instance=ExtResource("2_6gavc")]
-position = Vector2(1201, -519)
+[node name="player" parent="." node_paths=PackedStringArray("playerAudioListener") instance=ExtResource("2_6gavc")]
+position = Vector2(1204, 1393)
 chargeCooldown = 0.5
+playerAudioListener = NodePath("AudioListener2D")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
-visible = false
 remote_path = NodePath("../../Camera2D")
 update_rotation = false
 
@@ -214,6 +152,12 @@ default_color = Color(1, 0, 1, 1)
 
 [node name="PathLeft" type="Line2D" parent="Patrol Paths/Room 1"]
 points = PackedVector2Array(261, 299, 1300, 300)
+width = 0.0
+
+[node name="Room 2" type="Node2D" parent="Patrol Paths"]
+
+[node name="PathRight" type="Line2D" parent="Patrol Paths/Room 2"]
+points = PackedVector2Array(901, -1897, 1703, -1899)
 width = 0.0
 
 [node name="Spawners" type="Node2D" parent="."]
@@ -248,12 +192,18 @@ position = Vector2(1643, -808)
 SecondsBetweenSpawn = 2.0
 MaxNumberOfTotalSpawns = 100
 IsActive = false
+BaseSpeed = 90.0
+ChaseSpeedMultiplier = 1.3
+seekKepsylon = 1500.0
 
 [node name="SpawnerEarly2" parent="Spawners/Room 2" instance=ExtResource("3_5ayhr")]
 position = Vector2(1643, -1401)
 SecondsBetweenSpawn = 2.0
 MaxNumberOfTotalSpawns = 100
 IsActive = false
+BaseSpeed = 90.0
+ChaseSpeedMultiplier = 1.3
+seekKepsylon = 1500.0
 
 [node name="Bubbles" type="Node2D" parent="."]
 
@@ -266,6 +216,22 @@ BaseSpeed = 0.0
 [node name="BubbleBody2" parent="Bubbles/Room 1" instance=ExtResource("4_3brqj")]
 position = Vector2(1201, 808)
 
+[node name="Room 2" type="Node2D" parent="Bubbles"]
+
+[node name="EarlyFastGuardian1" parent="Bubbles/Room 2" node_paths=PackedStringArray("path") instance=ExtResource("4_3brqj")]
+position = Vector2(995, -1899)
+BaseSpeed = 200.0
+ChaseSpeedMultiplier = 2.0
+seekKepsylon = 650.0
+path = NodePath("../../../Patrol Paths/Room 2/PathRight")
+
+[node name="EarlyFastGuardian2" parent="Bubbles/Room 2" node_paths=PackedStringArray("path") instance=ExtResource("4_3brqj")]
+position = Vector2(206, -1899)
+BaseSpeed = 200.0
+ChaseSpeedMultiplier = 2.0
+seekKepsylon = 650.0
+path = NodePath("../../../Patrol Paths/Room 2/PathRight")
+
 [node name="Doors" type="Node2D" parent="."]
 
 [node name="RoomDoor" parent="Doors" node_paths=PackedStringArray("triggers") instance=ExtResource("8_g7rm7")]
@@ -274,16 +240,3 @@ triggers = [NodePath("../../Spawners/Room 1/SpawnerLeft"), NodePath("../../Spawn
 
 [node name="RoomDoor2" parent="Doors" instance=ExtResource("8_g7rm7")]
 position = Vector2(-1300, -2201)
-
-[node name="Ambient" type="Node2D" parent="."]
-
-[node name="Washing Machine Ambient" type="AudioStreamPlayer2D" parent="Ambient"]
-position = Vector2(583, 117)
-stream = SubResource("AudioStreamPlaylist_h17ey")
-autoplay = true
-
-[node name="Area2D" parent="." instance=ExtResource("9_5llem")]
-position = Vector2(198, 899)
-rotation = -0.558505
-scale = Vector2(1, 1)
-skew = -0.301942

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bs4v3borvqwuj"]
+[gd_scene load_steps=34 format=3 uid="uid://bs4v3borvqwuj"]
 
 [ext_resource type="Script" path="res://enemies/bubble/BubbleAi.cs" id="1_2o8ik"]
 [ext_resource type="PackedScene" uid="uid://b4dvpu7frlllo" path="res://enemies/bubble/explosions/ExplosionBomb.tscn" id="2_5n3cs"]
@@ -166,7 +166,7 @@ animation = &"Idle"
 
 [node name="BubbleFace" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v0jpj")
-animation = &"Explode"
+animation = &"Idle"
 
 [node name="BubbleCollider" type="CollisionShape2D" parent="."]
 scale = Vector2(1.3, 1.3)
