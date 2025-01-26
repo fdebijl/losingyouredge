@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgie1h3dp8p2a"]
+[gd_scene load_steps=6 format=3 uid="uid://cgie1h3dp8p2a"]
 
-[ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="1_3slw4"]
-[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/Player.tscn" id="2_bdf44"]
-[ext_resource type="PackedScene" uid="uid://e3ayle04i3hf" path="res://level_items/SadPaper.tscn" id="3_e1vj5"]
+[ext_resource type="PackedScene" uid="uid://c0lm4q0oytyo2" path="res://enemies/bubble/Boss.tscn" id="1_7dl71"]
+[ext_resource type="PackedScene" uid="uid://cf1qf8mq7blko" path="res://player/Player.tscn" id="2_bdf44"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6vls"]
 size = Vector2(2534, 24)
@@ -40,25 +39,21 @@ shape = SubResource("RectangleShape2D_b5h0l")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_xp8kx")
 
-[node name="Spawnor" parent="." node_paths=PackedStringArray("PatrolPath") instance=ExtResource("1_3slw4")]
-position = Vector2(807, 632)
-PatrolPath = NodePath("../Line2D")
-SecondsBetweenSpawn = 2.0
-MaxNumberOfAliveBubbles = 8
-
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(263, 392, 833, 250, 1617, 316, 2005, 456, 2165, 842, 2029, 1130, 1021, 1224, 151, 1240, 1421, 710, 1603, 948, 601, 774, 2061, 132)
 width = 0.0
 default_color = Color(1, 0, 1, 1)
 
+[node name="Boss" parent="." node_paths=PackedStringArray("PatrolPath") instance=ExtResource("1_7dl71")]
+position = Vector2(1325, 668)
+PatrolPath = NodePath("../Line2D")
+
 [node name="player" parent="." instance=ExtResource("2_bdf44")]
-position = Vector2(404, 312)
+position = Vector2(1848, 615)
+chargeCooldown = 0.5
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(404, 312)
-
-[node name="Area2D" parent="." instance=ExtResource("3_e1vj5")]
-position = Vector2(825, 270)
+position = Vector2(1848, 615)

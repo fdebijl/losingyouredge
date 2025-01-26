@@ -18,6 +18,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
 	[Export] private AnimationPlayer playerAnimation;
 
   [Export] public bool BossMode = false;
+  [Export] public int BossHealth = 100;
 
   [ExportGroup("Spawner Settings")]
   [Export(PropertyHint.Range, "0,100,0.1")]  public float SecondsBetweenSpawn = 1.0f;
@@ -55,12 +56,23 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
     return this._isDead;
   }
 
-  public void Kill() {
+  public void TryKill() {
+    // belongs to to Boss -- have to kill that
+    if (BossMode && BossHealth > 0) return;
+
     this.IsActive = false;
     this._isDead = true;
     playerAnimation.Stop();
     AudioManager.PlaySFX(killSFX, 1f, false, GlobalPosition);
     this.Sprite.Frame = DESTROYED_FRAME;
+  }
+
+  public void Hit(int damage) {
+    if (BossMode) {
+      BossHealth -= damage;
+    }
+
+    TryKill();
   }
 
   public override void _PhysicsProcess(double delta) {
@@ -107,7 +119,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
     bubble.AddToGroup($"Bubble-{Name}");
 
     bubble.Spawner = this;
-    GetParent().AddChild(bubble);
+    GetTree().Root.AddChild(bubble);
     this._spawnTimer = this.SecondsBetweenSpawn;
   }
 

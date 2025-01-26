@@ -1,5 +1,5 @@
-using Godot;
 using System.Linq;
+using Godot;
 
 public partial class BubbleAi : CharacterBody2D, IKillable {
   [Export(PropertyHint.Range, "0,100,0.1")]
@@ -80,7 +80,7 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
     }
   }
 
-  public void Kill() {
+  public void Hit(int damage) {
     this.Pop();
   }
 
@@ -89,7 +89,8 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
   }
 
   public void Pop(bool spawnBomb = false) {
-    if (popped) return;
+    if (popped)
+      return;
 
     popped = true;
     AudioManager.PlaySFX(popSFX, 1f, false, GlobalPosition);
@@ -97,15 +98,13 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
 
     // despawn once explode animation has finished
     spriteBody.AnimationFinished += () => {
-      var parent = GetParent();
-
       if (spawnBomb) {
-        var obj = explosion.Instantiate() as Node2D;
+      var obj = explosion.Instantiate() as Node2D;
         obj.GlobalPosition = this.GlobalPosition;
-        parent.AddChild(obj);
+        GetTree().Root.AddChild(obj);
       }
 
-      parent.RemoveChild(this);
+      QueueFree();
     };
 
     spriteBody.Play();
@@ -117,9 +116,10 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
       return;
 
     if (seeking && !exploding) {
-      Speed = (Spawner != null && Spawner.IsDead())
-        ? BaseSpeed * SpawnerDeadSpeedMultiplier
-        : BaseSpeed * ChaseSpeedMultiplier;
+      Speed =
+          (Spawner != null && Spawner.IsDead())
+          ? BaseSpeed * SpawnerDeadSpeedMultiplier
+          : BaseSpeed * ChaseSpeedMultiplier;
 
       spriteFace.Animation = "Seek";
       spriteFace.Play();
@@ -138,7 +138,7 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
         Pop(true);
       }
 
-      explosionTimer -= (float) delta;
+      explosionTimer -= (float)delta;
       return;
     }
 
@@ -195,7 +195,10 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
   }
 
   public Vector2 GetTarget() {
-    if ((player != null && this.GlobalPosition.DistanceTo(player.GlobalPosition) < seekKepsylon) || (Spawner != null && Spawner.IsDead())) {
+    if (
+        (player != null && this.GlobalPosition.DistanceTo(player.GlobalPosition) < seekKepsylon)
+        || (Spawner != null && Spawner.IsDead())
+    ) {
       seeking = true;
       return player.GlobalPosition;
     }

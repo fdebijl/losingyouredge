@@ -28,6 +28,7 @@ public partial class Player : CharacterBody2D
   [Export] private Area2D point;
   [Export] private bool isInteractive = true;
   [Export] private AudioListener2D playerAudioListener;
+  [Export] private int damage = 10;
 
   [Export] public AudioStream chargeSFX;
   [Export] public AudioStream jumpSFX;
@@ -139,7 +140,7 @@ public partial class Player : CharacterBody2D
           enemies.Remove(enemy);
       } else if (!charging && charge > ChargeKillThreshold) {
           // kill enemies
-          enemy.Kill();
+          enemy.Hit(damage);
           enemies.Remove(enemy);
       }
     }

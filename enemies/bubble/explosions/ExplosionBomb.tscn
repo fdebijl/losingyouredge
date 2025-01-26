@@ -31,13 +31,13 @@ animations = [{
 [node name="ExplosionBomb" type="Node2D" node_paths=PackedStringArray("sprite", "collider")]
 script = ExtResource("1_bcgux")
 sprite = NodePath("AnimatedSprite2D")
-collider = NodePath("AnimatableBody2D")
+collider = NodePath("Area2D")
 damage = 20
 
-[node name="AnimatableBody2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 collision_layer = 256
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_ikhy8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

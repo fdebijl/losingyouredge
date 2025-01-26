@@ -1,4 +1,4 @@
 public interface IKillable {
   public bool IsDead();
-  public void Kill();
+  public void Hit(int damage);
 }
