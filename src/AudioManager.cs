@@ -35,8 +35,9 @@ public partial class AudioManager : Node {
   /// <param name="stream">Stream to play</param>
   /// <param name="PitchScale">Optionally adjust pitch</param>
   /// <param name="IsPriority">Force the sound to play, even if the channels are busy. </param>
-  public static void PlaySFX(AudioStream stream, float PitchScale = 1.0f, bool IsPriority = false, Vector2? position = null, string id = "") {
+  public static void PlaySFX(AudioStream stream, float PitchScale = 1.0f, bool IsPriority = false, Vector2? position = null, string id = "", string bus = "Sfx") {
     var player = Instance.GetPlayer(IsPriority);
+    player.Bus = bus;
     if (id != "") {
       // check for existing player
       if (Instance._taggedSfxPlayers.TryGetValue(id, out var p)) {

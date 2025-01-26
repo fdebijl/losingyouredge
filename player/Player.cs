@@ -302,7 +302,7 @@ public partial class Player : CharacterBody2D {
     if (Input.IsActionPressed("chargeButton")) {
       if (allowCharge && !moving) {
         if (!charging) {
-          AudioManager.PlaySFX(chargeSFX, 1, false, GlobalPosition);
+          AudioManager.PlaySFX(chargeSFX, 1, false, GlobalPosition, "", "SfxLower");
         }
         charging = true;
         JumpAnimation(true);
