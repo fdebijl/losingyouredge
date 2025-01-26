@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0lm4q0oytyo2"]
+[gd_scene load_steps=7 format=3 uid="uid://bgpjmj2ckwxgp"]
 
 [ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="1_dspbw"]
 [ext_resource type="Script" path="res://enemies/bubble/Boss.cs" id="1_u83wy"]
@@ -28,11 +28,13 @@ spawner = NodePath("Spawner")
 laserSprite = NodePath("LaserSprite")
 laserCollider = NodePath("LaserCollider")
 
-[node name="Spawner" parent="." node_paths=PackedStringArray("Parent") instance=ExtResource("1_dspbw")]
+[node name="Spawner" parent="." instance=ExtResource("1_dspbw")]
+killSFX = null
+hitSFX = null
 BossMode = true
 SecondsBetweenSpawn = 0.1
 MaxNumberOfAliveBubbles = 11
-Parent = NodePath("..")
+MaxNumberOfTotalSpawns = 30
 BaseSpeed = 200.0
 ChaseSpeedMultiplier = 2.0
 ExplosionTimer = 0.3
