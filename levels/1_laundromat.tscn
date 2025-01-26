@@ -431,5 +431,6 @@ position = Vector2(-1318, -3630)
 [node name="WinCondition" type="Node" parent="BossRoom" node_paths=PackedStringArray("triggers")]
 script = ExtResource("21_8s2yd")
 triggers = [NodePath("../Boss/Spawner")]
+endScreenPath = "res://menus/WinScreen.tscn"
 
 [editable path="BossRoom/Boss"]
