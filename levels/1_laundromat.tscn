@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=4 uid="uid://d0nkv5i2xdvw4"]
 
 [ext_resource type="TileSet" uid="uid://b1vs1w6ovcb5" path="res://levels/assets/tilesets/laundromat.tres" id="1_mq18v"]
-[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/Player.tscn" id="2_6gavc"]
+[ext_resource type="PackedScene" uid="uid://cf1qf8mq7blko" path="res://player/Player.tscn" id="2_6gavc"]
 [ext_resource type="Texture2D" uid="uid://dylch0ecib2i3" path="res://levels/assets/sprites/random_assets.png" id="2_c1rpc"]
 [ext_resource type="PackedScene" uid="uid://daufqf8xuagho" path="res://levels/tools/SpawnerActivatorTrigger.tscn" id="2_gmyht"]
 [ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="3_5ayhr"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://v1e4g5crhogy" path="res://levels/props/Washer.tscn" id="4_h12g7"]
 [ext_resource type="PackedScene" uid="uid://bp4omffev8ctu" path="res://levels/props/WasherBlockVertical.tscn" id="5_m8mki"]
 [ext_resource type="PackedScene" uid="uid://c454484v5xrsg" path="res://levels/tools/RoomDoor.tscn" id="8_g7rm7"]
-[ext_resource type="PackedScene" path="res://levels/props/Greeblie.tscn" id="8_quuxv"]
+[ext_resource type="PackedScene" uid="uid://cybeupyuh27ki" path="res://levels/props/Greeblie.tscn" id="8_quuxv"]
 [ext_resource type="Texture2D" uid="uid://bmoace6y2jpkn" path="res://levels/assets/sprites/greeblies.png" id="9_7n1qp"]
 [ext_resource type="Texture2D" uid="uid://1ry218kn72qy" path="res://levels/assets/sprites/doors.png" id="9_gyusq"]
 [ext_resource type="AudioStream" uid="uid://becikkl1lbqqa" path="res://assets/sounds/Washing-Machine-Starting-Up.wav" id="9_i445e"]
@@ -405,7 +405,7 @@ path = NodePath("../../../Patrol Paths/Room 2/PathRight")
 [node name="Doors" type="Node2D" parent="."]
 
 [node name="RoomDoor" parent="Doors" node_paths=PackedStringArray("triggers") instance=ExtResource("8_g7rm7")]
-position = Vector2(1454, -16)
+position = Vector2(1199, 0)
 triggers = [NodePath("../../Spawners/Room 1/SpawnerLeft"), NodePath("../../Spawners/Room 1/SpawnerRight"), NodePath("../../Bubbles/Room 1/BubbleBody"), NodePath("../../Bubbles/Room 1/BubbleBody2")]
 
 [node name="RoomDoor2" parent="Doors" node_paths=PackedStringArray("triggers") instance=ExtResource("8_g7rm7")]
