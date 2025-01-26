@@ -27,6 +27,12 @@ public partial class Boss : Node2D {
   private AudioStream bossLaserSFX;
 
   [Export]
+  private AudioStream bossGrowlSFX;
+
+  [Export]
+  private float bossGrowlPeriod = 3.0f;
+
+  [Export]
   private int laserDamage = 20;
 
   [Export]
@@ -85,6 +91,14 @@ public partial class Boss : Node2D {
       laserSprite.Visible = false;
       laserCollider.ProcessMode = ProcessModeEnum.Disabled;
       return;
+    }
+
+    if (bossGrowlPeriod <= 0f) {
+      GD.Print("Growl");
+      AudioManager.PlaySFX(bossGrowlSFX, 1, false, GlobalPosition);
+      bossGrowlPeriod = RandomUtil.Rng.RandfRange(3.0f, 5.0f);
+    } else {
+      bossGrowlPeriod -= (float)delta;
     }
 
     player = this.GetTree().GetNodesInGroup("Player").Cast<Player>().FirstOrDefault();

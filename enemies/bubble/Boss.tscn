@@ -1,8 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgpjmj2ckwxgp"]
+[gd_scene load_steps=17 format=3 uid="uid://c0lm4q0oytyo2"]
 
 [ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="1_dspbw"]
 [ext_resource type="Script" path="res://enemies/bubble/Boss.cs" id="1_u83wy"]
 [ext_resource type="Texture2D" uid="uid://cxbpfd5vjk10n" path="res://enemies/bubble/assets/boss_room_sprite_sheet.png" id="3_1bn32"]
+[ext_resource type="AudioStream" uid="uid://dw4e6qm6ihob3" path="res://assets/sounds/Boss-laser02.wav" id="3_u4rxp"]
+[ext_resource type="AudioStream" uid="uid://c6hgnmjhbx8ee" path="res://assets/sounds/Monster-Sound.wav" id="4_tj8kb"]
+[ext_resource type="AudioStream" uid="uid://c1jn5nlpb85cp" path="res://assets/sounds/Monster-Sound02.wav" id="5_2c7ut"]
+[ext_resource type="AudioStream" uid="uid://jcpy4kj3vcdw" path="res://assets/sounds/Monster-Sound03.wav" id="6_xijjd"]
+[ext_resource type="AudioStream" uid="uid://cnv17dlwrwn7x" path="res://assets/sounds/Monster-Sound05.wav" id="7_kyf8p"]
+[ext_resource type="AudioStream" uid="uid://bq6mmycukl2lm" path="res://assets/sounds/Monster-Sound07.wav" id="8_ehoub"]
+[ext_resource type="AudioStream" uid="uid://dbw00rutq7dbg" path="res://assets/sounds/Monster-Sound08.wav" id="9_8s24e"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cri66"]
+streams_count = 2
+stream_0/stream = ExtResource("2_7bimi")
+stream_1/stream = ExtResource("3_u4rxp")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wimcj"]
+streams_count = 6
+stream_0/stream = ExtResource("4_tj8kb")
+stream_1/stream = ExtResource("5_2c7ut")
+stream_2/stream = ExtResource("6_xijjd")
+stream_3/stream = ExtResource("7_kyf8p")
+stream_4/stream = ExtResource("8_ehoub")
+stream_5/stream = ExtResource("9_8s24e")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8crtx"]
 atlas = ExtResource("3_1bn32")
@@ -27,6 +48,8 @@ script = ExtResource("1_u83wy")
 spawner = NodePath("Spawner")
 laserSprite = NodePath("LaserSprite")
 laserCollider = NodePath("LaserCollider")
+bossLaserSFX = SubResource("AudioStreamRandomizer_cri66")
+bossGrowlSFX = SubResource("AudioStreamRandomizer_wimcj")
 
 [node name="Spawner" parent="." instance=ExtResource("1_dspbw")]
 killSFX = null
