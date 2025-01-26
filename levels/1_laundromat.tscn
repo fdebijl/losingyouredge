@@ -1,7 +1,7 @@
-[gd_scene load_steps=27 format=4 uid="uid://ud20crhqk5ub"]
+[gd_scene load_steps=27 format=4 uid="uid://d0nkv5i2xdvw4"]
 
 [ext_resource type="TileSet" uid="uid://b1vs1w6ovcb5" path="res://levels/assets/tilesets/laundromat.tres" id="1_mq18v"]
-[ext_resource type="PackedScene" uid="uid://cf1qf8mq7blko" path="res://player/Player.tscn" id="2_6gavc"]
+[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/Player.tscn" id="2_6gavc"]
 [ext_resource type="Texture2D" uid="uid://dylch0ecib2i3" path="res://levels/assets/sprites/random_assets.png" id="2_c1rpc"]
 [ext_resource type="PackedScene" uid="uid://daufqf8xuagho" path="res://levels/tools/SpawnerActivatorTrigger.tscn" id="2_gmyht"]
 [ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="3_5ayhr"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://v1e4g5crhogy" path="res://levels/props/Washer.tscn" id="4_h12g7"]
 [ext_resource type="PackedScene" uid="uid://bp4omffev8ctu" path="res://levels/props/WasherBlockVertical.tscn" id="5_m8mki"]
 [ext_resource type="PackedScene" uid="uid://c454484v5xrsg" path="res://levels/tools/RoomDoor.tscn" id="8_g7rm7"]
-[ext_resource type="PackedScene" uid="uid://cybeupyuh27ki" path="res://levels/props/Greeblie.tscn" id="8_quuxv"]
+[ext_resource type="PackedScene" path="res://levels/props/Greeblie.tscn" id="8_quuxv"]
 [ext_resource type="PackedScene" uid="uid://e3ayle04i3hf" path="res://level_items/SadPaper.tscn" id="9_5llem"]
 [ext_resource type="Texture2D" uid="uid://bmoace6y2jpkn" path="res://levels/assets/sprites/greeblies.png" id="9_7n1qp"]
 [ext_resource type="Texture2D" uid="uid://1ry218kn72qy" path="res://levels/assets/sprites/doors.png" id="9_gyusq"]
@@ -402,3 +402,21 @@ skew = -0.301942
 [node name="Washer" parent="." instance=ExtResource("4_h12g7")]
 position = Vector2(-490, -772)
 frame = 1
+
+[node name="Area2D2" parent="." instance=ExtResource("9_5llem")]
+position = Vector2(1666, -1881)
+rotation = 0.127409
+scale = Vector2(1.2, 1.2)
+skew = 0.652753
+
+[node name="Area2D3" parent="." instance=ExtResource("9_5llem")]
+position = Vector2(-1429, -482)
+rotation = 1.77675
+scale = Vector2(1.5, 1.5)
+skew = -0.39619
+
+[node name="Area2D4" parent="." instance=ExtResource("9_5llem")]
+position = Vector2(-714, -1939)
+rotation = 0.127409
+scale = Vector2(1, 1)
+skew = -0.158825
