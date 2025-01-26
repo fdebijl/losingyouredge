@@ -20,6 +20,6 @@ public partial class Door : StaticBody2D {
 	}
 
   private void DoOnAllDead() {
-    GetParent().RemoveChild(this);
+    QueueFree();
   }
 }
