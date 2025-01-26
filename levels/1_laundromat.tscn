@@ -395,6 +395,16 @@ position = Vector2(583, 117)
 stream = SubResource("AudioStreamPlaylist_h17ey")
 autoplay = true
 
+[node name="Washing Machine Ambient2" type="AudioStreamPlayer2D" parent="Ambient"]
+position = Vector2(-402, -1226)
+stream = SubResource("AudioStreamPlaylist_h17ey")
+autoplay = true
+
+[node name="Washing Machine Ambient3" type="AudioStreamPlayer2D" parent="Ambient"]
+position = Vector2(-1296, -4328)
+stream = SubResource("AudioStreamPlaylist_h17ey")
+autoplay = true
+
 [node name="Area2D" parent="." instance=ExtResource("9_5llem")]
 position = Vector2(198, 899)
 rotation = -0.558505
