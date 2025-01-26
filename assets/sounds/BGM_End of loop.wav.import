@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://psq05af0cg43"
+path="res://.godot/imported/BGM_End of loop.wav-7018374501adb37af9f4e03c25dcdea7.sample"
+
+[deps]
+
+source_file="res://assets/sounds/BGM_End of loop.wav"
+dest_files=["res://.godot/imported/BGM_End of loop.wav-7018374501adb37af9f4e03c25dcdea7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

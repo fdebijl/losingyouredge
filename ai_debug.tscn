@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cgie1h3dp8p2a"]
 
-[ext_resource type="PackedScene" uid="uid://c0lm4q0oytyo2" path="res://enemies/bubble/Boss.tscn" id="1_7dl71"]
-[ext_resource type="PackedScene" uid="uid://cf1qf8mq7blko" path="res://player/Player.tscn" id="2_bdf44"]
+[ext_resource type="PackedScene" path="res://enemies/bubble/Boss.tscn" id="1_7dl71"]
+[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/Player.tscn" id="2_bdf44"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6vls"]
 size = Vector2(2534, 24)
@@ -51,6 +51,7 @@ PatrolPath = NodePath("../Line2D")
 [node name="player" parent="." instance=ExtResource("2_bdf44")]
 position = Vector2(1848, 615)
 chargeCooldown = 0.5
+endPackedScreen = null
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
 remote_path = NodePath("../../Camera2D")
