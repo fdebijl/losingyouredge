@@ -61,6 +61,9 @@ public partial class Player : CharacterBody2D {
   public AudioStream jumpSFX;
 
   [Export]
+  public AudioStream wallHitSFX;
+
+  [Export]
   private string endScreenPath;
   private ShaderMaterial playerShader;
 
@@ -251,6 +254,7 @@ public partial class Player : CharacterBody2D {
         return;
 
       if (collisionLayer == 8) {
+        AudioManager.PlaySFX(wallHitSFX, 1, false, GlobalPosition);
         BentAnimation();
         Velocity = Vector2.Zero;
         charge = 0;
