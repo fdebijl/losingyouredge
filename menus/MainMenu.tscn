@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcgtdetd5brpg"]
+[gd_scene load_steps=11 format=3 uid="uid://dcgtdetd5brpg"]
 
 [ext_resource type="FontFile" uid="uid://boo61ehi8k82u" path="res://menus/assets/fonts/Small Town Skyline.ttf" id="1_bji7r"]
 [ext_resource type="Script" path="res://menus/MainMenu.cs" id="1_vbikr"]
+[ext_resource type="AudioStream" uid="uid://nwkdbox0j844" path="res://assets/sounds/BGM_Start.wav" id="2_3dbnl"]
 [ext_resource type="Theme" uid="uid://cu4n20cc1wscg" path="res://menus/assets/DefaultButton.tres" id="2_ojfo0"]
 [ext_resource type="FontFile" uid="uid://d2oapkud6lexg" path="res://menus/assets/fonts/Poppins.ttf" id="2_puu1c"]
 [ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="4_b5vuo"]
@@ -32,6 +33,7 @@ script = ExtResource("1_vbikr")
 gameScenePath = "res://levels/1_Laundromat.tscn"
 startButton = NodePath("MarginContainer/VBoxContainer/ButtonsVBox/StartGame")
 exitButton = NodePath("MarginContainer/VBoxContainer/ButtonsVBox/QuitGame")
+bgmStart = ExtResource("2_3dbnl")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0

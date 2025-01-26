@@ -33,6 +33,7 @@ project/assembly_name="losingyouredge"
 [file_customization]
 
 folder_colors={
+"res://assets/": "red",
 "res://enemies/": "purple",
 "res://levels/": "teal",
 "res://menus/": "orange",
