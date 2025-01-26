@@ -222,7 +222,7 @@ position = Vector2(-1253, -588)
 texture = SubResource("AtlasTexture_oub28")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1201, -519)
+position = Vector2(1222, 1332)
 
 [node name="Backdrop" parent="Camera2D" instance=ExtResource("3_irrti")]
 offset_left = -963.0
@@ -231,7 +231,7 @@ offset_right = 957.0
 offset_bottom = 487.0
 
 [node name="player" parent="." instance=ExtResource("2_6gavc")]
-position = Vector2(1201, -519)
+position = Vector2(1222, 1332)
 chargeCooldown = 0.5
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
@@ -426,7 +426,7 @@ skew = -0.158825
 [node name="BossRoom" type="Node2D" parent="."]
 
 [node name="Boss" parent="BossRoom" instance=ExtResource("20_1l5ha")]
-position = Vector2(-1318, -3630)
+position = Vector2(-1288, -3577)
 
 [node name="WinCondition" type="Node" parent="BossRoom" node_paths=PackedStringArray("triggers")]
 script = ExtResource("21_8s2yd")

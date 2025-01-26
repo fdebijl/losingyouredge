@@ -90,7 +90,7 @@ public partial class Boss : Node2D {
     if (this.GlobalPosition.DistanceTo(player.GlobalPosition) > RequiredPlayerRange)
       return;
 
-    if (!laserActive && attackTimer >= laserFireRotationDelay) {
+    if (!laserActive && !telegraphActive) {
       LookAt(player.GlobalPosition);
       Rotation = Rotation - Mathf.Pi / 2f;
     }
