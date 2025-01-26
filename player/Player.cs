@@ -27,10 +27,12 @@ public partial class Player : CharacterBody2D
   [Export] private float Friction;
   [Export] private Area2D point;
   [Export] private bool isInteractive = true;
-  [Export] private AudioListener2D playerAudioListener;
 
+  [Export] private AudioListener2D playerAudioListener;
   [Export] public AudioStream chargeSFX;
   [Export] public AudioStream jumpSFX;
+
+  [Export] private PackedScene endPackedScreen;
   private ShaderMaterial playerShader;
 
   private HashSet<IKillable> enemies = new HashSet<IKillable>();
@@ -72,6 +74,8 @@ public partial class Player : CharacterBody2D
 
 		healthAnimation();
     if (health <= 0)
+
+    if (health <= 80)
     {
       Death();
     }
@@ -106,9 +110,14 @@ public partial class Player : CharacterBody2D
 
   public void Death()
   {
-   //Play death animation
-   //Disable player input
-   //Play death sound
+    //Play death animation
+    //Disable player input
+    //Play death sound
+    //get the end screen scene
+    var endScreen = endPackedScreen.Instantiate() as EndScreen;
+    endScreen.SetEndText(false);
+    GetTree().Root.AddChild(endScreen);
+    //GetTree().ChangeSceneToFile(endScreen);
   }
 
   public override void _Input(InputEvent @event)
@@ -317,7 +326,7 @@ public partial class Player : CharacterBody2D
 			timer.Connect("timeout", Callable.From(OnBentAnimationTimeout));
 			timer.Start();
 	}
-	
+
 	private void OnBentAnimationTimeout()
 	{
 			playerAnimation.Stop();

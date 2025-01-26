@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://d0x0lwbd4lusd"]
+
+[ext_resource type="Script" path="res://menus/EndScreen.cs" id="1_simst"]
+[ext_resource type="FontFile" uid="uid://boo61ehi8k82u" path="res://menus/assets/fonts/Small Town Skyline.ttf" id="2_ovyvp"]
+[ext_resource type="Theme" uid="uid://cu4n20cc1wscg" path="res://menus/assets/DefaultButton.tres" id="3_hu7bs"]
+[ext_resource type="FontFile" uid="uid://d2oapkud6lexg" path="res://menus/assets/fonts/Poppins.ttf" id="4_kiq2n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sdx35"]
+font = ExtResource("2_ovyvp")
+font_size = 345
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_e75cu"]
+font = ExtResource("4_kiq2n")
+font_color = Color(0.60933, 0.60933, 0.60933, 1)
+
+[node name="EndScreen" type="Control" node_paths=PackedStringArray("restartButton", "exitButton", "label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_simst")
+gameScenePath = "res://menus/MainMenu.tscn"
+restartButton = NodePath("MarginContainer/VBoxContainer/ButtonsVBox/RestartGame")
+exitButton = NodePath("MarginContainer/VBoxContainer/ButtonsVBox/QuitGame")
+label = NodePath("MarginContainer/VBoxContainer/Title")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "You win!"
+label_settings = SubResource("LabelSettings_sdx35")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="RestartGame" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_hu7bs")
+theme_override_fonts/font = ExtResource("4_kiq2n")
+theme_override_font_sizes/font_size = 30
+text = "Restart "
+
+[node name="QuitGame" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_hu7bs")
+theme_override_fonts/font = ExtResource("4_kiq2n")
+theme_override_font_sizes/font_size = 30
+text = "Exit"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "
+A 2025 Global Game Jam game by The Cutting Room Floor"
+label_settings = SubResource("LabelSettings_e75cu")
+horizontal_alignment = 1

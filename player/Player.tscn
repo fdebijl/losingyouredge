@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://e82rrdirdymy" path="res://assets/sounds/Jump03.wav" id="8_a83h8"]
 [ext_resource type="AudioStream" uid="uid://bnalg116apq3k" path="res://assets/sounds/Jump04.wav" id="9_y7v6k"]
 [ext_resource type="Texture2D" uid="uid://c7ewofksvx3hj" path="res://player/Needle animation/Damage sprites.png" id="18_3pj83"]
+[ext_resource type="PackedScene" uid="uid://d0x0lwbd4lusd" path="res://menus/EndScreen.tscn" id="10_ehcpq"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_80jtj"]
 playback_mode = 1
@@ -300,6 +301,7 @@ Friction = 1.0
 point = NodePath("DamageArea")
 chargeSFX = SubResource("AudioStreamRandomizer_80jtj")
 jumpSFX = SubResource("AudioStreamRandomizer_v5yhj")
+endPackedScreen = ExtResource("10_ehcpq")
 playerAnimation = NodePath("AnimationPlayer")
 playerBodyAnimation = NodePath("Node2D/BodyAnnimation")
 playerFaceAnimation = NodePath("Node2D/FaceAnnimation")
