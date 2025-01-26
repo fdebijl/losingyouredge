@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class MainMenu : Control{
+public partial class MainMenu : Control {
   [Export] private string gameScenePath;
   [Export] private Button startButton;
   [Export] private Button exitButton;
@@ -10,6 +10,7 @@ public partial class MainMenu : Control{
     AudioManager.PlaySFX(bgmStart, 1, false, GlobalPosition);
     startButton.ButtonDown += OnStartButtonPressed;
     exitButton.ButtonDown += OnExitButtonPressed;
+    startButton.GrabFocus();
   }
 
   private void OnStartButtonPressed() {
@@ -18,5 +19,19 @@ public partial class MainMenu : Control{
 
   private void OnExitButtonPressed() {
     GetTree().Quit();
+  }
+
+  public override void _Input(InputEvent @event) {
+    if (@event is InputEventJoypadButton joypadEvent) {
+      if (joypadEvent.ButtonIndex == JoyButton.A && joypadEvent.Pressed) {
+        OnStartButtonPressed();
+      }
+    }
+
+    if (@event.IsActionPressed("ui_accept")) {
+      OnStartButtonPressed();
+    } else if (@event.IsActionPressed("ui_cancel")) {
+      OnExitButtonPressed();
+    }
   }
 }
