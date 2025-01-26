@@ -103,6 +103,8 @@ polygon = PackedVector2Array(-1696, -2097, -1698, -301, 1101, -298, 1104, -96, -
 polygon = PackedVector2Array(1305, -303, 1900, -301, 1900, -2105, 2152, -2112, 2134, -99, 1306, -103)
 
 [node name="Room3Colliders" type="StaticBody2D" parent="Colliders"]
+collision_layer = 8
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Colliders/Room3Colliders"]
 polygon = PackedVector2Array(-2101, -4601, -2100, -2800, -2001, -2801, -2001, -2700, -1900, -2701, -1899, -2601, -1800, -2601, -1800, -2499, -1402, -2500, -1400, -2302, -1797, -2303, -2320, -2779, -2316, -4809, -258, -4809, -260, -2785, -792, -2298, -1197, -2302, -1199, -2504, -798, -2501, -799, -2599, -700, -2600, -700, -2700, -600, -2700, -599, -2799, -499, -2801, -499, -4603)

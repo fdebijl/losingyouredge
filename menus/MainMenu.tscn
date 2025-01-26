@@ -59,6 +59,10 @@ theme_override_constants/separation = 15
 [node name="StartGame" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../QuitGame")
+focus_neighbor_bottom = NodePath("../QuitGame")
+focus_next = NodePath("../QuitGame")
+focus_previous = NodePath("../QuitGame")
 theme = ExtResource("2_ojfo0")
 theme_override_fonts/font = ExtResource("2_puu1c")
 theme_override_font_sizes/font_size = 30
@@ -67,6 +71,10 @@ text = "Start game"
 [node name="QuitGame" type="Button" parent="MarginContainer/VBoxContainer/ButtonsVBox"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../StartGame")
+focus_neighbor_bottom = NodePath("../StartGame")
+focus_next = NodePath("../StartGame")
+focus_previous = NodePath("../StartGame")
 theme = ExtResource("2_ojfo0")
 theme_override_fonts/font = ExtResource("2_puu1c")
 theme_override_font_sizes/font_size = 30
