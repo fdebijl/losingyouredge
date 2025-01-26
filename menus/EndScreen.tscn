@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0x0lwbd4lusd"]
+[gd_scene load_steps=8 format=3 uid="uid://d00kthu6utbvo"]
 
 [ext_resource type="Script" path="res://menus/EndScreen.cs" id="1_simst"]
 [ext_resource type="FontFile" uid="uid://boo61ehi8k82u" path="res://menus/assets/fonts/Small Town Skyline.ttf" id="2_ovyvp"]
 [ext_resource type="Theme" uid="uid://cu4n20cc1wscg" path="res://menus/assets/DefaultButton.tres" id="3_hu7bs"]
 [ext_resource type="FontFile" uid="uid://d2oapkud6lexg" path="res://menus/assets/fonts/Poppins.ttf" id="4_kiq2n"]
+[ext_resource type="PackedScene" uid="uid://bin3r8r5qu1fi" path="res://player/Player.tscn" id="5_gkib4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sdx35"]
 font = ExtResource("2_ovyvp")
@@ -74,3 +75,9 @@ text = "
 A 2025 Global Game Jam game by The Cutting Room Floor"
 label_settings = SubResource("LabelSettings_e75cu")
 horizontal_alignment = 1
+
+[node name="Player" parent="." instance=ExtResource("5_gkib4")]
+position = Vector2(954, 768)
+isInteractive = false
+winningMode = true
+endPackedScreen = null

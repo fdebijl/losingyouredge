@@ -27,6 +27,7 @@ public partial class Player : CharacterBody2D
   [Export] private float Friction;
   [Export] private Area2D point;
   [Export] private bool isInteractive = true;
+  [Export] private bool winningMode = false;
   [Export] private int damage = 10;
   [Export] private AudioListener2D playerAudioListener;
 
@@ -42,6 +43,10 @@ public partial class Player : CharacterBody2D
     point.BodyEntered += OnPointEnter;
     point.BodyExited += OnPointExit;
 		playerShader = playerBodyAnimation.Material as ShaderMaterial;
+
+    if (winningMode) {
+      WinningAnimation();
+    }
   }
 
   public void OnPointEnter(Node other) {
@@ -78,6 +83,12 @@ public partial class Player : CharacterBody2D
     {
       Death();
     }
+  }
+
+  private void WinningAnimation() {
+    playerAnimation.Play("winning");
+    playerBodyAnimation.Play("winning");
+    playerFaceAnimation.Play("winning");
   }
 
 	private void healthAnimation() {

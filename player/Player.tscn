@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cf1qf8mq7blko"]
+[gd_scene load_steps=58 format=3 uid="uid://bin3r8r5qu1fi"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_srn17"]
 [ext_resource type="AudioStream" uid="uid://cvh68yeemhwi3" path="res://assets/sounds/Charge-up.wav" id="2_w1mds"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://dp1g6jqfnglok" path="res://player/Needle animation/needle sprite sheet.png" id="8_6u7ji"]
 [ext_resource type="AudioStream" uid="uid://e82rrdirdymy" path="res://assets/sounds/Jump03.wav" id="8_a83h8"]
 [ext_resource type="AudioStream" uid="uid://bnalg116apq3k" path="res://assets/sounds/Jump04.wav" id="9_y7v6k"]
-[ext_resource type="PackedScene" uid="uid://d0x0lwbd4lusd" path="res://menus/EndScreen.tscn" id="10_ehcpq"]
 [ext_resource type="Texture2D" uid="uid://c7ewofksvx3hj" path="res://player/Needle animation/Damage sprites.png" id="18_3pj83"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_80jtj"]
@@ -73,10 +72,27 @@ tracks/0/keys = {
 "values": [0.0, -0.0872665, 0.0872665, -0.0872665, 0.0872665, -0.0872665, 0.0872665, -0.0872665, 0.0872665, -0.0872665, 0.0872665]
 }
 
+[sub_resource type="Animation" id="Animation_fnv5j"]
+resource_name = "winning"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.785398, 0.785398, -0.785398]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bbecn"]
 _data = {
 "RESET": SubResource("Animation_tjvqd"),
-"jump": SubResource("Animation_p4eih")
+"jump": SubResource("Animation_p4eih"),
+"winning": SubResource("Animation_fnv5j")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6c2br"]
@@ -109,6 +125,22 @@ region = Rect2(1500, 0, 500, 500)
 [sub_resource type="AtlasTexture" id="AtlasTexture_dgqgq"]
 atlas = ExtResource("7_0w5l0")
 region = Rect2(0, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3ugg"]
+atlas = ExtResource("7_0w5l0")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7j7i"]
+atlas = ExtResource("7_0w5l0")
+region = Rect2(1500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xwwj"]
+atlas = ExtResource("7_0w5l0")
+region = Rect2(0, 500, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1bil"]
+atlas = ExtResource("7_0w5l0")
+region = Rect2(1000, 500, 500, 500)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3qih5"]
 animations = [{
@@ -149,6 +181,29 @@ animations = [{
 "loop": false,
 "name": &"jump",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3ugg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7j7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xwwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7j7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3ugg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1bil")
+}],
+"loop": true,
+"name": &"winning",
+"speed": 12.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6cvdv"]
@@ -190,6 +245,18 @@ region = Rect2(1000, 0, 500, 500)
 [sub_resource type="AtlasTexture" id="AtlasTexture_kjyh4"]
 atlas = ExtResource("7_toxp4")
 region = Rect2(1500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfm8e"]
+atlas = ExtResource("7_0w5l0")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3bc5"]
+atlas = ExtResource("7_0w5l0")
+region = Rect2(1000, 1000, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aeik5"]
+atlas = ExtResource("7_0w5l0")
+region = Rect2(1500, 500, 500, 500)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6gxk3"]
 animations = [{
@@ -250,6 +317,20 @@ animations = [{
 "loop": false,
 "name": &"jump",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfm8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3bc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aeik5")
+}],
+"loop": true,
+"name": &"winning",
+"speed": 0.5
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1a6q"]
@@ -301,7 +382,6 @@ Friction = 1.0
 point = NodePath("DamageArea")
 chargeSFX = SubResource("AudioStreamRandomizer_80jtj")
 jumpSFX = SubResource("AudioStreamRandomizer_v5yhj")
-endPackedScreen = ExtResource("10_ehcpq")
 playerAnimation = NodePath("AnimationPlayer")
 playerBodyAnimation = NodePath("Node2D/BodyAnnimation")
 playerFaceAnimation = NodePath("Node2D/FaceAnnimation")
@@ -338,12 +418,14 @@ scale = Vector2(0.6, 0.6)
 material = SubResource("ShaderMaterial_h5we2")
 position = Vector2(-1, -114)
 sprite_frames = SubResource("SpriteFrames_3qih5")
-animation = &"jump"
+animation = &"winning"
+frame_progress = 0.0663263
 
 [node name="FaceAnnimation" type="AnimatedSprite2D" parent="Node2D"]
 position = Vector2(3.33333, -103.917)
 sprite_frames = SubResource("SpriteFrames_6gxk3")
-animation = &"damage"
+animation = &"winning"
+frame_progress = 0.427641
 
 [node name="DamageAnnimation" type="AnimatedSprite2D" parent="Node2D"]
 visible = false
