@@ -1,26 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://dcgtdetd5brpg"]
+[gd_scene load_steps=8 format=3 uid="uid://dcgtdetd5brpg"]
 
-[ext_resource type="FontFile" uid="uid://boo61ehi8k82u" path="res://menus/assets/fonts/Small Town Skyline.ttf" id="1_bji7r"]
 [ext_resource type="Script" path="res://menus/MainMenu.cs" id="1_vbikr"]
 [ext_resource type="AudioStream" uid="uid://nwkdbox0j844" path="res://assets/sounds/BGM_Start.wav" id="2_3dbnl"]
 [ext_resource type="Theme" uid="uid://cu4n20cc1wscg" path="res://menus/assets/DefaultButton.tres" id="2_ojfo0"]
 [ext_resource type="FontFile" uid="uid://d2oapkud6lexg" path="res://menus/assets/fonts/Poppins.ttf" id="2_puu1c"]
-[ext_resource type="PackedScene" uid="uid://7bpnmkemoum7" path="res://enemies/bubble/BubbleSpawner.tscn" id="4_b5vuo"]
-[ext_resource type="PackedScene" uid="uid://cf1qf8mq7blko" path="res://player/Player.tscn" id="5_h61tx"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_yhju1"]
-font = ExtResource("1_bji7r")
-font_size = 345
-font_color = Color(0, 0, 0, 1)
+[ext_resource type="Texture2D" uid="uid://dkuikum10twbc" path="res://menus/assets/main_menu_placeholder.png" id="3_6b1h4"]
+[ext_resource type="VideoStream" path="res://menus/assets/start_menu.ogv" id="5_xwgf3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i51cn"]
 font = ExtResource("2_puu1c")
 font_color = Color(0.60933, 0.60933, 0.60933, 1)
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_jdn7o"]
-vertices = PackedVector2Array(1693.09, -54, 1696.89, 324.063, 307.039, 332.93, 308.953, -54.9922)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(299, -65, 297, 343, 1707, 334, 1703, -64)])
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("startButton", "exitButton")]
 layout_mode = 3
@@ -35,31 +24,33 @@ startButton = NodePath("MarginContainer/VBoxContainer/ButtonsVBox/StartGame")
 exitButton = NodePath("MarginContainer/VBoxContainer/ButtonsVBox/QuitGame")
 bgmStart = ExtResource("2_3dbnl")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="MainMenuVideoReference" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
+texture = ExtResource("3_6b1h4")
+
+[node name="MainMenuVideo" type="VideoStreamPlayer" parent="."]
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 1088.0
+stream = ExtResource("5_xwgf3")
+autoplay = true
+loop = true
+buffering_msec = 1000
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 230
+theme_override_constants/margin_top = 800
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 alignment = 1
-
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Losing your Edge"
-label_settings = SubResource("LabelSettings_yhju1")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="ButtonsVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -87,31 +78,3 @@ text = "
 A 2025 Global Game Jam game by The Cutting Room Floor"
 label_settings = SubResource("LabelSettings_i51cn")
 horizontal_alignment = 1
-
-[node name="Demo" type="Node2D" parent="."]
-
-[node name="Spawner" parent="Demo" node_paths=PackedStringArray("PatrolPath") instance=ExtResource("4_b5vuo")]
-position = Vector2(511, 241)
-PatrolPath = NodePath("../Line2D")
-SecondsBetweenSpawn = 12.0
-SpawnRadius = 0.0
-MaxNumberOfAliveBubbles = 2
-MaxNumberOfTotalSpawns = 999999
-BaseSpeed = 110.0
-ChaseSpeedMultiplier = 2.0
-MaxOffset = 0.0
-ExplosionTimer = 1.5
-seekKepsylon = 350.0
-
-[node name="Player" parent="Demo" instance=ExtResource("5_h61tx")]
-position = Vector2(1359, 289)
-isInteractive = false
-
-[node name="Line2D" type="Line2D" parent="Demo"]
-position = Vector2(3, 47)
-points = PackedVector2Array(628, 194, 1594, 194)
-width = 0.0
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Demo"]
-position = Vector2(-49, 58)
-navigation_polygon = SubResource("NavigationPolygon_jdn7o")
