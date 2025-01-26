@@ -24,6 +24,9 @@ public partial class Boss : Node2D {
   private Area2D laserCollider;
 
   [Export]
+  private AudioStream bossLaserSFX;
+
+  [Export]
   private int laserDamage = 20;
 
   [Export]
@@ -123,6 +126,7 @@ public partial class Boss : Node2D {
 
       // laser firing
     } else if (laserActive && laserTimer > 0f) {
+      AudioManager.PlaySFX(bossLaserSFX, 1, false, GlobalPosition);
       laserSprite.Modulate = new Color(1f, 1f, 1f, 1f);
       laserSprite.Scale = new Vector2(laserActiveScale, laserSprite.Scale.Y);
       laserTimer -= (float)delta;
