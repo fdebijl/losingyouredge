@@ -38,7 +38,7 @@ public partial class BubbleExplosion : Node2D {
 
     if (despawnTimer < 0) {
       AudioManager.PlaySFX(explodeSFX, 1f, false, GlobalPosition);
-      GetParent().RemoveChild(this);
+      QueueFree();
     }
   }
 }
