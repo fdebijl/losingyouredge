@@ -31,8 +31,10 @@ public partial class WinScreen : Control {
 
   public override void _Input(InputEvent @event) {
     if (@event is InputEventJoypadButton joypadEvent) {
-      if (joypadEvent.ButtonIndex == JoyButton.A && joypadEvent.Pressed) {
+      if (joypadEvent.ButtonIndex == JoyButton.A && joypadEvent.Pressed && restartButton.HasFocus()) {
         OnRestartButtonPressed();
+      } else if (joypadEvent.ButtonIndex == JoyButton.A && joypadEvent.Pressed && exitButton.HasFocus()) {
+        OnExitButtonPressed();
       }
     }
 

@@ -23,8 +23,10 @@ public partial class MainMenu : Control {
 
   public override void _Input(InputEvent @event) {
     if (@event is InputEventJoypadButton joypadEvent) {
-      if (joypadEvent.ButtonIndex == JoyButton.A && joypadEvent.Pressed) {
+      if (joypadEvent.ButtonIndex == JoyButton.A && joypadEvent.Pressed && startButton.HasFocus()) {
         OnStartButtonPressed();
+      } else if (joypadEvent.ButtonIndex == JoyButton.A && joypadEvent.Pressed && exitButton.HasFocus()) {
+        OnExitButtonPressed();
       }
     }
 
