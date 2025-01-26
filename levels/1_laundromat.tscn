@@ -434,6 +434,9 @@ autoplay = true
 [node name="Boss" parent="BossRoom" instance=ExtResource("20_1l5ha")]
 position = Vector2(-1288, -3577)
 
+[node name="Spawner" parent="BossRoom/Boss" index="0" node_paths=PackedStringArray("Parent")]
+Parent = NodePath("..")
+
 [node name="WinCondition" type="Node" parent="BossRoom" node_paths=PackedStringArray("triggers")]
 script = ExtResource("21_8s2yd")
 triggers = [NodePath("../Boss/Spawner")]
