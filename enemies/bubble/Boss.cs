@@ -55,6 +55,7 @@ public partial class Boss : Node2D {
   public override void _Ready() {
     spawner.BossMode = true;
     spawner.PatrolPath = PatrolPath;
+    spawner.IsActive = false;
     laserSprite.Visible = false;
     laserCollider.ProcessMode = ProcessModeEnum.Disabled;
     laserCollider.BodyEntered += OnBodyEntered;
@@ -102,6 +103,7 @@ public partial class Boss : Node2D {
       telegraphActive = true;
       telegraphTimer = telegraphDuration;
       laserSprite.Visible = true;
+      spawner.IsActive = false;
 
       // telegraph firing
     } else if (telegraphActive && telegraphTimer > 0f) {
@@ -133,6 +135,7 @@ public partial class Boss : Node2D {
     } else if (!laserActive) {
       spawner.playerAnimation.Play("shake");
       attackTimer -= (float)delta;
+      spawner.IsActive = true;
     }
   }
 }

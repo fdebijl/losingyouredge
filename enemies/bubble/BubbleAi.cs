@@ -185,7 +185,8 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
   }
 
   private void Step() {
-    if (path == null) return;
+    if (path == null)
+      return;
     if (_step == path.GetPointCount() - 1) {
       _stepDirection = -1;
     } else if (_step == 0) {

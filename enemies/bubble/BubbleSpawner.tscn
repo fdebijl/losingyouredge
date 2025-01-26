@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://7bpnmkemoum7"]
+[gd_scene load_steps=20 format=3 uid="uid://7bpnmkemoum7"]
 
 [ext_resource type="Script" path="res://enemies/bubble/BubbleSpawner.cs" id="1_bg6iy"]
 [ext_resource type="PackedScene" uid="uid://bs4v3borvqwuj" path="res://enemies/bubble/BubbleAgent.tscn" id="2_3poak"]
 [ext_resource type="Texture2D" uid="uid://cxbpfd5vjk10n" path="res://enemies/bubble/assets/boss_room_sprite_sheet.png" id="3_jjxe1"]
+[ext_resource type="AudioStream" uid="uid://c0q1jjwq5gcpw" path="res://assets/sounds/Washing-Machine-Shutting-Down.wav" id="3_q7r6y"]
 [ext_resource type="Texture2D" uid="uid://16p6w6jh2264" path="res://enemies/bubble/assets/spawner_sheet.png" id="4_4idlj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n28xm"]
@@ -183,8 +184,11 @@ collision_layer = 2
 collision_mask = 8
 script = ExtResource("1_bg6iy")
 BubbleScene = ExtResource("2_3poak")
+killSFX = ExtResource("3_q7r6y")
 Sprite = NodePath("SpawnerAnimatedSprite")
 playerAnimation = NodePath("AnimationPlayer")
+MaxNumberOfAliveBubbles = 999999999
+MaxNumberOfTotalSpawns = 999999999
 seekKepsylon = 500.0
 
 [node name="SpawnerCollider" type="CollisionShape2D" parent="."]

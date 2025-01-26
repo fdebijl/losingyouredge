@@ -27,6 +27,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
   [Export] public int MaxNumberOfAliveBubbles = 10;
   [Export] public int MaxNumberOfTotalSpawns = 30;
   [Export] public bool IsActive = true;
+  [Export] public Node2D Parent = null;
 
   [ExportGroup("Bubble Overrides")]
   [Export] public float BaseSpeed = 80f;
@@ -109,7 +110,6 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
     var bubble = this.BubbleScene.Instantiate() as BubbleAi;
     var offset = RandomUtil.RandomPointInCircle(RandomUtil.Rng.RandfRange(0f, SpawnRadius));
 
-    bubble.GlobalPosition = this.GlobalPosition + offset;
     bubble.path = PatrolPath;
     bubble.BaseSpeed = this.BaseSpeed;
     bubble.ChaseSpeedMultiplier = this.ChaseSpeedMultiplier;
@@ -121,7 +121,9 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
     bubble.AddToGroup($"Bubble-{Name}");
 
     bubble.Spawner = this;
-    GetParent().AddChild(bubble);
+    var parent = Parent == null ? GetParent() : Parent.GetParent();
+    parent.AddChild(bubble);
+    bubble.GlobalPosition = this.GlobalPosition + offset;
     this._spawnTimer = this.SecondsBetweenSpawn;
   }
 
