@@ -30,7 +30,12 @@ laserCollider = NodePath("LaserCollider")
 
 [node name="Spawner" parent="." node_paths=PackedStringArray("Parent") instance=ExtResource("1_dspbw")]
 BossMode = true
+SecondsBetweenSpawn = 0.1
+MaxNumberOfAliveBubbles = 11
 Parent = NodePath("..")
+BaseSpeed = 200.0
+ChaseSpeedMultiplier = 2.0
+ExplosionTimer = 0.3
 seekKepsylon = 1920.0
 
 [node name="LaserSprite" type="AnimatedSprite2D" parent="."]
