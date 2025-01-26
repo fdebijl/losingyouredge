@@ -1,10 +1,23 @@
-[gd_scene load_steps=20 format=3 uid="uid://7bpnmkemoum7"]
+[gd_scene load_steps=25 format=3 uid="uid://7bpnmkemoum7"]
 
 [ext_resource type="Script" path="res://enemies/bubble/BubbleSpawner.cs" id="1_bg6iy"]
 [ext_resource type="PackedScene" uid="uid://bs4v3borvqwuj" path="res://enemies/bubble/BubbleAgent.tscn" id="2_3poak"]
+[ext_resource type="AudioStream" uid="uid://twso3yn0b744" path="res://assets/sounds/Player-Hit-Washing-Machine.wav" id="3_f7875"]
 [ext_resource type="Texture2D" uid="uid://cxbpfd5vjk10n" path="res://enemies/bubble/assets/boss_room_sprite_sheet.png" id="3_jjxe1"]
 [ext_resource type="AudioStream" uid="uid://c0q1jjwq5gcpw" path="res://assets/sounds/Washing-Machine-Shutting-Down.wav" id="3_q7r6y"]
 [ext_resource type="Texture2D" uid="uid://16p6w6jh2264" path="res://enemies/bubble/assets/spawner_sheet.png" id="4_4idlj"]
+[ext_resource type="AudioStream" uid="uid://4h5rjv5nc3n1" path="res://assets/sounds/Player-Hit-Washing-Machine02.wav" id="4_u40b7"]
+[ext_resource type="AudioStream" uid="uid://k5t8hknfk6x4" path="res://assets/sounds/Player-Hit-Washing-Machine03.wav" id="5_sno83"]
+[ext_resource type="AudioStream" uid="uid://dor46g5eadoaw" path="res://assets/sounds/Player-Hit-Washing-Machine04.wav" id="6_12sk3"]
+[ext_resource type="AudioStream" uid="uid://xh4gu3dmqsa1" path="res://assets/sounds/Player-Hit-Washing-Machine05.wav" id="7_wgem7"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s4egn"]
+streams_count = 5
+stream_0/stream = ExtResource("3_f7875")
+stream_1/stream = ExtResource("4_u40b7")
+stream_2/stream = ExtResource("5_sno83")
+stream_3/stream = ExtResource("6_12sk3")
+stream_4/stream = ExtResource("7_wgem7")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n28xm"]
 size = Vector2(174, 227)
@@ -185,6 +198,7 @@ collision_mask = 8
 script = ExtResource("1_bg6iy")
 BubbleScene = ExtResource("2_3poak")
 killSFX = ExtResource("3_q7r6y")
+hitSFX = SubResource("AudioStreamRandomizer_s4egn")
 Sprite = NodePath("SpawnerAnimatedSprite")
 playerAnimation = NodePath("AnimationPlayer")
 MaxNumberOfAliveBubbles = 999999999

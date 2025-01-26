@@ -14,6 +14,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
   [Export] public PackedScene BubbleScene;
   [Export] public Line2D PatrolPath;
   [Export] public AudioStream killSFX;
+  [Export] public AudioStream hitSFX;
   [Export] public AnimatedSprite2D Sprite;
 	[Export] public AnimationPlayer playerAnimation;
 
@@ -73,6 +74,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
       BossHealth -= damage;
     }
 
+    AudioManager.PlaySFX(hitSFX, 1f, false, GlobalPosition);
     TryKill();
   }
 
