@@ -7,27 +7,29 @@ content_margin_left = 20.0
 content_margin_top = 10.0
 content_margin_right = 20.0
 content_margin_bottom = 10.0
-bg_color = Color(0.189333, 0.401737, 0.585865, 1)
+bg_color = Color(0.662745, 0.00784314, 0.0156863, 1)
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+corner_detail = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxcp1"]
 content_margin_left = 20.0
 content_margin_top = 10.0
 content_margin_right = 20.0
 content_margin_bottom = 10.0
-bg_color = Color(0.373896, 0.622938, 0.847503, 1)
+bg_color = Color(0.796078, 0.223529, 0.113725, 1)
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+corner_detail = 16
 
 [resource]
 default_font = ExtResource("1_d1ltj")
-Button/font_sizes/font_size = 30
+Button/font_sizes/font_size = 40
 Button/styles/hover = SubResource("StyleBoxFlat_dq5em")
 Button/styles/normal = SubResource("StyleBoxFlat_hxcp1")
