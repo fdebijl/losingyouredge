@@ -15,7 +15,7 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
   [Export] public Line2D PatrolPath;
   [Export] public AudioStream killSFX;
   [Export] public AnimatedSprite2D Sprite;
-	[Export] private AnimationPlayer playerAnimation;
+	[Export] public AnimationPlayer playerAnimation;
 
   [Export] public bool BossMode = false;
   [Export] public int BossHealth = 100;

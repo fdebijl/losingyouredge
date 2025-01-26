@@ -24,7 +24,7 @@ public partial class Boss : Node2D {
   private Area2D laserCollider;
 
   [Export]
-  private int laserDamage = 10;
+  private int laserDamage = 20;
 
   [Export]
   private float laserDuration = 0.5f;
@@ -97,6 +97,7 @@ public partial class Boss : Node2D {
 
     if (attackTimer <= 0f) {
       SetAttackTimer();
+      spawner.playerAnimation.Play("grow");
 
       telegraphActive = true;
       telegraphTimer = telegraphDuration;
@@ -130,6 +131,7 @@ public partial class Boss : Node2D {
       laserSprite.Visible = false;
       laserCollider.ProcessMode = ProcessModeEnum.Disabled;
     } else if (!laserActive) {
+      spawner.playerAnimation.Play("shake");
       attackTimer -= (float)delta;
     }
   }
