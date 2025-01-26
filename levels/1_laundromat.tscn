@@ -173,7 +173,7 @@ collision_mask = 3
 texture = ExtResource("2_c1rpc")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Props/Room 1/Desk"]
-polygon = PackedVector2Array(80.4178, -367.624, 78.329, -97.1279, 114.883, -55.3525, 155.614, -35.5092, 809.4, -35.5092, 807.311, -213.055, 306.005, -212.01, 255.875, -233.943, 234.987, -279.896, 230.809, -368.668)
+polygon = PackedVector2Array(80.4178, -320.627, 78.329, -97.1279, 114.883, -55.3525, 155.614, -35.5092, 716.449, -35.5092, 717.494, -213.055, 306.005, -212.01, 255.875, -233.943, 234.987, -279.896, 230.809, -321.671)
 
 [node name="UpperWashers" type="StaticBody2D" parent="Props/Room 1"]
 collision_layer = 8
