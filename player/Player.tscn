@@ -372,14 +372,16 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_sk27h"]
 radius = 27.0185
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay", "point", "playerAnimation", "playerBodyAnimation", "playerFaceAnimation", "playerDamageAnimation") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay", "point", "playerAudioListener", "playerAnimation", "playerBodyAnimation", "playerFaceAnimation", "playerDamageAnimation") groups=["Player"]]
 collision_mask = 264
 script = ExtResource("1_srn17")
+chargeCooldown = 0.5
 ChargeDisplay = NodePath("ChargeDisplay")
 ChargeScale = 50.0
 chargeSpeed = 1.0
 Friction = 1.0
 point = NodePath("DamageArea")
+playerAudioListener = NodePath("AudioListener2D")
 chargeSFX = SubResource("AudioStreamRandomizer_80jtj")
 jumpSFX = SubResource("AudioStreamRandomizer_v5yhj")
 endScreenPath = "res://menus/LoseScreen.tscn"

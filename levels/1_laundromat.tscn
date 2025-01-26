@@ -232,7 +232,6 @@ offset_bottom = 487.0
 
 [node name="player" parent="." instance=ExtResource("2_6gavc")]
 position = Vector2(1222, 1332)
-chargeCooldown = 0.5
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
 visible = false
