@@ -58,20 +58,51 @@ public partial class Player : CharacterBody2D
 	[Export] private AnimationPlayer playerAnimation;
 	[Export] private AnimatedSprite2D playerBodyAnimation;
 	[Export] private AnimatedSprite2D playerFaceAnimation;
+	[Export] private AnimatedSprite2D playerDamageAnimation;
 
 	public void Heal(int value)
 	{
 		health += value;
+		healthAnimation();
 	}
   public void Damage(int damage)
   {
     health -= damage;
 		DamageAnimation();
+
+		healthAnimation();
     if (health <= 0)
     {
       Death();
     }
   }
+
+	private void healthAnimation() {
+		switch (health)
+		{
+			case 100:
+				playerDamageAnimation.Visible = false;
+				break;
+			case 80:
+				playerDamageAnimation.Visible = true;
+				playerDamageAnimation.Frame = 0;
+				break;
+			case 60:
+				playerDamageAnimation.Visible = true;
+				playerDamageAnimation.Frame = 1;
+				break;
+			case 40:
+				playerDamageAnimation.Visible = true;
+				playerDamageAnimation.Frame = 2;
+				break;
+			case 20:
+				playerDamageAnimation.Visible = true;
+				playerDamageAnimation.Frame = 4;
+				break;
+			default:
+				break;
+    }
+	}
 
   public void Death()
   {

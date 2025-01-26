@@ -28,12 +28,6 @@ size = Vector2(1037, 162)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n00ov"]
 size = Vector2(929.5, 235)
 
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_h17ey"]
-stream_count = 3
-stream_0 = ExtResource("9_i445e")
-stream_1 = ExtResource("10_vi8kx")
-stream_2 = ExtResource("11_q8mff")
-
 [node name="Laundromat" type="Node2D"]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
@@ -223,6 +217,7 @@ width = 0.0
 [node name="SpawnerLeft" parent="Spawners/Room 1" node_paths=PackedStringArray("PatrolPath") instance=ExtResource("3_5ayhr")]
 position = Vector2(255, 100)
 PatrolPath = NodePath("../../../Patrol Paths/Room 1/PathLeft")
+killSFX = null
 SecondsBetweenSpawn = 3.0
 SpawnDelay = 5.0
 MaxNumberOfAliveBubbles = 6
@@ -232,6 +227,7 @@ ChaseSpeedMultiplier = 1.5
 [node name="SpawnerRight" parent="Spawners/Room 1" node_paths=PackedStringArray("PatrolPath") instance=ExtResource("3_5ayhr")]
 position = Vector2(995, 100)
 PatrolPath = NodePath("../../../Patrol Paths/Room 1/PathRight")
+killSFX = null
 SecondsBetweenSpawn = 5.0
 SpawnDelay = 8.0
 MaxNumberOfAliveBubbles = 3
