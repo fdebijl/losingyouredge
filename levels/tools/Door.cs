@@ -8,6 +8,11 @@ public partial class Door : StaticBody2D {
     bool allDead = true;
 
     foreach (IKillable trigger in triggers.Cast<IKillable>()) {
+      var node = trigger as Node;
+      if (node == null || !IsInstanceValid(node)) {
+        continue;
+      }
+
       if (!trigger.IsDead()) {
         allDead = false;
         break;

@@ -12,6 +12,11 @@ public partial class WinCondition : Node {
     bool allDead = true;
 
     foreach (IKillable trigger in triggers.Cast<IKillable>()) {
+      var node = trigger as Node;
+      if (node == null || !IsInstanceValid(node)) {
+        continue;
+      }
+
       if (!trigger.IsDead()) {
         allDead = false;
         break;
