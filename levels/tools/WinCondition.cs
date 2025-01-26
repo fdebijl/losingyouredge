@@ -8,15 +8,12 @@ public partial class WinCondition : Node {
   [Export]
   private string endScreenPath;
 
-  public override void _Process(double delta) {
+  public override void _PhysicsProcess(double delta) {
     bool allDead = true;
 
-    foreach (IKillable trigger in triggers.Cast<IKillable>()) {
-      var node = trigger as Node;
-      if (node == null || !IsInstanceValid(node)) {
-        continue;
-      }
-
+    foreach (
+        IKillable trigger in triggers.Where(n => n != null && IsInstanceValid(n)).Cast<IKillable>()
+    ) {
       if (!trigger.IsDead()) {
         allDead = false;
         break;

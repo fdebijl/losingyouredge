@@ -104,7 +104,7 @@ public partial class BubbleAi : CharacterBody2D, IKillable {
         GetParent().AddChild(obj);
       }
 
-      QueueFree();
+      GetParent().RemoveChild(this);
     };
 
     spriteBody.Play();

@@ -23,10 +23,12 @@ public partial class BubbleExplosion : Node2D {
   }
 
   private void OnBodyEntered(Node other) {
-    if (damaged) return;
+    if (damaged)
+      return;
 
     var player = other as Player;
-    if (player == null) return;
+    if (player == null)
+      return;
 
     damaged = true;
     player.Damage(damage);
@@ -34,11 +36,11 @@ public partial class BubbleExplosion : Node2D {
 
   // Called every frame. 'delta' is the elapsed time since the previous frame.
   public override void _Process(double delta) {
-    despawnTimer -= (float) delta;
+    despawnTimer -= (float)delta;
 
     if (despawnTimer < 0) {
       AudioManager.PlaySFX(explodeSFX, 1f, false, GlobalPosition);
-      QueueFree();
+      GetParent().RemoveChild(this);
     }
   }
 }
