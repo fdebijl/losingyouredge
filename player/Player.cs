@@ -106,6 +106,8 @@ public partial class Player : CharacterBody2D {
 
   [Export]
   private AnimatedSprite2D playerDamageAnimation;
+  [Export]
+  private AnimatedSprite2D playerDeathAnimation;
 
   public void Heal(int value) {
     health += value;
@@ -156,6 +158,8 @@ public partial class Player : CharacterBody2D {
 
   public void Death() {
     //Play death animation
+    playerDeathAnimation.Visible = true;
+    playerDeathAnimation.Play("death");
     //Disable player input
     //Play death sound
     //get the end screen scene

@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cf1qf8mq7blko"]
+[gd_scene load_steps=61 format=3 uid="uid://bin3r8r5qu1fi"]
 
 [ext_resource type="Script" path="res://player/Player.cs" id="1_srn17"]
 [ext_resource type="AudioStream" uid="uid://cvh68yeemhwi3" path="res://assets/sounds/Charge-up.wav" id="2_w1mds"]
@@ -17,11 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://dp1g6jqfnglok" path="res://player/Needle animation/needle sprite sheet.png" id="8_6u7ji"]
 [ext_resource type="AudioStream" uid="uid://e82rrdirdymy" path="res://assets/sounds/Jump03.wav" id="8_a83h8"]
 [ext_resource type="AudioStream" uid="uid://bnalg116apq3k" path="res://assets/sounds/Jump04.wav" id="9_y7v6k"]
-[ext_resource type="AudioStream" uid="uid://c6uveecem23rv" path="res://assets/sounds/Player-Hit-Wall.wav" id="10_8j5xn"]
-[ext_resource type="AudioStream" uid="uid://csuntoxa6rnqw" path="res://assets/sounds/Player-Hit-Wall02.wav" id="11_6mkym"]
-[ext_resource type="AudioStream" uid="uid://b86psf3cdqn6o" path="res://assets/sounds/Player-Hit-Wall03.wav" id="12_ubufj"]
-[ext_resource type="AudioStream" uid="uid://dwmsog2aq3oix" path="res://assets/sounds/Player-Hit-Wall04.wav" id="13_mstnb"]
 [ext_resource type="Texture2D" uid="uid://c7ewofksvx3hj" path="res://player/Needle animation/Damage sprites.png" id="18_3pj83"]
+[ext_resource type="Texture2D" uid="uid://dknea66taihhd" path="res://player/Needle animation/death sprites.png" id="19_u3vuc"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_80jtj"]
 playback_mode = 1
@@ -40,13 +37,6 @@ stream_0/stream = ExtResource("6_qwfot")
 stream_1/stream = ExtResource("7_3oi2p")
 stream_2/stream = ExtResource("8_a83h8")
 stream_3/stream = ExtResource("9_y7v6k")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1v86j"]
-streams_count = 4
-stream_0/stream = ExtResource("10_8j5xn")
-stream_1/stream = ExtResource("11_6mkym")
-stream_2/stream = ExtResource("12_ubufj")
-stream_3/stream = ExtResource("13_mstnb")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gt3w8"]
 radius = 64.1026
@@ -381,10 +371,25 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xg0e"]
+atlas = ExtResource("19_u3vuc")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o0wiu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xg0e")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 1.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_sk27h"]
 radius = 27.0185
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay", "point", "playerAudioListener", "playerAnimation", "playerBodyAnimation", "playerFaceAnimation", "playerDamageAnimation") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ChargeDisplay", "point", "playerAudioListener", "playerAnimation", "playerBodyAnimation", "playerFaceAnimation", "playerDamageAnimation", "playerDeathAnimation") groups=["Player"]]
 collision_mask = 264
 script = ExtResource("1_srn17")
 chargeCooldown = 0.5
@@ -396,12 +401,12 @@ point = NodePath("DamageArea")
 playerAudioListener = NodePath("AudioListener2D")
 chargeSFX = SubResource("AudioStreamRandomizer_80jtj")
 jumpSFX = SubResource("AudioStreamRandomizer_v5yhj")
-wallHitSFX = SubResource("AudioStreamRandomizer_1v86j")
 endScreenPath = "res://menus/LoseScreen.tscn"
 playerAnimation = NodePath("AnimationPlayer")
 playerBodyAnimation = NodePath("Node2D/BodyAnnimation")
 playerFaceAnimation = NodePath("Node2D/FaceAnnimation")
 playerDamageAnimation = NodePath("Node2D/DamageAnnimation")
+playerDeathAnimation = NodePath("Node2D/DeathSprite")
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -69.335)
@@ -448,6 +453,13 @@ visible = false
 position = Vector2(0, -115.583)
 sprite_frames = SubResource("SpriteFrames_fwl8y")
 animation = &"hurt"
+
+[node name="DeathSprite" type="AnimatedSprite2D" parent="Node2D"]
+visible = false
+position = Vector2(38.3333, -117.25)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_o0wiu")
+animation = &"dead"
 
 [node name="DamageArea" type="Area2D" parent="."]
 position = Vector2(-2, -283)
