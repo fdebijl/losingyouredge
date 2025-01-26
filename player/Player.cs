@@ -190,9 +190,25 @@ public partial class Player : CharacterBody2D
     }
     for (int i = 0; i < GetSlideCollisionCount(); i++)
       {
+        var collisionLayer = -1;
         var collision = GetSlideCollision(i);
+
+        // basic static body
         var collider = collision.GetCollider() as CollisionObject2D;
-        if (collider != null && collider.CollisionLayer == 8 ){
+        if (collider != null) {
+          collisionLayer = (int) collider.CollisionLayer;
+        } else {
+          var tileMapLayer = collision.GetCollider() as TileMapLayer;
+          if (tileMapLayer == null) return;
+
+          var tileSet = tileMapLayer.TileSet;
+          collisionLayer = (int) tileSet.GetPhysicsLayerCollisionLayer(0);
+          /* coTileMapLayer tileMapLayer.CollisionLayer; */
+        }
+
+        if (collisionLayer == -1) return;
+
+        if (collisionLayer == 8){
           BentAnimation();
           Velocity = Vector2.Zero;
           charge = 0;
