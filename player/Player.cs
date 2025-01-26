@@ -34,7 +34,7 @@ public partial class Player : CharacterBody2D
   [Export] public AudioStream chargeSFX;
   [Export] public AudioStream jumpSFX;
 
-  [Export] private PackedScene endPackedScreen;
+  [Export] private string endScreenPath;
   private ShaderMaterial playerShader;
 
   private HashSet<IKillable> enemies = new HashSet<IKillable>();
@@ -79,7 +79,7 @@ public partial class Player : CharacterBody2D
 		DamageAnimation();
 
 		healthAnimation();
-    if (health <= 80)
+    if (health <= 90)
     {
       Death();
     }
@@ -124,10 +124,11 @@ public partial class Player : CharacterBody2D
     //Disable player input
     //Play death sound
     //get the end screen scene
-    var endScreen = endPackedScreen.Instantiate() as EndScreen;
-    endScreen.SetEndText(false);
-    GetTree().Root.AddChild(endScreen);
-    //GetTree().ChangeSceneToFile(endScreen);
+        Callable
+    .From(() => {
+      GetTree().ChangeSceneToFile(endScreenPath);
+    })
+    .CallDeferred();
   }
 
   public override void _Input(InputEvent @event)

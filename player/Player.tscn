@@ -382,6 +382,7 @@ Friction = 1.0
 point = NodePath("DamageArea")
 chargeSFX = SubResource("AudioStreamRandomizer_80jtj")
 jumpSFX = SubResource("AudioStreamRandomizer_v5yhj")
+endScreenPath = "res://menus/LoseScreen.tscn"
 playerAnimation = NodePath("AnimationPlayer")
 playerBodyAnimation = NodePath("Node2D/BodyAnnimation")
 playerFaceAnimation = NodePath("Node2D/FaceAnnimation")
