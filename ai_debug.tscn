@@ -47,6 +47,8 @@ default_color = Color(1, 0, 1, 1)
 [node name="Boss" parent="." node_paths=PackedStringArray("PatrolPath") instance=ExtResource("1_7dl71")]
 position = Vector2(1325, 668)
 PatrolPath = NodePath("../Line2D")
+bossLaserSFX = null
+health = 10
 
 [node name="player" parent="." instance=ExtResource("2_bdf44")]
 position = Vector2(1848, 615)

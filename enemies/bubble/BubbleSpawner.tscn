@@ -1,21 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://7bpnmkemoum7"]
+[gd_scene load_steps=22 format=3 uid="uid://7bpnmkemoum7"]
 
 [ext_resource type="Script" path="res://enemies/bubble/BubbleSpawner.cs" id="1_bg6iy"]
 [ext_resource type="PackedScene" uid="uid://bs4v3borvqwuj" path="res://enemies/bubble/BubbleAgent.tscn" id="2_3poak"]
 [ext_resource type="Texture2D" uid="uid://cxbpfd5vjk10n" path="res://enemies/bubble/assets/boss_room_sprite_sheet.png" id="3_jjxe1"]
 [ext_resource type="AudioStream" uid="uid://c0q1jjwq5gcpw" path="res://assets/sounds/Washing-Machine-Shutting-Down.wav" id="3_q7r6y"]
 [ext_resource type="Texture2D" uid="uid://16p6w6jh2264" path="res://enemies/bubble/assets/spawner_sheet.png" id="4_4idlj"]
-[ext_resource type="AudioStream" uid="uid://hupjeln5urqv" path="res://assets/sounds/Edited-Washing-Machine-Dies.wav" id="4_hhh3u"]
-[ext_resource type="AudioStream" uid="uid://7i32xrkdysdc" path="res://assets/sounds/Edited-Washing-Machine-Dies02.wav" id="5_lge13"]
-[ext_resource type="AudioStream" uid="uid://c31tfiaj2f4la" path="res://assets/sounds/Edited-Washing-Machine-Dies03.wav" id="6_7xdi4"]
-[ext_resource type="AudioStream" uid="uid://c6tb8l5vviia3" path="res://assets/sounds/Edited-Washing-Machine-Dies04.wav" id="7_lo2kh"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s4egn"]
-streams_count = 4
-stream_0/stream = ExtResource("4_hhh3u")
-stream_1/stream = ExtResource("5_lge13")
-stream_2/stream = ExtResource("6_7xdi4")
-stream_3/stream = ExtResource("7_lo2kh")
+[ext_resource type="Texture2D" uid="uid://dknea66taihhd" path="res://player/Needle animation/death sprites.png" id="6_2yxjl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n28xm"]
 size = Vector2(174, 227)
@@ -47,6 +37,10 @@ region = Rect2(1000, 0, 500, 500)
 [sub_resource type="AtlasTexture" id="AtlasTexture_q85ma"]
 atlas = ExtResource("4_4idlj")
 region = Rect2(0, 1000, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2f7v"]
+atlas = ExtResource("6_2yxjl")
+region = Rect2(200, 0, 200, 200)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sd2th"]
 animations = [{
@@ -80,6 +74,14 @@ animations = [{
 "loop": true,
 "name": &"Default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2f7v")
+}],
+"loop": false,
+"name": &"death",
+"speed": 1.0
 }]
 
 [sub_resource type="Animation" id="Animation_32ma5"]
@@ -210,7 +212,7 @@ shape = SubResource("RectangleShape2D_n28xm")
 position = Vector2(-7, -15)
 scale = Vector2(0.50875, 0.50875)
 sprite_frames = SubResource("SpriteFrames_sd2th")
-animation = &"Default"
+animation = &"death"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
