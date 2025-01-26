@@ -94,7 +94,9 @@ public partial class BubbleSpawner : StaticBody2D, IKillable {
       playerAnimation.Play("rotate");
     } else {
       this.Sprite.Frame = IDLE_FRAME;
-      playerAnimation.Play("shake");
+      if (!BossMode) {
+        playerAnimation.Play("shake");
+      }
     }
 
     if (this._spawnTimer <= 0 && this.CanSpawn()) {
