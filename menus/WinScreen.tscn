@@ -15,7 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dyk5a")
-gameScenePath = "res://levels/1_Laundromat.tscn"
+gameScenePath = "res://levels/1_laundromat.tscn"
 restartButton = NodePath("MarginContainer/VBoxContainer/ButtonsVBox/StartGame")
 exitButton = NodePath("MarginContainer/VBoxContainer/ButtonsVBox/QuitGame")
 
